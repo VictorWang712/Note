@@ -1,90 +1,22 @@
+#INFO
 site_name: Walker_V's Notebook
 site_url: https://VictorWang712.github.io/Note/
-repo_url: https://github.com/VictorWang712/Note/
-repo_name: VictorWang712/Note
 site_author: Walker_V
 site_description: Walker_V's Notebook
+repo_url: https://github.com/VictorWang712/Note/
+repo_name: VictorWang712/Note
 copyright: Copyright &copy; 2024 Walker_V
 
+#UI
 theme:
   name: material
   language: zh
-  font: false
-  icon:
-    logo: material/database-outline
-  palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-  features:
-    - navigation.instant
-    - navigation.tabs
-    - navigation.tracking
-    - navigation.path
-    - navigation.prune
-    - navigation.indexes
-    - navigation.top
-    - search.highlight
-    - content.code.copy
-    - content.code.annotate
+  font: 
+    text: LXGW WenKai Screen
+    code: CodeNewRoman Nerd Font Mono
+  icon: material/book/outline
+  # custom_dir: docs/overrides
+  
+  favicon: https://i.loli.net/2021/08/05/md4l2rqvsWUaEG9.png
 
-plugins: 
-  - search
-  - tags
-
-extra: 
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/VictorWang712
-
-extra_css:
-  - stylesheets/custom.css
-  - stylesheets/extra.css
-  - sytlesheets/customAdmonition.css
-  - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
-
-extra_javascript:
-  - js/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-markdown_extensions: 
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.details
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.smartsymbols
-  - pymdownx.snippets
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - toc:
-      permalink: true
-      toc_depth: 4
+  

@@ -1,0 +1,53 @@
+site_name: Walker_V's Notebook
+site_url: https://VictorWang712.github.io/Note/
+site_author: Walker_V
+site_description: Walker_V's Notebook
+repo_url: https://github.com/VictorWang712/Note/
+repo_name: VictorWang712/Note
+copyright: Copyright &copy; 2024 Walker_V
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  font: 
+    text: LXGW WenKai Screen
+    code: CodeNewRoman Nerd Font Mono
+  icon:
+    logo: material/book-outline
+  favicon: https://i.loli.net/2021/08/05/md4l2rqvsWUaEG9.png
+
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: custom/day-and-night
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: octicons/sun-16
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: octicons/moon-16
+
+  features:
+    - navigation.tracking
+    - navigation.tabs
+
+extra:
+  generator: true
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/VictorWang712/
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/59307750/
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons

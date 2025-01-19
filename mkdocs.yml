@@ -51,3 +51,8 @@ markdown_extensions:
       options:
         custom_icons:
           - overrides/.icons
+
+nav:
+  - Home: index.md
+  - Mathematics:
+    - mathematics/mathematical_analysis.md

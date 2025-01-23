@@ -245,3 +245,12 @@
         opacity: 1;
     }
   }
+
+#rcorners {
+  border-radius: 25px;
+  border: 2px solid #FFFFFF;
+  padding: 20px; 
+  width: 70%;
+  height: 100%; 
+  font-size: 16px;
+}

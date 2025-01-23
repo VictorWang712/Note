@@ -254,3 +254,7 @@
   height: 100%; 
   font-size: 16px;
 }
+
+[data-md-color-scheme="default"] #rcorners {
+  border: 2px solid #808080;
+}

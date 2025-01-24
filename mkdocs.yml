@@ -4,7 +4,7 @@ site_author: Walker_V
 site_description: Walker_V's Notebook
 repo_url: https://github.com/VictorWang712/Note/
 repo_name: VictorWang712/Note
-copyright: Copyright &copy; 2024 Walker_V
+copyright: Copyright &copy; 2025 Walker_V
 
 theme:
   name: material
@@ -35,6 +35,7 @@ theme:
   features:
     - navigation.tracking
     - navigation.tabs
+    - content.code.copy
 
 extra:
   generator: true
@@ -43,16 +44,40 @@ extra:
       link: https://github.com/VictorWang712/
     - icon: fontawesome/brands/bilibili
       link: https://space.bilibili.com/59307750/
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:<victorwang712@zju.edu.cn>
+
+extra_css:
+  - stylesheets/css/card.css
+  - stylesheets/css/flink.css
+  - stylesheets/css/rounded_corner.css
 
 markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
       options:
         custom_icons:
           - overrides/.icons
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - statistics:
+      page_images: false
+      page_check_metadata: comments
 
 nav:
-  - Home: index.md
+  - Home: 
+    - 首页: index.md
+    - 友链: friends_links.md
   - Mathematics:
-    - mathematics/mathematical_analysis.md
+    - 数学分析: mathematics/mathematical_analysis.md
+  - Chemistry:
+    - 普通化学: chemistry/general_chemistry.md
+  - Computer Science:
+    - C 语言: computer_science/c.md

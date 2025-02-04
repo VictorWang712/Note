@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Lecture 3 - Particle Accelerators: From Producing Higgs Boson to Curing Cancer
 
 - Speaker: Prof Phillip Burrows - John Adams Institute, Oxford University

@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Lecture 4 - Geometric Deep Learning: Part 1
 
 - Speaker: Dr. Elena Gal

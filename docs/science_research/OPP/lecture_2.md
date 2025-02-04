@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Lecture 2 - AI-Driven Innovation: Shaping the Future of Energy System
 
 - Speaker: Prof. Alex Rogers - Department of Computer Science

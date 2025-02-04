@@ -1,3 +1,7 @@
+---
+statistics: true
+---
+
 # Introduction to the Programme
 
 !!! info

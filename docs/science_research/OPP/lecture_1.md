@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Welcome Lecture - Introduction to Oxford University
 
 - Speaker: Prof. Martin Bureau - Department of Physics (Astrophysics) and Wadham College

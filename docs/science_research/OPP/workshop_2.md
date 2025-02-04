@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Workshop 2 - British Culture and Etiquette
 
 - Speaker: Mr. Lawrence Coupland

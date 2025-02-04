@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Workshop 1 - Academic Presentation Skills
 
 - Speaker: Dr. Kalina Naidoo

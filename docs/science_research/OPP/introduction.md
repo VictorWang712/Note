@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Introduction to the Programme
 
 !!! info

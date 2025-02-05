@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Lecture 5 - Writing Computer Programmes
 
 - Speaker: Dr. Abhishek Dutta - Senior Research Software Engineer - Visual Geometry Group, Department of Engineering Science

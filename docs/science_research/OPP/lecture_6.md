@@ -33,6 +33,7 @@ Multicomponent alloys are essential to our future well-being and sustainability.
 The structure of a material depends on the free energy of mixing the different components $G$, which itself depends on the chemical interactions $H$ and the entropy $S$:
 
 $$G = \sum (x_{i}\mu_{i}) + \Delta G_{\text{mix}}$$
+
 $$\Delta G_{\text{mix}} = \Delta H_{\text{mix}} - T \Delta S_{\text{mix}}$$
 
 ## Multicomponent Meterial Counting

@@ -81,14 +81,14 @@ plugins:
 
 nav:
   - Home: 
-    - 首页: index.md
-    - 友链: friends_links.md
+    - index.md
+    - friends_links.md
   - Mathematics:
-    - 数学分析: mathematics/mathematical_analysis.md
+    - mathematics/mathematical_analysis.md
   - Chemistry:
-    - 普通化学: chemistry/general_chemistry.md
+    - chemistry/general_chemistry.md
   - Computer Science:
-    - C 语言: computer_science/c.md
+    - computer_science/c.md
   - Science Research:
     - Oxford Prospects Programmes '25 Winter:
       - science_research/OPP/introduction.md

@@ -8,3 +8,7 @@
     - Content: 21 Lectures and 6 Workshops
 
 *Details can be found in the HANDBOOK.*
+
+---
+
+It will be very welcome to help improve these notes by leaving *COMMENTS* below the article or submitting a *PULL REQUEST* via GitHub.

@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Workshop 7 - Public Speaking
 
 Speaker: Mr. Tom Brooks

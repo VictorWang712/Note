@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # Workshop 6 - Postgraduate Studies Workshop
 
 Speaker: G5 Speaker

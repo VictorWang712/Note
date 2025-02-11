@@ -35,6 +35,8 @@ Social networks exhibit both order and chaos, as individuals form connections wi
 >
 > [Gephi - The Open Graph Viz Platform](https://gephi.org/)
 
+Below is an illustrative example to demonstrate the application of the discussed principles.
+
 > Emergent Polarisation in Political Blogs
 >
 > The study *Divided they Blog* by Adamic and Glance analysed political blogs in 2004, categorising them as Democrat (blue) or Republican (red).

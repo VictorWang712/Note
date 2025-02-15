@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 15 - Social Networks from Math to Measurement
 
-Speaker: Prof. Bernie Hogan - Associate Professor and Senior Research Fellow
+- Speaker: Prof. Bernie Hogan - Associate Professor and Senior Research Fellow
 
 The concept of networks predates the Internet.
 

@@ -4,7 +4,7 @@ comments: true
 
 # Special Guest Lecture - Downton Abbey
 
-Speaker: Ms. Liz Trubridge
+- Speaker: Ms. Liz Trubridge
 
 ## Vision and Ambition Behind the Series
 

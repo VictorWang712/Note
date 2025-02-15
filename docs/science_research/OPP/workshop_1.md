@@ -10,24 +10,24 @@ comments: true
 
 ## Introduction
 
-What will your talk be about?
+What is the focus of your presentation?
 
-- Length: 10 min or 1 hour?
-- Audience: How much have they known about? What are they interested in?
+- Duration: 10 minutes or 1 hour?
+- Audience: What is their level of prior knowledge? What are their interests?
 
-## Main
+## Main Content
 
-At most 3 subheadings - Find 3 points you want to stress out
+Limit the content to three subheadings, focusing on the three key points you wish to emphasise.
 
 ## Conclusion
 
-What is the most important thing to remember about this presentation?
+What is the key takeaway from this presentation?
 
-Template: Title - Outline - Topic 1 - Topic 2 - Topic 3 - Summary - Acknowledgement
+Template: Title -> Outline -> Topic 1 -> Topic 2 -> Topic 3 -> Summary -> Acknowledgements
 
-Recommened speed: 1 slide per min
+Recommended pacing: One slide per minute.
 
-There is always a *QUESTION TIME* after conclusion.
+A *Question and Answer (Q&A) session* typically follows the conclusion.
 
 ---
 
@@ -38,12 +38,12 @@ There is always a *QUESTION TIME* after conclusion.
 - **Title**: "A Taste of Two Cultures: Food in the UK and China"
 - **Visuals**: Side-by-side images of iconic dishes (e.g., fish and chips vs. dumplings or stir-fry).
 - **Brief Overview**: Highlight the diversity and richness of both cuisines, emphasizing how history, geography, and culture shape their food traditions.
-- **Purpose**: To explore the differences in staple foods, flavor profiles, and cooking methods between the UK and China.
+- **Purpose**: To examine the differences in staple foods, flavour profiles, and cooking techniques between the UK and China.
 
 **3 Topics**:
 
 1. **Staple Foods**: Compare the role of potatoes, bread, and meat in the UK versus rice, noodles, and wheat-based foods in China.
-2. **Flavor Profiles**: Contrast the mild, savory flavors of British cuisine with the bold, diverse flavors of Chinese cuisine.
+2. **Flavour Profiles**: Contrast the mild, savoury flavours of British cuisine with the bold, diverse flavours of Chinese cuisine.
 3. **Cooking Methods**: Discuss the UK’s focus on roasting, baking, and frying versus China’s emphasis on stir-frying, steaming, and braising.
 
 **Take-Home Message**:
@@ -55,23 +55,23 @@ There is always a *QUESTION TIME* after conclusion.
 
 ## Aesthetics
 
-Do not stack parts of an image that are close to colour value.
+Avoid stacking image elements with similar colour values.
 
-It is recommended to use your *SCHOOL TEMPLATE*.
+It is advisable to utilise your *institutional template*.
 
-Notice the nuance about how the slide display on the laptop and projection.
+Pay attention to the differences in slide appearance between laptop screens and projectors.
 
-Black text on white background is better than white text on black background in general. Moreover, white background is more friendly to images (your school logo, etc.) and other items.
+Generally, black text on a white background is preferable to white text on a black background. Additionally, a white background is more compatible with images (e.g., institutional logos) and other elements.
 
 ## Creating Content
 
-Be guiding to instruct listeners.
+Adopt a guiding approach to effectively instruct your audience.
 
-## The Way to Talk
+## Delivery Techniques
 
 - Open body language
-- Pacing: do not be too fast or too slow
-- Try not to read from slides.
+- Pacing: Maintain a moderate speed; avoid being too fast or too slow.
+- Avoid reading directly from the slides.
 - Make eye contact.
 
 ---

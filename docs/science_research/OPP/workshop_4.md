@@ -4,7 +4,7 @@ comments: true
 
 # Workshop 4 - Critical Thinking
 
-Speaker: Dr. Mackenzie Graham
+- Speaker: Dr. Mackenzie Graham
 
 ## What is Critical Thinking
 

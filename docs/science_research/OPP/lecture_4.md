@@ -10,11 +10,11 @@ comments: true
 
 **Setup**
 
-Set of observations or samples $\mathcal{D} = \{(x_{i}, y_{i})\}^{N}_{i = 1}$ drawn *i.i.d.* from distribution $P$ over $x \times y$.
+A set of observations or samples $\mathcal{D} = \{(x_{i}, y_{i})\}^{N}_{i = 1}$ is drawn as *independent and identically distributed (i.i.d.) random variables* from a distribution $P$ over $\mathcal{X} \times \mathcal{Y}$.
 
-Coordinates of $x \in \mathcal{X} = \mathbb{R}^{\text{d}}$ are called features, and elements of $y$ are labels.
+The coordinates of $x \in \mathcal{X} = \mathbb{R}^{d}$ are referred to as features, while the elements of $y$ are termed labels.
 
-We assume the existence of a function $f$ *s.t.* $y_{i} = f(x_{i})$.
+We posit the existence of a function $f$ such that $y_{i} = f(x_{i})$.
 
 **Goal**
 

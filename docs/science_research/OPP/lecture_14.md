@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 14 - Fluid Mechanics for Offshore Renewable Energy
 
-Speaker: Dr. Christopher Vogel
+- Speaker: Dr. Christopher Vogel
 
 Offshore renewable energy technologies currently in use include:
 

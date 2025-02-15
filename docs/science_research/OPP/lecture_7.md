@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 7 - Artificial Intelligence for Decision-Making and Robotics
 
-Speaker: Dr. Victor-Alexandru Darvariu
+- Speaker: Dr. Victor-Alexandru Darvariu
 
 ## Formulating the Artificial Intelligence Problem
 

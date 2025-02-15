@@ -6,11 +6,11 @@ comments: true
 
 - Speaker: Dr. Abhishek Dutta - Senior Research Software Engineer - Visual Geometry Group, Department of Engineering Science
 
-Programming is a continuous process that includes *DETECTING THE PROBLEM*, *PRODUCING A MENTAL MODEL OF COMPUTATION*, *TRANSLATING AND REPRESENTING THE MENTAL MODEL INTO THE CODE* and *ITERATIVELY REFINING THE STRUCTURE*. Through this process, what is the most important in code writing is *MAKING THE CODE WORK AND GIVING THE CORRECT OUTPUT*.
+Programming is an iterative process encompassing *problem identification*, *developing a mental model of computation*, *translating and representing this model in code*, and *refining the structure iteratively*. The primary goal in writing code is to ensure it *functions correctly and produces accurate results*.
 
-However, for most of the time, programming is a team work, which means your code needs to be read by others. In that case, *MAKING THE CODE READABLE* is as important as making it work. In detail, good code allows others to faithfully reproduce the mental model of computation and by contrast, bad code makes others unable to reproduce the model.
+However, programming is often a collaborative effort, meaning your code must be comprehensible to others. Therefore, *ensuring code readability* is as crucial as ensuring its functionality. Specifically, well-written code enables others to accurately reconstruct the mental model of computation, whereas poorly written code hinders this process.
 
-## Naming Identifies
+## Naming Identifiers
 
 > ```java
 > static inline int count_leading_zeros(unsigned long x)
@@ -26,9 +26,9 @@ However, for most of the time, programming is a team work, which means your code
 > - `x`: variable name
 > - `BITS_PER_LONG`: numerical constant name
 
-Identifier names can also be seen as a **post-it-note** attached to different parts of a program code.
+Identifier names can be likened to **post-it notes** affixed to various sections of a program.
 
-How to choose an identifier name?
+How should one select an appropriate identifier name?
 
 - **Use common knowledge and analogies** to reduce the need for extensive documentation
 
@@ -36,77 +36,77 @@ How to choose an identifier name?
 >
 > `split_dataset()`: relies on the concept of splitting a collection of things into two or more groups.
 
-- If multiple choices exist between different identifier names, choose the one that can be explained to a 5-year-old.
-- A **well chosen identifier name** helps you avoid the need to comment your code.
+- When multiple identifier names are viable, select the one that can be easily explained to a five-year-old.
+- A **well-chosen identifier name** can eliminate the necessity for extensive code comments.
 
-How do you know which concepts are widely understood?
+How can one determine which concepts are universally understood?
 
-- Engaging with code and documentation written by others helps you break free from the constraints of
-  - *The here*: the era in which you were born
-  - *The now*: your field or expertise (e.g. engineering)
-- Exposure to ideas in **other disciplines** or **your sub-discipline** (i.e., remote in space) also helps you escape the captivity of personal viewpoints and allows you to survey a wider horizon of ideas.
-  - For an engineer, other discipline means Humanities, Biology, Anthropology, Art, etc.
-  - For an engineer with expertise in AI, your sub-discipline means operating system, database software, communication tools, etc.
-- Engaging with historical software (i.e., remote in time) and documentation also brings clarity about concepts that have stood the test of time.
+- Engaging with code and documentation authored by others enables one to transcend the limitations imposed by
+  - *The here*: the temporal context of one's birth
+  - *The now*: one's field of expertise (e.g., engineering)
+- Exposure to concepts from **other disciplines** or **sub-disciplines** (i.e., spatially remote fields) facilitates the liberation from personal biases and broadens one's intellectual perspective.
+  - For engineers, other disciplines encompass the humanities, biology, anthropology, art, and related fields.
+  - For AI specialists, sub-disciplines include operating systems, database software, communication tools, and related areas.
+- Engaging with historical software (i.e., temporally remote) and documentation provides clarity regarding concepts that have proven enduring.
 
-To choose a good identifier name, you need to break free from the "tyranny of the here and the now" by surveying ideas, code, and documentation that are:
+Selecting an effective identifier name requires transcending the "tyranny of the here and now" by exploring ideas, code, and documentation that are:
 
 - **remote in time** (e.g., historical releases)
 - **remote in space** (i.e., beyond your field of expertise)
 
 Some tips from *Linux Kernel* developers include:
 
-- Use proper descriptive names that are **short** and **to the point**.
+- Employ concise and descriptive names that are **brief** and **precise**.
     > Prefer `cout_active_users()` over `cntusr()`
     > `i`: for loop counter
     > `tmp`: for a variable that holds a temporary value
-- *Functions should be short and sweet, and do just one thing.*
-  - They should fit on one or two screenfuls of text, and do one thing and do that well.
+- *Functions should be concise, focused, and perform a single task effectively.*
+  - They should occupy no more than one or two screenfuls of text, performing a single task efficiently.
   - The number of local variables should not exceed 5 to 10.
 
 Some tips from developers at *Google*:
 
-- Spend time considering names—it's worth it.
-  - Don't default to the first name that comes to mind.
-  - If you're feeling stuck, consider running a new name by a teammate. (Nowadays, you can also ask an AI agent for help!)
-- Describe behavior: Encourage **naming based on what functions do** rather than when they are called.
+- Dedicate time to selecting appropriate names—it is a worthwhile investment.
+  - Avoid defaulting to the first name that occurs to you.
+  - If uncertain, consult a teammate for feedback on potential names. (Alternatively, seek assistance from an AI agent.)
+- Emphasise behaviour: Prioritise **naming functions based on their actions** rather than their invocation context.
   - Prefer `button.listen('click', addItemToCart)` over `button.listen('click', handleClick)`
-- Balance clarity and conciseness—use abbreviations with care.
-  - Ask yourself, "Will my readers immediately understand this label? **Will someone five years from now understand it?**"
-- Software changes, and names should change with it.
+- Strive for a balance between clarity and conciseness—exercise caution when using abbreviations.
+  - Consider whether your readers will instantly comprehend the label and whether it will remain intelligible five years hence.
+- As software evolves, so too should its nomenclature.
 
 ## Version Control
 
-- An atomic commit in a version control system is a commit that contains a single, self-contained change or a logical unit of work.
-  - e,g, a bug fix, feature addition, a new test case, etc.
-- Version control history serves as a form of free documentation.
-  - The evolution of the codebase becomes easier to understand.
-- For example, if you are trying to understand a specific feature of a piece of software, you can locate the version control commit that introduces this feature:
-  - The commit message would describe the changes.
-  - Diffrent view would show the changes that were required for this feature
-- Many open-source projects have a policy of accepting only atomic changes with detailed commit messages.
-- Atomic commits improve the intelligibility of your software code by encouraging authors to think in terms of logical units of change.
+- An atomic commit within a version control system encapsulates a single, self-contained modification or a coherent unit of work.
+  - Examples include bug fixes, feature implementations, new test cases, and similar modifications.
+- The history of version control acts as an implicit form of documentation.
+  - It facilitates a clearer understanding of the codebase's evolution.
+- For instance, to comprehend a specific software feature, one can identify the version control commit that introduced it:
+  - The commit message typically outlines the modifications.
+  - A different view would display the changes necessary for implementing the feature.
+- Numerous open-source projects enforce policies requiring atomic changes accompanied by detailed commit messages.
+- Atomic commits enhance code clarity by prompting authors to conceptualise changes as logical units.
 
 ## Tests
 
-- Test code allows you to ensure that your code adheres to the input/output requirements of users.
-- Test code can also serve as **a form of documentation**.
-  - Tests define the **expected behavior** of a module.
-  - Tests also document various **usage** of a module.
-  - Tests show what types of inputs are acceptable and what forms of output can be generated.
-- It is more useful to **keep a module and its test code together** so that the test code serves as an example of how a module should be used and its expected behaviour.
+- Test code ensures that your software complies with user-defined input/output specifications.
+- Test code also functions as **a form of documentation**.
+  - Tests specify the **expected behaviour** of a module.
+  - Tests also document the various **applications** of a module.
+  - Tests illustrate the acceptable input types and the potential output forms.
+- It is advantageous to **maintain a module alongside its test code**, as the latter exemplifies the module's usage and expected behaviour.
 
 ## Documentation
 
-- The need for extensive code documentation can be reduced by using:
+- The necessity for comprehensive code documentation can be minimised through:
   - Intelligible identifier names based on common knowledge
-  - Atomic commits in version control system
+  - Atomic commits within the version control system
   - Tests that showcase the usage and expected behaviour
-- Code documentation becomes essential when the above methods are insufficient to describe the purpose of a code block.
+- Code documentation becomes indispensable when the aforementioned methods fail to adequately describe a code block's purpose.
 
 Some tips from *Heras* developers:
 
-- A function docstring may include the following items:
+- A function's docstring may encompass the following elements:
   - A one-line description of the function.
   - Paragraphs of more detailed information.
   - An examples section. (*Optional*)
@@ -114,34 +114,34 @@ Some tips from *Heras* developers:
   - Returns section for the return values.
   - A raises section for possible errors. (*Optional*)
 
-Even a well-thought-out identifier name can sometimes lead to confusion. Documentation can help further clarify the purpose of an identifier.
+Even meticulously chosen identifier names may occasionally cause confusion. Documentation serves to further elucidate their purpose.
 
-If a source file is large, the concept of "**Table of Contents**" can be used to organise the content into sections.
+For extensive source files, employing a "**Table of Contents**" can effectively organise the content into coherent sections.
 
-Explain what your code does in comments:
+Use comments to elucidate the functionality of your code:
 
-- Readers are generally interested in two types of information:
-  - **What the code does**: This should be described in comments.
-  - **How the code works**: The code itself should convey this information.
-- Never try to explain **HOW** your code works in a comment: it's better to write the code so that its **functionality** is obvious. It's a waste of time to explain poorly written code. Generally, comments should describe **WHAT** your code does, not **HOW**.
+- Readers typically seek two types of information:
+  - **What the code accomplishes**: This should be articulated in comments.
+  - **How the code operates**: The code itself should communicate this information.
+- Avoid explaining **how** your code operates in comments; instead, write code whose **functionality** is self-evident. Explaining poorly written code is inefficient. Typically, comments should describe **what** your code achieves, not **how**.
 
 ## Summary
 
-The intelligibility of code can be improved by:
+Code clarity can be enhanced through:
 
 - Choosing identifier names wisely.
 - Using **atomic commits** in version control.
 - Relying on tests as a form of documentation for **usage and expected behaviour** of a module.
-- Documenting only **what** is being done by the code and letting the code describe how it is being done.
+- Documenting solely **what** the code accomplishes, allowing the code itself to illustrate **how** it operates.
 
-If a code is easy to understand, more people will be able to fix, extend and reuse it.
+If code is comprehensible, it becomes more accessible for others to debug, extend, and repurpose.
 
-Maintainability also depends on factors such as external dependencies, software architecture, etc.
+Maintainability is also influenced by factors such as external dependencies, software architecture, and related considerations.
 
-**Others** can fix, extend, and reuse your code if it is easy to understand.
+**Others** can debug, extend, and repurpose your code if it is comprehensible.
 
-After a few months or years, you will become the **others** and will need help to understand your own code.
+After several months or years, you may find yourself among the **others**, requiring assistance to comprehend your own code.
 
-Making things easier to understand often brings **greater clarity** to your own thoughts.
+Enhancing comprehensibility often leads to **greater clarity** in one's own understanding.
 
-If you are not satisfied with an identifier name or code structure, it is useful to **cross-examine** the code-generating agent and find more convincing solutions.
+If dissatisfied with an identifier name or code structure, it is beneficial to **critically evaluate** the code-generating agent and identify more effective solutions.

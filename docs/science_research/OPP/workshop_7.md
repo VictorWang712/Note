@@ -4,7 +4,7 @@ comments: true
 
 # Workshop 7 - Public Speaking
 
-Speaker: Mr. Tom Brooks
+- Speaker: Mr. Tom Brooks
 
 - Replace **filler words** (e.g., *um*, *er*, *like*, *you know*, *basically*) with deliberate pauses or breaths to enhance clarity and confidence.
 

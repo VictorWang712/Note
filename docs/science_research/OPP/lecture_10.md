@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 10 - Ethics and Artificial Intelligence
 
-Speaker: Dr. Mackenzie Graham
+- Speaker: Dr. Mackenzie Graham
 
 ## Introduction
 

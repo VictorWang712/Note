@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 8 - The Probabilistic Method
 
-Speaker: Prof. Alexander Scott
+- Speaker: Prof. Alexander Scott
 
 It can be very difficult to construct mathematical objects without embedding some sort of regular structure.
 

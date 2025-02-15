@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 12 - Water Resources, Rights, and Management
 
-Speaker: Dr. Kevin Grecksch - School of Geography and the Environment, University of Oxford
+- Speaker: Dr. Kevin Grecksch - School of Geography and the Environment, University of Oxford
 
 ## The Importance of Water in a Changing Climate
 

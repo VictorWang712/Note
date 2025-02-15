@@ -4,7 +4,7 @@ comments: true
 
 # Workshop 6 - Postgraduate Studies Workshop
 
-Speaker: G5 Speaker
+- Speaker: G5 Speaker
 
 - To explore the opportunities created by postgraduate studies
 - To evaluate the challenges and advantages of pursuing postgraduate studies both internationally and domestically

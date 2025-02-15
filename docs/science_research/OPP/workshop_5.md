@@ -4,4 +4,4 @@ comments: true
 
 # Workshop 5 - Student Panel
 
-Speaker: Oxford Students
+- Speaker: Oxford Students

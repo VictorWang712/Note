@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 11 - Applications of Particle Accelerators
 
-Speaker: Prof. Philip Burrows - John Adams Institute for Accelerator Science, Oxford University
+- Speaker: Prof. Philip Burrows - John Adams Institute for Accelerator Science, Oxford University
 
 ## Accelerators Worldwide
 

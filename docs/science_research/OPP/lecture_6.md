@@ -4,7 +4,7 @@ comments: true
 
 # Lecture 6 - Multicomponent High-Entropy Cantor Alloys
 
-Speaker: Prof. Brian Cantor - Department of Materials
+- Speaker: Prof. Brian Cantor - Department of Materials
 
 Human history is deeply intertwined with the discovery and development of new materials.
 

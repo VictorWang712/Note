@@ -4,7 +4,7 @@ comments: true
 
 # Workshop 3 - Film Production
 
-Speaker: Mr. Tom Brooks
+- Speaker: Mr. Tom Brooks
 
 *What Makes a Great Horror Film?*
 

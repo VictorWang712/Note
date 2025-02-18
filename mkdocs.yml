@@ -88,7 +88,9 @@ nav:
   - Chemistry:
     - chemistry/general_chemistry.md
   - Computer Science:
-    - computer_science/c.md
+    - computer_science/programming_and_algorithm_basics.md
+    - 数字逻辑基础:
+      - computer_science/logic_and_computer_design_fundamentals/introduction.md
   - Science Research:
     - Oxford Prospects Programmes '25 Winter:
       - science_research/OPP/introduction.md

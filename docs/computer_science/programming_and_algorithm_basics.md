@@ -2,9 +2,7 @@
 comments: true
 ---
 
-# C 语言
-
-## 程序设计与算法基础
+# 程序设计与算法基础
 
 ??? info "课程信息"
 
@@ -13,12 +11,12 @@ comments: true
     - 教师：何钦铭
     - 分数：94 / 4.8
 
-### 习题代码
+## 习题代码
 
 以下代码适用于**何钦铭**老师班级布置的习题，其他老师的习题安排有较大差异。
 
 <div class="card file-block" markdown="1">
-<div class="file-icon"><img src="  /Note/assets/images/icons/zip.svg" style="height: 3em;"></div>
+<div class="file-icon"><img src="/Note/assets/images/icons/zip.svg" style="height: 3em;"></div>
 <div class="file-body">
 <div class="file-title">习题代码</div>
 <div class="file-meta">4.66 MB / 2025-01-24</div>
@@ -33,7 +31,7 @@ comments: true
     - `Homework`：课后作业
 
 
-### 易错题整理
+## 易错题整理
 
 第二周 判断题 1-4
 

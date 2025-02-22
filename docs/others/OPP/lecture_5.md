@@ -42,11 +42,11 @@ How should one select an appropriate identifier name?
 How can one determine which concepts are universally understood?
 
 - Engaging with code and documentation authored by others enables one to transcend the limitations imposed by
-  - *The here*: the temporal context of one's birth
-  - *The now*: one's field of expertise (e.g., engineering)
+    - *The here*: the temporal context of one's birth
+    - *The now*: one's field of expertise (e.g., engineering)
 - Exposure to concepts from **other disciplines** or **sub-disciplines** (i.e., spatially remote fields) facilitates the liberation from personal biases and broadens one's intellectual perspective.
-  - For engineers, other disciplines encompass the humanities, biology, anthropology, art, and related fields.
-  - For AI specialists, sub-disciplines include operating systems, database software, communication tools, and related areas.
+    - For engineers, other disciplines encompass the humanities, biology, anthropology, art, and related fields.
+    - For AI specialists, sub-disciplines include operating systems, database software, communication tools, and related areas.
 - Engaging with historical software (i.e., temporally remote) and documentation provides clarity regarding concepts that have proven enduring.
 
 Selecting an effective identifier name requires transcending the "tyranny of the here and now" by exploring ideas, code, and documentation that are:
@@ -57,33 +57,37 @@ Selecting an effective identifier name requires transcending the "tyranny of the
 Some tips from *Linux Kernel* developers include:
 
 - Employ concise and descriptive names that are **brief** and **precise**.
-    > Prefer `cout_active_users()` over `cntusr()`
-    > `i`: for loop counter
-    > `tmp`: for a variable that holds a temporary value
+
+> Prefer `cout_active_users()` over `cntusr()`
+>
+> `i`: for loop counter
+>
+> `tmp`: for a variable that holds a temporary value
+
 - *Functions should be concise, focused, and perform a single task effectively.*
-  - They should occupy no more than one or two screenfuls of text, performing a single task efficiently.
-  - The number of local variables should not exceed 5 to 10.
+    - They should occupy no more than one or two screenfuls of text, performing a single task efficiently.
+    - The number of local variables should not exceed 5 to 10.
 
 Some tips from developers at *Google*:
 
 - Dedicate time to selecting appropriate names—it is a worthwhile investment.
-  - Avoid defaulting to the first name that occurs to you.
-  - If uncertain, consult a teammate for feedback on potential names. (Alternatively, seek assistance from an AI agent.)
+    - Avoid defaulting to the first name that occurs to you.
+    - If uncertain, consult a teammate for feedback on potential names. (Alternatively, seek assistance from an AI agent.)
 - Emphasise behaviour: Prioritise **naming functions based on their actions** rather than their invocation context.
-  - Prefer `button.listen('click', addItemToCart)` over `button.listen('click', handleClick)`
+    - Prefer `button.listen('click', addItemToCart)` over `button.listen('click', handleClick)`
 - Strive for a balance between clarity and conciseness—exercise caution when using abbreviations.
-  - Consider whether your readers will instantly comprehend the label and whether it will remain intelligible five years hence.
+    - Consider whether your readers will instantly comprehend the label and whether it will remain intelligible five years hence.
 - As software evolves, so too should its nomenclature.
 
 ## Version Control
 
 - An atomic commit within a version control system encapsulates a single, self-contained modification or a coherent unit of work.
-  - Examples include bug fixes, feature implementations, new test cases, and similar modifications.
+    - Examples include bug fixes, feature implementations, new test cases, and similar modifications.
 - The history of version control acts as an implicit form of documentation.
-  - It facilitates a clearer understanding of the codebase's evolution.
+    - It facilitates a clearer understanding of the codebase's evolution.
 - For instance, to comprehend a specific software feature, one can identify the version control commit that introduced it:
-  - The commit message typically outlines the modifications.
-  - A different view would display the changes necessary for implementing the feature.
+    - The commit message typically outlines the modifications.
+    - A different view would display the changes necessary for implementing the feature.
 - Numerous open-source projects enforce policies requiring atomic changes accompanied by detailed commit messages.
 - Atomic commits enhance code clarity by prompting authors to conceptualise changes as logical units.
 
@@ -91,28 +95,28 @@ Some tips from developers at *Google*:
 
 - Test code ensures that your software complies with user-defined input/output specifications.
 - Test code also functions as **a form of documentation**.
-  - Tests specify the **expected behaviour** of a module.
-  - Tests also document the various **applications** of a module.
-  - Tests illustrate the acceptable input types and the potential output forms.
+    - Tests specify the **expected behaviour** of a module.
+    - Tests also document the various **applications** of a module.
+    - Tests illustrate the acceptable input types and the potential output forms.
 - It is advantageous to **maintain a module alongside its test code**, as the latter exemplifies the module's usage and expected behaviour.
 
 ## Documentation
 
 - The necessity for comprehensive code documentation can be minimised through:
-  - Intelligible identifier names based on common knowledge
-  - Atomic commits within the version control system
-  - Tests that showcase the usage and expected behaviour
+    - Intelligible identifier names based on common knowledge
+    - Atomic commits within the version control system
+    - Tests that showcase the usage and expected behaviour
 - Code documentation becomes indispensable when the aforementioned methods fail to adequately describe a code block's purpose.
 
 Some tips from *Heras* developers:
 
 - A function's docstring may encompass the following elements:
-  - A one-line description of the function.
-  - Paragraphs of more detailed information.
-  - An examples section. (*Optional*)
-  - An args section for the function arguments.
-  - Returns section for the return values.
-  - A raises section for possible errors. (*Optional*)
+    - A one-line description of the function.
+    - Paragraphs of more detailed information.
+    - An examples section. (*Optional*)
+    - An args section for the function arguments.
+    - Returns section for the return values.
+    - A raises section for possible errors. (*Optional*)
 
 Even meticulously chosen identifier names may occasionally cause confusion. Documentation serves to further elucidate their purpose.
 
@@ -121,8 +125,8 @@ For extensive source files, employing a "**Table of Contents**" can effectively 
 Use comments to elucidate the functionality of your code:
 
 - Readers typically seek two types of information:
-  - **What the code accomplishes**: This should be articulated in comments.
-  - **How the code operates**: The code itself should communicate this information.
+    - **What the code accomplishes**: This should be articulated in comments.
+    - **How the code operates**: The code itself should communicate this information.
 - Avoid explaining **how** your code operates in comments; instead, write code whose **functionality** is self-evident. Explaining poorly written code is inefficient. Typically, comments should describe **what** your code achieves, not **how**.
 
 ## Summary

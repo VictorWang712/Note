@@ -11,8 +11,8 @@ comments: true
     - Site: Oxford University - Pembroke College
     - Content: 21 Lectures and 6 Workshops
 
-*Details can be found in the HANDBOOK.*
+Details can be found in the *Handbook*.
 
 ---
 
-It will be very welcome to help improve these notes by leaving *COMMENTS* below the article or submitting a *PULL REQUEST* via GitHub.
+It will be very welcome to help improve these notes by leaving *Comments* below the article or submitting a *Pull Request* via GitHub.

@@ -50,11 +50,11 @@ In the long term, the Earth's climate will adapt to these elevated $\ce{CO2}$ le
 ## Nuclear Energy
 
 - Nuclear Fission
-  - Safe, *zero* carbon
-  - Challenges include waste management, uranium supply, and the proliferation of nuclear weapons.
+    - Safe, *zero* carbon
+    - Challenges include waste management, uranium supply, and the proliferation of nuclear weapons.
 - Nuclear Fusion
-  - Safe, unlimited energy
-  - No practical applications have been realised to date.
+    - Safe, unlimited energy
+    - No practical applications have been realised to date.
 
 ### Nuclear Fission
 
@@ -125,17 +125,17 @@ Each fast breeder reactor generates fuel for subsequent reactor generations.
 ### Alternative Hydrogen Production
 
 - Photoelectrolysis
-  - Solar-powered photovoltaics
-  - Electrolysis of water
+    - Solar-powered photovoltaics
+    - Electrolysis of water
 - Thermochemical water splitting
-  - Requires temperatures of approximately 1000℃, which can be reduced through chemical cycles.
-  - Solar and geothermal energy sources
-  - Nuclear VHTR
+    - Requires temperatures of approximately 1000℃, which can be reduced through chemical cycles.
+    - Solar and geothermal energy sources
+    - Nuclear VHTR
 - Biomass conversion
-  - Photosynthesis by microbes (catalytic)
-  - Hydrogen production from biomass
+    - Photosynthesis by microbes (catalytic)
+    - Hydrogen production from biomass
 - Thermal biomass conversion
-  - Conversion via thermal methods such as pyrolysis or gasification
+    - Conversion via thermal methods such as pyrolysis or gasification
 
 These processes typically require heat energy or electrical input.
 
@@ -145,13 +145,13 @@ These processes typically require heat energy or electrical input.
 
 - 300 MWe to 800 MWe
 - Advantages:
-  - Easier entry to market and financing
-  - Scope for innovative manufacturing (*in-factory*)
-  - Economies of mass production (*NOAK*) and standardisation
-  - Faster construction, greater deployability/integration with grid
+    - Easier entry to market and financing
+    - Scope for innovative manufacturing (*in-factory*)
+    - Economies of mass production (*NOAK*) and standardisation
+    - Faster construction, greater deployability/integration with grid
 - Disadvantages:
-  - Overall economics of scale
-  - Licensing challenges (currently unresolved)
+    - Overall economics of scale
+    - Licensing challenges (currently unresolved)
 - Example: Light Water Reactor (LWR), Gas Fast Reactor (GFR), Molten Salt Reactor (MSR), High Temperature Gas Reactor (HTGR and VHTR)
 
 #### Generation IV Systems

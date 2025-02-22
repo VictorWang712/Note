@@ -25,21 +25,21 @@ They are increasingly integral to the *green revolution*, including electric and
 ### Demand for Battery Models
 
 - Design
-  - Predicting the **behaviour** of new chemical compositions
-  - Designing **electrodes**
-  - Estimating the **heat** generation of a cell
-  - Designing a **balancing** system
-  - **Matching** cells within a pack
+    - Predicting the **behaviour** of new chemical compositions
+    - Designing **electrodes**
+    - Estimating the **heat** generation of a cell
+    - Designing a **balancing** system
+    - **Matching** cells within a pack
 - Estimation
-  - State of **charge**
-  - **Temperature**
-  - State of **health**
-  - Power capability
+    - State of **charge**
+    - **Temperature**
+    - State of **health**
+    - Power capability
 - System integration and control
-  - Determining the **efficiency** map
-  - Identifying the **optimal (dis)charge profile**
-  - Estimating the **lifespan** of batteries
-  - Determining the **voltages** encountered by the inverter
+    - Determining the **efficiency** map
+    - Identifying the **optimal (dis)charge profile**
+    - Estimating the **lifespan** of batteries
+    - Determining the **voltages** encountered by the inverter
 
 ### The Ragone Plot: Comparing Performance Across Devices
 

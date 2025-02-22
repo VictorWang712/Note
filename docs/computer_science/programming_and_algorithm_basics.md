@@ -4,7 +4,7 @@ comments: true
 
 # 程序设计与算法基础
 
-??? info "课程信息"
+???+ info "课程信息"
 
     - 教师：何钦铭
     - 学分：4.0
@@ -24,7 +24,7 @@ comments: true
 <a class="down-button" target="_blank" href="/Note/assets/files/computer_science/programming_and_algorithm_basics_code.zip" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
-??? note "文件说明"
+???+ note "文件说明"
 
     - `Curricular`：课堂练习
     - `Experiment`：实验课习题

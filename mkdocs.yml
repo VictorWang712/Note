@@ -33,6 +33,7 @@ theme:
         icon: octicons/moon-16
 
   features:
+    - navigation.indexes
     - navigation.tracking
     - navigation.tabs
     - content.code.copy
@@ -89,36 +90,38 @@ nav:
     - chemistry/general_chemistry.md
   - Computer Science:
     - computer_science/programming_and_algorithm_basics.md
-    - 数字逻辑基础:
-      - computer_science/logic_and_computer_design_fundamentals/introduction.md
-  - Science Research:
+    - 数字逻辑设计:
+      - computer_science/logic_and_computer_design_fundamentals/index.md
+      - computer_science/logic_and_computer_design_fundamentals/chapter_1.md
+#  - Science Research:
+  - Others:
     - Oxford Prospects Programmes '25 Winter:
-      - science_research/OPP/introduction.md
-      - science_research/OPP/lecture_1.md
-      - science_research/OPP/workshop_1.md
-      - science_research/OPP/lecture_2.md
-      - science_research/OPP/lecture_3.md
-      - science_research/OPP/lecture_4.md
-      - science_research/OPP/workshop_2.md
-      - science_research/OPP/lecture_5.md
-      - science_research/OPP/lecture_6.md
-      - science_research/OPP/lecture_7.md
-      - science_research/OPP/lecture_8.md
-      - science_research/OPP/workshop_3.md
-      - science_research/OPP/workshop_4.md
-      - science_research/OPP/lecture_9.md
-      - science_research/OPP/lecture_10.md
-      - science_research/OPP/lecture_11.md
-      - science_research/OPP/lecture_12.md
-      - science_research/OPP/lecture_13.md
-      - science_research/OPP/workshop_5.md
-      - science_research/OPP/workshop_6.md
-      - science_research/OPP/workshop_7.md
-      - science_research/OPP/lecture_14.md
-      - science_research/OPP/lecture_15.md
-      - science_research/OPP/lecture_16.md
-      - science_research/OPP/lecture_17.md
-      - science_research/OPP/lecture_18.md
-      - science_research/OPP/lecture_19.md
-      - science_research/OPP/lecture_20.md
-      - science_research/OPP/lecture_21.md
+      - others/OPP/index.md
+      - others/OPP/lecture_1.md
+      - others/OPP/workshop_1.md
+      - others/OPP/lecture_2.md
+      - others/OPP/lecture_3.md
+      - others/OPP/lecture_4.md
+      - others/OPP/workshop_2.md
+      - others/OPP/lecture_5.md
+      - others/OPP/lecture_6.md
+      - others/OPP/lecture_7.md
+      - others/OPP/lecture_8.md
+      - others/OPP/workshop_3.md
+      - others/OPP/workshop_4.md
+      - others/OPP/lecture_9.md
+      - others/OPP/lecture_10.md
+      - others/OPP/lecture_11.md
+      - others/OPP/lecture_12.md
+      - others/OPP/lecture_13.md
+      - others/OPP/workshop_5.md
+      - others/OPP/workshop_6.md
+      - others/OPP/workshop_7.md
+      - others/OPP/lecture_14.md
+      - others/OPP/lecture_15.md
+      - others/OPP/lecture_16.md
+      - others/OPP/lecture_17.md
+      - others/OPP/lecture_18.md
+      - others/OPP/lecture_19.md
+      - others/OPP/lecture_20.md
+      - others/OPP/lecture_21.md

@@ -104,7 +104,7 @@ $$A_{n - 1}r^{n - 1} + \cdots + A_{1}r^{1} + A_{0}r^{0} + A_{-1}r^{-1} + \cdots 
 
 $$A_{n - 1} \cdots A_{1}A_{0}.A_{-1} \cdots A_{-m}$$
 
-其中，$.$ 为**小数点** (radix point)，$A_{n - 1}$ 为**最高有效位** (most significant digit, MSD)，$A_{-m}$ 为**最低有效位** (keast significant digit, LSD)。
+其中，$.$ 为**小数点** (radix point)，$A_{n - 1}$ 为**最高有效位** (most significant digit, MSD)，$A_{-m}$ 为**最低有效位** (least significant digit, LSD)。
 
 ## 进制转换
 

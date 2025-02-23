@@ -36,7 +36,7 @@ comments: true
 一个嵌入式系统的模块图如下：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/logic_and_computer_design_fundamentals/chapter_1_1.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_1_1.png" width="70%" style="margin: 0 auto;">
 </div>
 
 ### 模拟数字转换器
@@ -64,7 +64,7 @@ ADC 的结果是比特串，例如 `010`, `110`, `100`, `001`。
 ### 由电压决定的 1 位信号
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/logic_and_computer_design_fundamentals/chapter_1_2.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_1_2.png" width="70%" style="margin: 0 auto;">
 </div>
 
 **阈值区域** (throshold region) 内的电压所对应的电平是未定义的，会导致该位的状态无效，这被称为**浮动** (floating)。
@@ -129,15 +129,15 @@ $$A_{n - 1} \cdots A_{1}A_{0}.A_{-1} \cdots A_{-m}$$
     这里放一下小数部分在有限位进制转换时不能被精确表示的原因：
 
     <div style="text-align: center; margin-top: 0px;">
-    <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/logic_and_computer_design_fundamentals/chapter_1_3.png" width="70%" style="margin: 0 auto;">
+    <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_1_3.png" width="70%" style="margin: 0 auto;">
     </div>
 
     <div style="text-align: center; margin-top: 0px;">
-    <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/logic_and_computer_design_fundamentals/chapter_1_4.png" width="70%" style="margin: 0 auto;">
+    <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_1_4.png" width="70%" style="margin: 0 auto;">
     </div>
 
     <div style="text-align: center; margin-top: 0px;">
-    <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/logic_and_computer_design_fundamentals/chapter_1_5.png" width="70%" style="margin: 0 auto;">
+    <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_1_5.png" width="70%" style="margin: 0 auto;">
     </div>
 
 需要注意的是，这种由小数进制转换产生的数值差异，是出现计算误差的关键因素。
@@ -232,7 +232,7 @@ $$A_{n - 1} \cdots A_{1}A_{0}.A_{-1} \cdots A_{-m}$$
 - 不可打印字符（34 个）
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/logic_and_computer_design_fundamentals/chapter_1_6.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_1_6.png" width="70%" style="margin: 0 auto;">
 </div>
 
 特别的，如果在 ASCII 下作字母大小写转换，只需对编码的第 6 位取反。

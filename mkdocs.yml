@@ -91,8 +91,8 @@ nav:
   - Computer Science:
     - computer_science/programming_and_algorithm_basics.md
     - 数字逻辑设计:
-      - computer_science/logic_and_computer_design_fundamentals/index.md
-      - computer_science/logic_and_computer_design_fundamentals/chapter_1.md
+      - computer_science/digital_logic_design/index.md
+      - computer_science/digital_logic_design/chapter_1.md
 #  - Science Research:
   - Others:
     - Oxford Prospects Programmes '25 Winter:

@@ -93,6 +93,7 @@ nav:
     - 数字逻辑设计:
       - computer_science/digital_logic_design/index.md
       - computer_science/digital_logic_design/chapter_1.md
+      - computer_science/digital_logic_design/chapter_2.md
     - 数据结构基础:
       - computer_science/data_structure_basics/index.md
       - computer_science/data_structure_basics/chapter_1.md

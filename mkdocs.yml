@@ -98,7 +98,9 @@ nav:
       - computer_science/data_structure_basics/index.md
       - computer_science/data_structure_basics/chapter_1.md
       - computer_science/data_structure_basics/chapter_2.md
-#  - Science Research:
+  - Science Research:
+    - 论文阅读:
+      - science_research/papers/arXiv_2306_13063.md
   - Others:
     - Oxford Prospects Programmes '25 Winter:
       - others/OPP/index.md

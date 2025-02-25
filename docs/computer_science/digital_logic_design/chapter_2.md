@@ -164,3 +164,70 @@ $$X Y + \overline{X} Z + Y Z = X Y + \overline{X} Z$$
 一致律的对偶式如下：
 
 $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
+
+### 表达式化简
+
+当一个布尔等式用逻辑门实现时，每一个项都需要用一个门，项中的每一个变量都对应着门的一个输入。我们将项中的一个变量（或者变量的补）定义为一个**字符** (literal)。不难意识到，字符越少的表达式，其对应的电路就越简单，在实际实现中也就更加便捷与可靠。
+
+## 标准形式
+
+布尔函数的代数形式可以有多种，但有一些特殊的方法可以用来求布尔表达式的**标准形式** (standard form)。标准形式可以使简化布尔表达式的过程更加方便。
+
+标准形式包括**乘积项** (product term) 与**求和项** (sum term)。乘积项是形如 $X \overline{Y} Z $ 这样，由若干变量的与运算组成的逻辑积；求和项是形如 $X + Y + \overline{Z}$ 这样，由若干变量的或运算组成的逻辑和。
+
+#### 最小项和最大项
+
+一个真值表定义一个布尔函数。因此，一个自然的想法是通过遍历所有可能情况并进行运算，就能得到这个布尔函数的等价表达式。
+
+第一个方法是：一个布尔函数可以用乘积项的逻辑和来表示，对应这些乘积项函数的值为逻辑 $1$。基于此，我们提出**最小项** (minterm) 这一概念，即所有变量都以原变量或反变量的形式出现，且仅出现一次的乘积项。
+
+举例来说，三变量的最小项如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_11.png" width="70%" style="margin: 0 auto;">
+</div>
+
+那么，一个布尔函数可以由真值表中所有使函数取值为 $1$ 的最小项的逻辑和来表示，这样的表达式叫做**最小项之和** (sum of minterm, SOM)。
+
+第二个方法是：一个布尔函数可以用求和项的逻辑积来表示，对应这些求和项函数的值为逻辑 $0$。基于此，我们提出**最大项** (maxterm) 这一概念，即所有变量都以原变量或反变量的形式出现，且仅出现一次的求和项。
+
+举例来说，三变量的最大项如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_.png" width="70%" style="margin: 0 auto;">
+</div>
+
+那么，一个布尔函数可以由真值表中所有使函数取值为 $0$ 的最大项的逻辑积来表示，这样的表达式叫做**最大项之积** (product of maxterm, POM)。
+
+不难发现的一点是，有相同下标的最小项和最大项是互补的，即 $m_{j} = \overline{M_{j}}, M_{j} = \overline{m_{j}}$。
+
+接下来，我们就用一个实例来展示，在已知布尔函数真值表的情况下，如何用最小项之和或者最大项之积来表示该函数。
+
+> 考察一个三变量布尔函数，其完整真值表如下：
+>
+> |$X$|$Y$|$Z$|$F$|
+> |:-:|:-:|:-:|:-:|
+> |0|0|0|1|
+> |0|0|1|0|
+> |0|1|0|1|
+> |0|1|1|0|
+> |1|0|0|0|
+> |1|0|1|1|
+> |1|1|0|0|
+> |1|1|1|1|
+>
+> 用最小项之和表示：$F = \overline{X} \overline{Y} \overline{Z} + \overline{X} Y \overline{Z} + X \overline{Y} Z + X Y Z = m_{0} + m_{2} + m_{5} + m_{7}$
+>
+> 这种表示形式可以进一步简化为用最小项的十进制下标来表示：$F(X, Y, Z) = \sum m(0, 2, 5, 7)$
+>
+> 用最大项之积表示：$F = (X + Y + \overline{Z}) (X + \overline{Y} + \overline{Z}) (\overline{X} + Y + Z) (\overline{X} + \overline{Y} + Z) = M_{1} M_{3} M_{4} M_{6}$
+>
+> 这种表示形式可以进一步简化为用最大项的十进制下标来表示：$F(X, Y, Z) = \prod M(1, 3, 4, 6)$
+>
+> 进一步地，我们不难发现反函数 $\overline{F} = \sum m(1, 3, 4, 6) = \prod M(0, 2, 5, 7)$
+
+最小项之积与最大项之和两种表示形式，被称作布尔函数的**规范形式** (canonical form)。
+
+???+ warning
+
+    请务必注意“规范形式”和“标准形式”是两种表示方法。

@@ -58,7 +58,7 @@ statistics: true
 
 本网站的建设使用或参考了以下内容：
 
-- [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
-- [TonyCrane's Notebook](https://github.com/TonyCrane/note/)
-- [Mkdocs-Wcowin 主题](https://github.com/Wcowin/Mkdocs-Wcowin)
+- [Material for MkDocs](https://github.com/squidfunk/mkdocs-material)
+- [鹤翔万里的笔记本](https://github.com/TonyCrane/note/)
+- [Mkdocs-Wcowin 博客主题](https://github.com/Wcowin/Mkdocs-Wcowin)
 - [giscus](https://github.com/giscus/giscus)

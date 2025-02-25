@@ -56,7 +56,7 @@ comments: true
 
 通用门指的是可以独自实现所有布尔函数的门类型，即“功能完全的”。因此只需保证与、或、非三种逻辑运算都可以仅用该种通用门实现。理论证明，与非门和或非门都可以实现这一点。
 
-??? note+
+???+ note
 
     有关与非门是通用门的证明：
 
@@ -77,3 +77,90 @@ comments: true
 
 ## 布尔代数
 
+**布尔代数** (Boolean algebra) 是一种用来处理二进制变量和逻辑运算的代数方法。变量用大写字母来表示，三种基本的逻辑运算分别是与、或、非。
+
+**布尔表达式** (Boolean exxpression) 是一个由二进制变量、常量 $0$ 和 $1$、逻辑运算符号和括号等组成的代数运算式。
+
+**布尔函数** (Boolean function) 可以描述为一个布尔等式，其中依次包括一个代表函数的二进制变量、一个等号以及一个布尔表达式。
+
+### 基本恒等式
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_5.png" width="70%" style="margin: 0 auto;">
+</div>
+
+值得注意的是，**德摩根定理** (De Morgan's laws) 可以扩展到更多变量。其一般形式如下：
+
+- $\overline{X_{1} + X_{2} + \cdots + X_{n}} = \overline{X_{1}} \overline{X_{2}} \cdots \overline{X_{n}}$
+- $\overline{X_{1} X_{2} \cdots X_{n}} = \overline{X_{1}} + \overline{X_{2}} + \cdots + \overline{X_{n}}$
+
+### 对偶性
+
+这些基本恒等式体现了布尔代数的**对偶性** (duality)。一个布尔表达式的**对偶式** (dual) 可以通过交换与和或运算，交换常量 $0$ 和常量 $1$ 来获得。在基本恒等式表中，每一行的两个式子即互为对偶式。特别的，第 9 式是**自对偶** (self-dual) 的，即其对偶式仍是自身。
+
+???+ warning
+
+    需要注意的是，有些式子的自对偶性并不是显然的，可能需要进行对偶操作后进一步化简才能得到和原式一样的形式。
+
+    一个例子是：$F = A B + A C + B C$，进行对偶操作后得到的式子为 $F' = (A + B) (A + C) (B + C)$，此时要利用分配律化简：$(A + B) (A + C) (B + C) = (A + B C) (B + C) = A B + A C + B C$，才能直观地看出其自对偶性。
+
+### 反函数
+
+函数 $F$ 的反函数 $\overline{F}$，就是在真值表中将 $F$ 的值由 $1$ 变成 $0$，$0$ 变成 $1$。对表达式取反可以通过交换与和或运算，并将每一个变量和常量均取反的方法得到。其正确性是由德摩根定理保证的。
+
+虽然上文给出了求反函数的一般方法，但该方法实际上非常繁琐，实际操作中常用多次德摩根定理进行化简。
+
+> 例：求 $F_{1} = \overline{X} Y \overline{Z} + \overline{X} \overline{Y} Z, F_{2} = X (\overline{Y} \overline{Z} + Y Z)$ 的反函数。
+>
+> <div style="text-align: center; margin-top: 0px;">
+> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_6.png" width="70%" style="margin: 0 auto;">
+> </div>
+
+更进一步地，求反函数还有一个更加便捷的方法：求出函数的对偶式并将每一个变量取反。
+
+> 同样求前述的 $F_{1}, F_{2}$ 的反函数：
+> <div style="text-align: center; margin-top: 0px;">
+> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_7.png" width="70%" style="margin: 0 auto;">
+> </div>
+
+### 常用恒等式
+
+从上述基本的运算定理出发，我们可以得到若干常用恒等式：
+
+- $X + XY = X$
+- $X Y + X \overline{Y} = X$
+- $X + \overline{X} Y = X + Y$
+
+其证明如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_8.png" width="70%" style="margin: 0 auto;">
+</div>
+
+利用对偶性，我们不难得到另外三个恒等式：
+
+- $X (X + Y) = X$
+- $(X + Y) (X + \overline{Y}) = X$
+- $X (\overline{X} + Y) = XY$
+
+我们同样给出其证明：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_9.png" width="70%" style="margin: 0 auto;">
+</div>
+
+基于以上恒等式，一个更重要的定理是**一致律定理** (consensus theorem)：
+
+$$X Y + \overline{X} Z + Y Z = X Y + \overline{X} Z$$
+
+其证明也非常重要：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_10.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以注意到，其中最关键的第一步，在于利用 $(X + \overline{X}) = 1$ 引入了 $(X + \overline{X})$，从而实现了裂项。
+
+一致律的对偶式如下：
+
+$$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$

@@ -91,7 +91,7 @@ comments: true
 
 值得注意的是，**德摩根定理** (De Morgan's laws) 可以扩展到更多变量。其一般形式如下：
 
-- $\overline{X_{1} + X_{2} + \cdots + X_{n}} = \overline{X_{1}} \overline{X_{2}} \cdots \overline{X_{n}}$
+- $\overline{X_{1} + X_{2} + \cdots + X_{n}} = \overline{X_{1}} \ \overline{X_{2}} \cdots \overline{X_{n}}$
 - $\overline{X_{1} X_{2} \cdots X_{n}} = \overline{X_{1}} + \overline{X_{2}} + \cdots + \overline{X_{n}}$
 
 ### 对偶性
@@ -110,7 +110,7 @@ comments: true
 
 虽然上文给出了求反函数的一般方法，但该方法实际上非常繁琐，实际操作中常用多次德摩根定理进行化简。
 
-> 例：求 $F_{1} = \overline{X} Y \overline{Z} + \overline{X} \overline{Y} Z, F_{2} = X (\overline{Y} \overline{Z} + Y Z)$ 的反函数。
+> 例：求 $F_{1} = \overline{X} Y \overline{Z} + \overline{X} \ \overline{Y} Z, F_{2} = X (\overline{Y} \ \overline{Z} + Y Z)$ 的反函数。
 >
 > <div style="text-align: center; margin-top: 0px;">
 > <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_6.png" width="70%" style="margin: 0 auto;">
@@ -173,7 +173,7 @@ $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
 
 布尔函数的代数形式可以有多种，但有一些特殊的方法可以用来求布尔表达式的**标准形式** (standard form)。标准形式可以使简化布尔表达式的过程更加方便。
 
-标准形式包括**乘积项** (product term) 与**求和项** (sum term)。乘积项是形如 $X \overline{Y} Z $ 这样，由若干变量的与运算组成的逻辑积；求和项是形如 $X + Y + \overline{Z}$ 这样，由若干变量的或运算组成的逻辑和。
+标准形式包括**乘积项** (product term) 与**求和项** (sum term)。乘积项是形如 $X \overline{Y} Z$ 这样，由若干变量的与运算组成的逻辑积；求和项是形如 $X + Y + \overline{Z}$ 这样，由若干变量的或运算组成的逻辑和。
 
 #### 最小项和最大项
 
@@ -194,7 +194,7 @@ $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
 举例来说，三变量的最大项如下：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_12.png" width="70%" style="margin: 0 auto;">
 </div>
 
 那么，一个布尔函数可以由真值表中所有使函数取值为 $0$ 的最大项的逻辑积来表示，这样的表达式叫做**最大项之积** (product of maxterm, POM)。
@@ -216,7 +216,7 @@ $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
 > |1|1|0|0|
 > |1|1|1|1|
 >
-> 用最小项之和表示：$F = \overline{X} \overline{Y} \overline{Z} + \overline{X} Y \overline{Z} + X \overline{Y} Z + X Y Z = m_{0} + m_{2} + m_{5} + m_{7}$
+> 用最小项之和表示：$F = \overline{X} \ \overline{Y} \ \overline{Z} + \overline{X} Y \overline{Z} + X \overline{Y} Z + X Y Z = m_{0} + m_{2} + m_{5} + m_{7}$
 >
 > 这种表示形式可以进一步简化为用最小项的十进制下标来表示：$F(X, Y, Z) = \sum m(0, 2, 5, 7)$
 >

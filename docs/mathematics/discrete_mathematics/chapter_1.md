@@ -85,7 +85,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 
 ???+ warning
 
-    但是请注意，$\to$ 和 $\leftrightarrow$ 的作用顺序往往有歧义，这种情况下我们鼓励使用括号来明确表达式。
+    但是请注意，$\to$ 和 $\leftrightarrow$ 的作用顺序往往有歧义，这种情况下我们推荐并鼓励使用括号来明确表达式。
 
 ## 命题逻辑的应用
 
@@ -109,14 +109,14 @@ statement variable) 是一个命题的变量，常用字母来表示。
 
 ???+ warning
 
-    请注意，$\equiv$ 和 $\Leftrightarrow$ 不是逻辑联结词，$p \equiv$ 不是一个复合命题，而是代表“$p \leftrightarrow q$ 是永真式”这一语句。
+    请注意，$\equiv$ 和 $\Leftrightarrow$ 不是逻辑联结词，$p \equiv q$ 不是一个复合命题，而是代表“$p \leftrightarrow q$ 是永真式”这一语句。
 
 一个常用的判定两个命题是否等价的方法是考察其真值表。只要两个命题的真值表完全一致，那么这两个命题就是等价的。通过这种方法我们可以得到一个非常重要的逻辑等价式：**德摩根定律** (De Morgan's laws)。
 
 - $\neg (p \wedge q) \equiv \neg p \vee \neg q$
 - $\neg (p \vee q) \equiv \neg p \wedge \neg q$
 
-德摩根定律可以推广到任意优先多的命题：
+德摩根定律可以推广到任意有限多个命题：
 
 - $\neg \left( \bigvee_{i = 1}^{n} p_{i} \right) \equiv \bigwedge_{i = 1}^{n} \neg p_{i}$
 - $\neg \left( \bigwedge_{i = 1}^{n} p_{i} \right) \equiv \bigvee_{i = 1}^{n} \neg p_{i}$
@@ -124,7 +124,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 遵循这种方式，我们还可以给出若干基础的逻辑恒等式：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_1.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_1.png" width="70%" style="margin: 0 auto;">
 </div>
 
 在分析更加复杂的复合命题时，对于有 $n$ 个变量的复合命题需要考察具有 $2^{n}$ 种情况的真值表。这种指数级的增加是实际情况中不能接受的。因此我们常基于已经给出的逻辑恒等式，对复杂的表达式进行变形化简。

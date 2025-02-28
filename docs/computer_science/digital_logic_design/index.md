@@ -34,6 +34,7 @@ comments: true
 
 本部分的编写参考了以下内容：
 
+- *Logic and Computer Design Fundamentals*, Fifth Edition
 - 蔡铭老师的课件
 - [💎 数字逻辑设计 | Digital Design - Isshiki修's Notebook](https://note.isshikih.top/cour_note/D2QD_DigitalDesign/)
 - [数字逻辑设计 - NoughtQ的笔记本](https://note.noughtq.top/system/dld/)

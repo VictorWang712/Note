@@ -86,6 +86,9 @@ nav:
     - friends_links.md
   - Mathematics:
     - mathematics/mathematical_analysis.md
+    - 离散数学:
+      - mathematics/discrete_mathematics/index.md
+      - mathematics/discrete_mathematics/chapter_1.md
   - Chemistry:
     - chemistry/general_chemistry.md
   - Computer Science:

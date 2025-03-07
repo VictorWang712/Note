@@ -21,17 +21,17 @@ statement variable) 是一个命题的变量，常用字母来表示。
 
 许多数学陈述都是由一个或多个命题组合而来。由已知命题用**逻辑运算符** (logical operators) 组合而来的新命题也被称为**复合命题** (compound proposition)。
 
-令 $p$ 为一命题，则 $p$ 的否定记作 $\neg p$ 或 $\bar{p}$，指“不是 $p$ 所指的情形”，其真值与 $p$ 的真值相反。
+令 $p$ 为一命题，则 $p$ 的否定记作 $\neg p$ 或 $\bar{p}$，指「不是 $p$ 所指的情形」，其真值与 $p$ 的真值相反。
 
 令 $p$ 和 $q$ 为命题，
 
-- $p$、$q$ 的**合取** (conjunction) 即命题“$p$ 且 $q$”，记作 $p \wedge q$
-- $p$、$q$ 的**析取** (disjunction) 即命题“$p$ 或 $q$”，记作 $p \vee q$
-- $p$、$q$ 的**异或** (disjunction) 即命题“$p$ 或 $q$”，记作 $p \oplus q$
+- $p$、$q$ 的**合取** (conjunction) 即命题「$p$ 且 $q$」，记作 $p \wedge q$
+- $p$、$q$ 的**析取** (disjunction) 即命题「$p$ 或 $q$」，记作 $p \vee q$
+- $p$、$q$ 的**异或** (disjunction) 即命题「$p$ 或 $q$」，记作 $p \oplus q$
 
 ### 条件语句
 
-语句 $p \to q$ 称为条件语句，即“若 $p$，则 $q$”。条件语句也称为**蕴含** (imply)，即“**$p$ 蕴含 $q$** ($p$ implies $q$)”。其**真值表** (truth table) 如下：
+语句 $p \to q$ 称为条件语句，即「若 $p$，则 $q$」。条件语句也称为**蕴含** (imply)，即「**$p$ 蕴含 $q$** ($p$ implies $q$)」。其**真值表** (truth table) 如下：
 
 |$p$|$q$|$p \to q$|
 |:-:|:-:|:-:|
@@ -56,7 +56,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 
 当两个复合命题的真值表相同时，我们称这两个命题具有**等价关系** (equivalence relation)，即两者是等价的。
 
-另一种表示两个命题具有相同真值的命题符合方式是**双条件** (biconditional) 语句或双向蕴含，记作 $p \leftrightarrow q$，即“$p$ 当且仅当 $q$”。其真值表如下：
+另一种表示两个命题具有相同真值的命题符合方式是**双条件** (biconditional) 语句或双向蕴含，记作 $p \leftrightarrow q$，即「$p$ 当且仅当 $q$」。其真值表如下：
 
 |$p$|$q$|$p \leftrightarrow q$|
 |:-:|:-:|:-:|
@@ -109,7 +109,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 
 ???+ warning
 
-    请注意，$\equiv$ 和 $\Leftrightarrow$ 不是逻辑联结词，$p \equiv q$ 不是一个复合命题，而是代表“$p \leftrightarrow q$ 是永真式”这一语句。
+    请注意，$\equiv$ 和 $\Leftrightarrow$ 不是逻辑联结词，$p \equiv q$ 不是一个复合命题，而是代表「$p \leftrightarrow q$ 是永真式」这一语句。
 
 一个常用的判定两个命题是否等价的方法是考察其真值表。只要两个命题的真值表完全一致，那么这两个命题就是等价的。通过这种方法我们可以得到一个非常重要的逻辑等价式：**德摩根定律** (De Morgan's laws)。
 

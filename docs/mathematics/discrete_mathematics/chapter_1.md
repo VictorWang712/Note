@@ -142,3 +142,160 @@ statement variable) 是一个命题的变量，常用字母来表示。
 ### 谓词
 
 一般地，涉及 $n$ 个变量 $x_{1}, x_{2}, \cdots, x_{n}$ 的语句可以表示成 $P(x_{1}, x_{2}, \cdots, x_{n})$。形式为 $P(x_{1}, x_{2}, \cdots, x_{n})$ 的语句是**命题函数** (propositional function) $P$ 在 $n$ 元组 $(x_{1}, x_{2}, \cdots, x_{n})$ 下的值，$P$ 也称为 $n$ 元**谓词** (predicate)。
+
+谓词还可以用来验证计算机程序，也就是证明当给定合法输入时计算机程序总是能产生所期望的输出。描述合法输入的语句称作**前置条件** (precontdition)，而程序运行的输出应该满足的条件称作**后置条件** (postcondition)。
+
+### 量词
+
+从命题函数出发生成一个命题一般有两种做法。一种方法是将命题函数中的变量全部赋值；另一种方法被称作**量化** (quantification)，即表示谓词对于某种范围上的个体成立。
+
+量化在语句中依赖**量词** (quantifier) 来描述，常见的量词有*所有*，*存在*等。处理谓词和量词的逻辑领域称作**谓词演算** (predicate calculus)。
+
+我们主要考察的量词有如下几类：
+
+- **全称量词** (universal quantifier)：许多数学命题断言某一性质对于变量在某一特定域内的所有值均为真，这一特定域称作变量的**论域** (domain of discourse) 或**全体域** (universe of discourse)，也简称作**域** (domain)。这类语句可以用全称量化表示。具体来说，$P(x)$ 的全称量化是语句「$P(x)$ 对 $x$ 在其论域的所有值为真。」符号 $\forall xP(x)$ 表示 $P(x)$ 的全称量化，其中 $\forall$ 是全称量词。
+- **存在量词** (existential quantifier)：许多数学命题断言有一个个体使得某种性质成立。这类语句可以用存在量化表示。具体来说，$P(x)$ 的存在量化是命题「论语中存在一个个体 $x$ 满足 $P(x)$。」符号 $\exist xP(x)$ 表示 $P(x)$ 的存在量化，其中 $\exist$ 称为存在量词。
+
+### 有限域上的量词
+
+当一个量词的域是有限的时候，量化语句就可以用命题逻辑来表达。
+
+设论域中的元素为 $x_{1}, x_{2}, \cdots, x_{n}$，其中 $n \in \mathbb{N}^{+}$，则全称量化 $\forall xP(x)$ 与合取式 $P(x_{1}) \wedge P(x_{2}) \wedge \cdots \wedge P(x_{n})$ 相同；存在量化 $\exist xP(x)$ 与析取式 $P(x_{1}) \vee P(x_{2}) \vee \cdots \vee P(x_{n})$ 相同。
+
+### 变量绑定
+
+当量词作用于变量 $x$ 时，我们称该变量的这次出现为**约束的** (bound)；如果没有被量词约束或被赋值，则称该变量的这次出现为**自由的** (free)。
+
+要用命题函数生成命题，必须要求函数中的所有变量被量词约束或被赋值。
+
+逻辑表达式中一个量词作用到的部分称作这个量词的作用域。据此，若一个变量在公式中所有约束该变量的量词作用域之外，则该变量是自由的。
+
+### 涉及量词的逻辑等价式
+
+对于两个涉及谓词和量词的语句，若无论用什么谓词带入这些语句，且无论为这些命题函数里的变量指定什么论域，它们都有相同的真值，则称这两个语句是逻辑等价的。
+
+### 量化表达式的否定
+
+全称量词和存在量词的一般形式如下：
+
+- $\neg \forall x P(x) \equiv \exist x \neg P(x)$
+- $\neg \exist x Q(x) \equiv \forall x \neg Q(x)$
+
+这一量词否定的规则称作**量词的德摩根定律** (De Morgan's laws for quantifiers)。
+
+## 嵌套量词
+
+若一个量词出现在另一个量词的作用域内，则称该量词为**嵌套量词** (nested quantifier)。
+
+### 嵌套量词的否定
+
+要否定含有嵌套量词的语句，我们只需要递归地使用单个量词语句的否定规则。
+
+## 推理规则
+
+数学中的证明是建立数学命题真实性的有效论证，因此我们将围绕命题逻辑中的论证展开讨论。
+
+### 命题逻辑的有效论证
+
+在命题逻辑中，具体的相关定义如下：
+
+- **论证** (argument)：按一定顺序排列的若干命题
+- **结论** (conclusion)：论证中的最后一个命题
+- **前提** (premise)：论证中除结论外的其他命题
+
+若论证中所有前提 $p_{i}$ 为真蕴含着结论 $q$ 为真，即 $(p_{1} \wedge p_{2} \wedge \cdots \wedge p_{n}) \to q$ 是永真式时，则称该论证是**有效的** (valid)。
+
+### 命题逻辑的推理规则
+
+我们总是可以用一个真值表来证明一个论证是有效的，但这一方法显然难以推广到具有较多命题变量的论证中。故我们需要建立一些相对简单的论证形式，即**推理规则** (rule of inference)。
+
+最常见的推理规则是**假言推理** (modus ponens)，或称**分离规则** (law of detachment)。该规则基于永真式 $(p \wedge (p \to q)) \to q$。
+
+进一步地，从常见的永真式出发，我们可以给出更多的推理规则：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_2.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### 消解律
+
+在实际应用中，非常重要的一个推理规则是**消解律** (resolution)。该规则基于永真式 $((p \vee q) \wedge (\neg p \vee r)) \to (q \vee r)$，其中我们称式中被蕴含的 $q \vee r$ 为**消解式**(resolvent)。
+
+消解律在基于逻辑规则的编程语言中扮演着重要角色，因为可以仅用消解律构建自动定理证明系统。为做到这一点，假设和结论必须表示为**子句** (clause)，即变量或其否定的一个析取式。
+
+> 例如，对于语句 $\neg (p \vee q)$，我们应使用德摩根定律将其变形为 $\neg p \wedge \neg q$。
+
+### 谬误
+
+如果一个基于可满足式而非永真式构建推理规则，我们就可能出现**谬误** (fallacy)。了解谬误的常见模式有助于我们判断推理的有效性。
+
+命题 $((p \to q) \wedge q) \to p$ 不是永真式，当 $p$ 为假而 $q$ 为真时该命题为假。基于这一命题构建的推理被称作**肯定结论的谬误** (fallacy of affirming the conclusion)。
+
+> 举例来说：
+>
+> - 前提：如果你做离散数学课本的练习题，那你就学习离散数学。你学习离散数学。
+> - 结论：你做了离散数学课本的练习题
+>
+> 显然这个推理是一个谬误。
+
+命题 $((p \to q) \wedge \neg p) \to \neg q$ 不是永真式，当 $p$ 为假而 $q$ 为真时该命题为假。基于这一命题构建的推理被称作**否定假设的谬误** (fallacy of denying the hypothesis)。
+
+> 举例来说：
+>
+> - 前提：如果你做离散数学课本的练习题，那你就学习离散数学。你没有做离散数学课本的练习题。
+> - 结论：你没有学习离散数学。
+>
+> 显然这个推理也是一个谬误。
+
+### 量化命题的推理规则
+
+论述完命题的推理规则，现在我们关注含有量词的命题的推理规则。常见的量化命题的推理规则如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_3.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### 命题和量化命题的推理规则的组合使用
+
+在大部分论证中，我们既要使用命题推理规则，又要使用量化命题推理规则。接下来我们要讨论这种组合的常见模式。
+
+其中最广泛的组合是将全称实例和假言推理一起使用，这种组合被称作**全称假言推理** (universal modus ponens)。描述如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_4.png" width="70%" style="margin: 0 auto;">
+</div>
+
+另一种常见的组合是将全称实例和取拒式，这种组合被称作**全称取拒式** (universal modus tollens)。描述如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_5.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 证明导论
+
+在给出了各种概念和常见模式后，我们现在可以开始考察具体的证明了。
+
+在截至目前的数学课程中学习的证明绝大部分是**非形式化证明** (informal proof)，这是为了方便人们阅读理解。但如果我们目标是建立证明的自动化系统，那么**形式化证明** (formal proof) 显然是更值得被采用的。
+
+### 专用术语
+
+先给出一些证明中会用到的术语：
+
+- **定理** (theorem)：形式上就是一个能够被证明为真的命题，但数学描述中常用于专指那些有一定重要性的真命题。
+- **事实** (fact)：不太重要的定理，有时也称作**结论** (result)。（请注意和 conclusion 区分）
+- **证明** (proof)：建立定理真实性的一个有效论证。
+- **引理** (lemma)：重要性略低但有助于证明其它结论的定理。
+- **推论** (corollary)：从一个已经被证明的定理可以直接建立起来的一个定理。
+- **猜想** (conjecture)：一个被提出认为是真，但尚未被证明的命题。
+
+### 证明定理的方法
+
+接下来我们将讨论常见的证明条件语句的方法。但在此之前，出于个人的强烈意愿，笔者希望宕开一笔，展示课本中的这样一段内容：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_6.png" width="70%" style="margin: 0 auto;">
+</div>
+
+对于非形式化证明的简略程度一直备受争论，笔者强烈支持课本上这种「从读者出发」的态度，即根据目标读者的知识程度确定证明的简略程度。
+
+回到正题，我想这个小插曲也能一定程度上反映形式化证明的价值。

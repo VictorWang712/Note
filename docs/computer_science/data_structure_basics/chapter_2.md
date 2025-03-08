@@ -111,18 +111,18 @@ $$
 3 &  \textbf{Method. } \\
 4 &  \text{make an empty stack} \\
 5 &  \textbf{for} \text{ each } s_{i} \text{ in the string } s \\
-5 &  \qquad \textbf{if } s_{i} \text{ is an open symbol} \\
-6 &  \qquad\qquad \text{push } s_{i} \text{ into the stack } \\
-7 &  \qquad \textbf{else if } s_{i} \text{ is a close symbol} \\
-8 &  \qquad\qquad \textbf{if } \text{stack is empty } \\
-9 &  \qquad\qquad\qquad \textbf{return } \text{invalid} \\
-10 &  \qquad\qquad \textbf{else} \\
-11 &  \qquad\qquad\qquad \text{pop } s_{j} \text{ from the stack } \\
-12 &  \qquad\qquad\qquad \textbf{if } s_{j} \text{ is not the corresponding open symbol} \\
-13 &  \qquad\qquad\qquad\qquad \textbf{return } \text{invalid} \\
-14 &  \textbf{if } \text{the stack is not empty} \\
-15 &  \qquad \textbf{return } \text{invalid} \\
-16 &  \textbf{return } \text{valid}
+6 &  \qquad \textbf{if } s_{i} \text{ is an open symbol} \\
+7 &  \qquad\qquad \text{push } s_{i} \text{ into the stack } \\
+8 &  \qquad \textbf{else if } s_{i} \text{ is a close symbol} \\
+9 &  \qquad\qquad \textbf{if } \text{stack is empty } \\
+10 &  \qquad\qquad\qquad \textbf{return } \text{invalid} \\
+11 &  \qquad\qquad \textbf{else} \\
+12 &  \qquad\qquad\qquad \text{pop } s_{j} \text{ from the stack } \\
+13 &  \qquad\qquad\qquad \textbf{if } s_{j} \text{ is not the corresponding open symbol} \\
+14 &  \qquad\qquad\qquad\qquad \textbf{return } \text{invalid} \\
+15 &  \textbf{if } \text{the stack is not empty} \\
+16 &  \qquad \textbf{return } \text{invalid} \\
+17 &  \textbf{return } \text{valid}
 \end{array}
 $$
 
@@ -130,9 +130,76 @@ $$
 
 #### 后缀表达式
 
+**后缀表达式** (postfix notation)，也称**逆波兰表达式** (reverse Polish notation) 是一种数学表达式的记法，其中运算符位于操作数之后。其准确定义源于在表达式树上的后序遍历。
+
+> 对应地，在表达式树上进行前序遍历得到的表达式被称作**前缀表达式** (prefix notation) 或**波兰表达式 (Polish notation)。
+
+计算一个后缀表达式所花费的时间是 $O(N)$ 的，这一过程且后缀表达式的求值可以用栈简单实现。
+
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The expression } s \text{ under infix notation.} \\
+2 &  \textbf{Output. } \text{The value of the expression} \\
+3 &  \textbf{Method. } \\
+4 &  \text{make an empty stack} \\
+5 &  \textbf{for} \text{ each } s_{i} \text{ in the string } s \\
+5 &  \qquad \textbf{if } s_{i} \text{ is a symbol} \\
+6 &  \qquad\qquad \textbf{let } a_{i} \text{ be the top of the stack} \\
+7 &  \qquad\qquad \text{pop } a_{i} \text{ from the stack} \\
+8 &  \qquad\qquad \textbf{let } a_{j} \text{ be the top of the stack} \\
+9 &  \qquad\qquad \text{pop } a_{j} \text{ from the stack} \\
+10 &  \qquad \text{let } a_{k} \text{be the result of the operation with } a_{i}, a_{j} \text{ and the symbol } s_{i} \\
+11 &  \qquad \text{push } a_{k} \text{ into the stack}\\
+12 &  \qquad \textbf{else} \\
+13 &  \qquad\qquad \text{push } s_{i} \text{ into the stack} \\
+14 &  \textbf{output } \text{the top of the stack} s_{i} \\
+\end{array}
+$$
+
+值得注意的是，以后缀表达式形式给出的表达式的运算顺序是唯一确定的，也就意味着不需要给出运算符的优先级。得益于以上优势，后缀表达式在计算机领域有广泛的应用。
+
 #### 中缀到后缀的转换
 
+我们常见的标准形式的表达式被称作**中缀表达式** (infix notation)，因此一个常见的问题就是如何将中缀表达式转换为后缀表达式。
+
+假设我们的中缀表达式只含有 $+, -, \times, /, ()$ 五种符号和由一个字母所表示的变量，且符号优先级与通用的数学运算相一致，我们同样可以用栈来完成这一转换过程。
+
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The expression } s \text{ under infix notation.} \\
+2 &  \textbf{Output. } \text{The expression } s \text{ under postfix notation.} \\
+3 &  \textbf{Method. } \\
+4 &  \text{make an empty stack} \\
+5 &  \textbf{for} \text{ each } s_{i} \text{ in the string } s \\
+5 &  \qquad \textbf{if } s_{i} \text{ is a letter} \\
+6 &  \qquad\qquad \textbf{output } s_{i} \\
+7 &  \qquad \textbf{else if } s_{i} \text{ is } ) \\
+8 &  \qquad\qquad \textbf{while } \text{the top of the stack } s_{j} \text{ is not } ( \\
+9 & \qquad\qquad\qquad \textbf{output } s_{j} \\
+10 & \qquad\qquad\qquad \text{pop } s_{j} \text{ from the stack} \\
+11 & \qquad\qquad \text{pop the top of the stack } s_{j} \text{ from the stack} \\
+12 &  \qquad \textbf{else} \\
+13 &  \qquad\qquad \textbf{while } \text{the priority of top of the stack } s_{j} \text{ is not lower than } s_{i} \\
+14 & \qquad\qquad\qquad \textbf{output } s_{j} \\
+15 & \qquad\qquad\qquad \text{pop } s_{j} \text{ from the stack} \\
+16 & \qquad\qquad \text{push } s_{i} \text{ into the stack} \\
+17 &  \textbf{while } \text{the stack is not empty} \\
+18 &  \qquad \textbf{output } \text{the top of the stack } s_{i} \\
+19 &  \qquad \text{pop } s_{i} \text{ from the stack} \\
+\end{array}
+$$
+
 #### 函数调用
+
+在一个复杂的程序中，函数的调用往往互相嵌套，但不难发现这一过程和前述的平衡符号问题是一致的。因此我们也可以使用栈来解决这一问题。
+
+一般地，在实现递归的程序设计语言中，所存储的信息称作**活动记录** (activation record)，或称作**栈帧** (stack frame)。函数的调用即是以入栈和出栈的方式有序执行的。
+
+在实际情况中，计算机的内存是有限的，这便导致了一个常见的问题，即栈溢出。栈溢出往往发生在函数调用不当的情况下，尤其是在递归不当的情况下。
+
+一个使用递归极端不当的情况称作**尾递归** (tail recursion)，即在程序的末尾进行递归调用。由于尾递归可以简单地通过带参数的顺序实现所替代，而两者对空间的消耗是天差地别的，所以在编写程序时要力图避免出现尾递归的情况。
+
+事实上，所有的递归总是能转变成非递归的实现，这也正是编译器在将代码编译为汇编语言时所做的事情。但出于程序逻辑性和易读性的考量，我们仍然在编写程序时使用递归。
 
 ## 队列
 

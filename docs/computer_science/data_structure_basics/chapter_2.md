@@ -132,7 +132,7 @@ $$
 
 **后缀表达式** (postfix notation)，也称**逆波兰表达式** (reverse Polish notation) 是一种数学表达式的记法，其中运算符位于操作数之后。其准确定义源于在表达式树上的后序遍历。
 
-> 对应地，在表达式树上进行前序遍历得到的表达式被称作**前缀表达式** (prefix notation) 或**波兰表达式 (Polish notation)。
+> 对应地，在表达式树上进行前序遍历得到的表达式被称作**前缀表达式** (prefix notation) 或**波兰表达式** (Polish notation)。
 
 计算一个后缀表达式所花费的时间是 $O(N)$ 的，这一过程且后缀表达式的求值可以用栈简单实现。
 
@@ -142,7 +142,7 @@ $$
 2 &  \textbf{Output. } \text{The value of the expression} \\
 3 &  \textbf{Method. } \\
 4 &  \text{make an empty stack} \\
-5 &  \textbf{for} \text{ each } s_{i} \text{ in the string } s \\
+5 &  \textbf{for} \text{ each } s_{i} \text{ in the expression } s \\
 5 &  \qquad \textbf{if } s_{i} \text{ is a symbol} \\
 6 &  \qquad\qquad \textbf{let } a_{i} \text{ be the top of the stack} \\
 7 &  \qquad\qquad \text{pop } a_{i} \text{ from the stack} \\
@@ -152,7 +152,7 @@ $$
 11 &  \qquad \text{push } a_{k} \text{ into the stack}\\
 12 &  \qquad \textbf{else} \\
 13 &  \qquad\qquad \text{push } s_{i} \text{ into the stack} \\
-14 &  \textbf{output } \text{the top of the stack} s_{i} \\
+14 &  \textbf{output } \text{the top of the stack } s_{i} \\
 \end{array}
 $$
 
@@ -170,7 +170,7 @@ $$
 2 &  \textbf{Output. } \text{The expression } s \text{ under postfix notation.} \\
 3 &  \textbf{Method. } \\
 4 &  \text{make an empty stack} \\
-5 &  \textbf{for} \text{ each } s_{i} \text{ in the string } s \\
+5 &  \textbf{for} \text{ each } s_{i} \text{ in the expression } s \\
 5 &  \qquad \textbf{if } s_{i} \text{ is a letter} \\
 6 &  \qquad\qquad \textbf{output } s_{i} \\
 7 &  \qquad \textbf{else if } s_{i} \text{ is } ) \\

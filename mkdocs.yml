@@ -15,7 +15,7 @@ theme:
     code: CodeNewRoman Nerd Font Mono
   icon:
     logo: material/book-outline
-  favicon: https://i.loli.net/2021/08/05/md4l2rqvsWUaEG9.png
+  favicon: assets/images/icons/favicon.png
 
   palette:
     - media: "(prefers-color-scheme)"

@@ -132,7 +132,7 @@ $$
 
 **后缀表达式** (postfix notation)，也称**逆波兰表达式** (reverse Polish notation) 是一种数学表达式的记法，其中运算符位于操作数之后。其准确定义源于在表达式树上的后序遍历。
 
-> 对应地，在表达式树上进行前序遍历得到的表达式被称作**前缀表达式** (prefix notation) 或**波兰表达式** (Polish notation)。
+> 对应地，在表达式树上进行先序遍历得到的表达式被称作**前缀表达式** (prefix notation) 或**波兰表达式** (Polish notation)。
 
 计算一个后缀表达式所花费的时间是 $O(N)$ 的，这一过程且后缀表达式的求值可以用栈简单实现。
 
@@ -148,7 +148,7 @@ $$
 7 &  \qquad\qquad \text{pop } a_{i} \text{ from the stack} \\
 8 &  \qquad\qquad \textbf{let } a_{j} \text{ be the top of the stack} \\
 9 &  \qquad\qquad \text{pop } a_{j} \text{ from the stack} \\
-10 &  \qquad \text{let } a_{k} \text{be the result of the operation with } a_{i}, a_{j} \text{ and the symbol } s_{i} \\
+10 &  \qquad \text{let } a_{k} \text{ be the result of the operation with } a_{i}, a_{j} \text{ and the symbol } s_{i} \\
 11 &  \qquad \text{push } a_{k} \text{ into the stack}\\
 12 &  \qquad \textbf{else} \\
 13 &  \qquad\qquad \text{push } s_{i} \text{ into the stack} \\

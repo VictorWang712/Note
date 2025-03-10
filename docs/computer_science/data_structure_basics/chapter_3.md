@@ -42,7 +42,7 @@ struct TreeNode {
 > 我们给出一棵按此方法声明的树的具体例子，图中向下的箭头是指向 `FirstChild`（第一子节点）的指针，从左到右的箭头是指向 `NextSibling`（下一兄弟节点）的指针。
 >
 > <div style="text-align: center; margin-top: 0px;">
-> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_1.png" width="70%" style="margin: 0 auto;">
+> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_3_1.png" width="70%" style="margin: 0 auto;">
 > </div>
 
 ### 树的遍历
@@ -86,7 +86,7 @@ struct TreeNode {
 > 举例来说，表达式 `(a+(b*c))+(((d*e)+f)*g)` 对应的表达式树如下：
 >
 > <div style="text-align: center; margin-top: 0px;">
-> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_2.png" width="70%" style="margin: 0 auto;">
+> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_3_2.png" width="70%" style="margin: 0 auto;">
 > </div>
 
 #### 由表达式构造表达式树
@@ -128,3 +128,9 @@ $$
 先序遍历指的是先输出根节点，再递归右子树，最后递归左子树。对应生成的表达式即为前缀表达式。
 
 后序遍历指的是先递归左子树，再递归右子树，最后输出根节点。对应生成的表达式即为后缀表达式。
+
+## 二叉查找树
+
+二叉树的一个重要应用就是查找。为了方便起见，我们给出一些假设：假设树中的每个节点存在一个关键字值，且每个关键字是互异的。更复杂的情况我们将在以后讨论。
+
+使二叉树成为二叉查找树的性质是，对于树中的每个节点 $X$，其左子树中所有节点的关键字值小于 $X$ 的关键字值，右子树中所有节点的关键字值大于 $X$ 的关键字值。

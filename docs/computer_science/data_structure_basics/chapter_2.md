@@ -130,7 +130,7 @@ $$
 
 #### 后缀表达式
 
-**后缀表达式** (postfix notation)，也称**逆波兰表达式** (reverse Polish notation) 是一种数学表达式的记法，其中运算符位于操作数之后。其准确定义源于在表达式树上的后序遍历。
+**后缀表达式** (postfix notation)，也称**逆波兰表达式** (reverse Polish notation) 是一种数学表达式的记法，其中运算符位于操作数之后。其准确定义源于[在表达式树上的后序遍历](https://victorwang712.github.io/Note/computer_science/data_structure_basics/chapter_3/#_9)，这一点我们会在第三章讨论。
 
 > 对应地，在表达式树上进行先序遍历得到的表达式被称作**前缀表达式** (prefix notation) 或**波兰表达式** (Polish notation)。
 

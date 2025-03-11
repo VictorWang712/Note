@@ -32,7 +32,7 @@ comments: true
 
 ???+ note
 
-    大部分功能模块属于[中规模集成电路]()。**补链接！**
+    大部分功能模块属于[中规模集成电路](https://victorwang712.github.io/Note/computer_science/digital_logic_design/chapter_5/#_2)。
 
 ## 工艺映射
 

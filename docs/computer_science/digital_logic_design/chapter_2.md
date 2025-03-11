@@ -384,7 +384,7 @@ $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
 
 - 若函数对某个乘积项的每一个最小项都取值为 $1$，则这个乘积项是函数的一个**蕴含项** (inplicant)。这对应着卡诺图中值为 $1$ 的方格。
 - 若从蕴含项 $P$ 中移去任何一个变量，所得的乘积项不再是函数的蕴含项，则称这样的 $P$ 为函数的**主蕴含项** (prime implicant)。这对应着卡诺图中的矩形。
-- 若函数的某个最小项只包含在一个主蕴含项中，则这个主蕴含项是必需的，称其为**质主蕴含项** (essential)。这对应着卡诺图中无法删去的矩形。
+- 若函数的某个最小项只包含在一个主蕴含项中，则这个主蕴含项是必需的，称其为**质主蕴含项** (essential prime implicant)。这对应着卡诺图中不能删去的矩形。
 
 ???+ note
 
@@ -438,3 +438,77 @@ $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
 但敏锐的读者可能会发现，笔者一直强调「纸笔」这个关键词，这也就意味着卡诺图在程序实现上有独特优势。
 
 通过思考我们可以发现，假设我们确定规范形式中的一项，试图找出能和它合并的其他若干项，在表达式中就需要遍历剩下的所有项；但在卡诺图上就只用查看它的相邻项。进一步来说，可以利用类似 BFS 这样的算法来找到卡诺图上所有的矩形，从而进一步化简。这在大规模数据下的时间成本节省是显著的。
+
+## 异或操作和异或门
+
+### 异或运算
+
+我们常用符号 $\oplus$ 代表异或运算，即 $X \oplus Y = X \overline{Y} + \overline{X} Y$。
+
+异或非，即对异或取反，又称**同或** (equivalence)，即 $\overline{X \oplus Y} = X Y + \overline{X} \overline{Y}$。
+
+异或运算有如下性质：
+
+- $X \oplus 0 = X, X \oplus 1 = \overline{X}$
+- $X \oplus X = 0, X \oplus \overline{X} = 1$
+- $X \oplus \overline{Y} = \overline{X} \oplus Y = \overline{X \oplus Y}$
+
+同时，异或运算满足交换律和结合律，即：
+
+- $A \oplus B = B \oplus A$
+- $(A \oplus B) \oplus C = A \oplus (B \oplus C)$
+
+这意味着对于三变量或三变量以上的异或运算，其运算顺序不影响结果。这一性质印出来我们接下来要讨论的奇函数和偶函数。
+
+### 奇函数和偶函数
+
+多变量的异或运算可以转化为普通的布尔函数。
+
+> 例如，$X \oplus Y \oplus Z = X \overline{Y} \overline{Z} + \overline{X} Y \overline{Z} + \overline{X} \overline{Y} Z + X Y Z$。
+
+从布尔表达式中可以看出，当有一个变量或三个变量都为 $1$ 时，三变量异或运算的值才等于 $1$。
+
+不难发现这一性质是可以推广到任意多变量的异或运算，即多变量异或运算的值为 $1$ 当且仅当其中有奇数个变量值为 $1$。据此，我们称多变量异或运算为**奇函数** (odd function)；而对多变量异或运算取反的运算就称为**偶函数** (even funciton)，即当且仅当其中有偶数个变量值为 $1$ 时表达式的值为 $1$。
+
+事实上，奇函数的这一性质在卡诺图上也有显著的特征。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_16.png" width="70%" style="margin: 0 auto;">
+</div>
+
+奇函数和偶函数的一个应用就是进行第一章中提到的[偶校验和奇校验](https://victorwang712.github.io/Note/computer_science/digital_logic_design/chapter_1/#_20)。我们以偶校验为例，对于一个 $n$ 位的 01 编码，我们将每一位作为一个变量，作 $n$ 变量的奇函数运算，其值即为偶校验所需的值；相对地，偶函数可以用于生成奇校验所需的值。
+
+???+ warning
+
+    请注意这里是「奇函数生成偶校验」，「偶函数生成奇校验」，一定不要弄反！
+
+## 门的传播延迟
+
+逻辑门的一个重要特性是**传播延迟** (propagation delay)，即信号的变化从输入传播到输出所需要的时间。电路运行的速度与电路中经过门的最长传播延迟成反比关系。
+
+常用的传播延迟参数有三个：
+
+- **高到低的传播时间** (high-to-low propagation time) $t_{\text{PHL}}$：输出电压从高 (H) 变为低 (L) 时，从输入的参考电压到输出的参考电压两者间的时间差
+- **低到高的传播时间** (low-to-high propagation time) $t_{\text{PLH}}$：输出电压从低 (L) 变为高 (H) 时，从输入的参考电压到输出的参考电压两者间的时间差
+- 传播延迟 $t_{\text{pd}}$：取 $t_{\text{PHL}}$ 和 $t_{\text{PLH}}$ 的最大值
+
+下图给出了传播延迟的实际表现：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_17.png" width="70%" style="margin: 0 auto;">
+</div>
+
+在模拟过程中对门建模时，我们一般考察传输延迟和惯性延迟，此时这两者的定义如下：
+
+- **传输延迟** (transport delay)：输出相应输入的变化，在指定的传播延迟之后发生改变。
+- **惯性延迟** (inertial delay)：类似于传输延迟，但如果输入变化使输出在小于**拒绝时间** (rejection time) 的间隔内发生两次变化，那么两次变化中的第一次将不会发生。拒绝时间是一个确定的值，其不大于传播延迟且通常等于传播延迟。
+
+下图给出了传输延迟和惯性延迟的行为示例：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_18.png" width="70%" style="margin: 0 auto;">
+</div>
+
+???+ warning
+
+    请务必区分「传播延迟」和「传输延迟」！前者是实际情况中客观存在的门延迟，后者是模拟过程中引入的用于描述延迟情况的一个量。

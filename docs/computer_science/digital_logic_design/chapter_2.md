@@ -509,6 +509,8 @@ $$(X + Y) (\overline{X} + Z) (Y + Z) = (X + Y) (\overline{X} + Z)$$
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_2_18.png" width="70%" style="margin: 0 auto;">
 </div>
 
+特别地，在波形图中，我们称波形的每个变化为一个**边沿** (edge)。
+
 ???+ warning
 
     请务必区分「传播延迟」和「传输延迟」！前者是实际情况中客观存在的门延迟，后者是模拟过程中引入的用于描述延迟情况的一个量。

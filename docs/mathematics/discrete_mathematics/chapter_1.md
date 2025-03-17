@@ -330,7 +330,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 
 系统地说，用反证法证明条件语句 $p \to q$ 的一般步骤：
 
-- 假设存在某个命题 $r$ 使得 $\neg \to (r \wedge \neg r)$ 为真
+- 假设存在某个命题 $r$ 使得 $\neg p \to (r \wedge \neg r)$ 为真
 - 则 $p$ 为真
 
 #### 等价证明法

@@ -124,7 +124,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 遵循这种方式，我们还可以给出若干基础的逻辑恒等式：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_1.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_1.png" width="70%" style="margin: 0 auto;">
 </div>
 
 在分析更加复杂的复合命题时，对于有 $n$ 个变量的复合命题需要考察具有 $2^{n}$ 种情况的真值表。这种指数级的增加是实际情况中不能接受的。因此我们常基于已经给出的逻辑恒等式，对复杂的表达式进行变形化简。
@@ -214,7 +214,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 进一步地，从常见的永真式出发，我们可以给出更多的推理规则：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_2.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_2.png" width="70%" style="margin: 0 auto;">
 </div>
 
 ### 消解律
@@ -252,7 +252,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 论述完命题的推理规则，现在我们关注含有量词的命题的推理规则。常见的量化命题的推理规则如下：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_3.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_3.png" width="70%" style="margin: 0 auto;">
 </div>
 
 ### 命题和量化命题的推理规则的组合使用
@@ -262,13 +262,13 @@ statement variable) 是一个命题的变量，常用字母来表示。
 其中最广泛的组合是将全称实例和假言推理一起使用，这种组合被称作**全称假言推理** (universal modus ponens)。描述如下：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_4.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_4.png" width="70%" style="margin: 0 auto;">
 </div>
 
 另一种常见的组合是将全称实例和取拒式，这种组合被称作**全称取拒式** (universal modus tollens)。描述如下：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_5.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_5.png" width="70%" style="margin: 0 auto;">
 </div>
 
 ## 证明导论
@@ -293,7 +293,7 @@ statement variable) 是一个命题的变量，常用字母来表示。
 接下来我们将讨论常见的证明条件语句的方法。但在此之前，出于个人的强烈意愿，笔者希望宕开一笔，展示课本中的这样一段内容：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/Chapter_1_6.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_1_6.png" width="70%" style="margin: 0 auto;">
 </div>
 
 对于非形式化证明的简略程度一直备受争论，笔者强烈支持课本上这种「从读者出发」的态度，即根据目标读者的知识程度确定证明的简略程度。

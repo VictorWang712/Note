@@ -73,6 +73,8 @@ markdown_extensions:
         custom_icons:
           - overrides/.icons
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 plugins:
   - search
@@ -90,6 +92,7 @@ nav:
       - mathematics/discrete_mathematics/index.md
       - mathematics/discrete_mathematics/chapter_1.md
       - mathematics/discrete_mathematics/chapter_2.md
+      - mathematics/discrete_mathematics/chapter_3.md
   - Chemistry:
     - chemistry/general_chemistry.md
   - Computer Science:
@@ -105,6 +108,7 @@ nav:
       - computer_science/data_structure_basics/chapter_1.md
       - computer_science/data_structure_basics/chapter_2.md
       - computer_science/data_structure_basics/chapter_3.md
+      - computer_science/data_structure_basics/mistakes.md
   - Science Research:
     - 论文阅读:
       - science_research/papers/arXiv_2306_13063.md

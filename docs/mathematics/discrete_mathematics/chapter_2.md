@@ -120,7 +120,7 @@ $\forall x \in S(P(x))$ 表示 $P(x)$ 在集合 $S$ 所有元素上的全称量�
 
 > 若集合 $A$ 和 $B$ 满足 $|A| \leq |B|$ 且 $|B| \leq |A|$，则 $|A| = |B|$。
 
-这一定理也被称作**施罗德-伯恩斯坦定理** (Schröder–Bernstein theorem)。与直观感觉上不同，这一定理的证明是非常不容易的。这里我们就不给出具体的证明，有兴趣的读者可以参阅集合论相关教科书或[网络资源](https://zh.wikipedia.org/wiki/%E5%BA%B7%E6%89%98%E5%B0%94-%E4%BC%AF%E6%81%A9%E6%96%AF%E5%9D%A6-%E6%96%BD%E7%BD%97%E5%BE%B7%E5%AE%9A%E7%90%86)。
+这一定理也被称作**施罗德-伯恩斯坦定理** (Schröder–Bernstein theorem)。与直观感觉上不同，这一定理的证明是非常不容易的。这里我们就不给出具体的证明，有兴趣的读者可以参阅集合论相关教科书或[网络资料](https://zh.wikipedia.org/wiki/%E5%BA%B7%E6%89%98%E5%B0%94-%E4%BC%AF%E6%81%A9%E6%96%AF%E5%9D%A6-%E6%96%BD%E7%BD%97%E5%BE%B7%E5%AE%9A%E7%90%86)。
 
 > 一个集合的基数总是小于其幂集的基数，即 $|S| < |\mathcal{P}(S)|$。
 

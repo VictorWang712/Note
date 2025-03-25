@@ -104,7 +104,7 @@ void Insert(ElementType X, PriorityQueue H) {
 在代码实现中需要特别注意的是，完全二叉树上可能有一个节点只有一个子结点。因此我们在考察子节点前总是应该判断右子节点是否存在。我们给出例程：
 
 ```c
-ElementType DeleteMin (PriorityQueue H) {
+ElementType DeleteMin(PriorityQueue H) {
     int o = 1, child;
     ElementType MinElement = H->Elements[1], LastElement = H->Elements[H->Size];
     H->Size--;

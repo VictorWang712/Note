@@ -85,3 +85,44 @@ MOS 晶体管模型的行为取决于晶体管的类型。CMOS 工艺引入了�
 #### 成本
 
 对于集成电路，基本们的成本通常与电路布局单元所占的面积有关。布局单元的面积与晶体管的大小以及门的布局布线成比例。若忽略布线面积，则门的面积正比于门中晶体管的数目，而晶体管数目又正比于门输入成本。
+
+## 可编程实现技术
+
+到目前为止，所有实现出来的电路都是固定不变的，即一旦电路设计完毕，其功能就不可再改变。容易想到，这样的实现方式不利于应对复杂的环境变化所带来的功能变化。因此我们要讨论另一种实现技术，即**可编程实现技术** (programmable logic device, PLD)。
+
+在讨论具体的 PLD 前，简单介绍一下 PLD 支撑技术的发展。
+
+- 第一代 - 熔丝和反熔丝：即使用最简单的物理手段
+- 第二代 - **掩膜编程** (mask programming)：在芯片中导电的金属层进行适当的连接，以实现对电路的控制
+- 第三代 - 存储单元：用一位存储单元驱动一个 $n$ 沟道 MOS 晶体管
+- 第四代 - 晶体管开关控制：利用**可擦除** (erasable) 或**电可擦除** (electrically erasable) 方法控制晶体管的导通情况
+
+在这四代技术中，前两代技术是永久的，即器件在编程确定功能后，不能重编程。第三代技术可以重编程，但是具有易失性，即编程逻辑在电源断开后将丢失。第四代技术允许重编程，且不具有易失性。
+
+接下来我们将讨论四种具体的 PLD。
+
+### 只读存储器
+
+**只读存储器** (read-only memory, ROM) 本质上是一个「永久」存储二进制信息的器件。这些信息由设计者指定，一旦确定后无论电源断开或接通，信息都一直保存在 ROM 中，即 ROM 具有非易失性。
+
+ROM 器件的框图如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_4.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以看到，其有 $k$ 个输入，$n$ 个输出。输入提供存储器的**地址** (address)，输出则给出由地址选定的存储字的数据位。一个 ROM 的字数由地址输入决定，$k$ 个地址输入决定有 $2^{k}$ 个字。注意，ROM 没有数据输入，因为其没有写操作。
+
+我们以一个 $32 \times 8$ 的 ROM 为例：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_5.png" width="70%" style="margin: 0 auto;">
+</div>
+
+该 ROM 有 32 个字，每个字 8 位，有 5 根输入线，以产生 $0$ 到 $31$ 的二进制地址。5 个输入通过 5-32 译码器译码成 32 个不同的输入，译码器的每个输入表示一个**存储地址** (memory address)。32 个输出通过可编程连接点连接到 8 个或门上。
+
+由此不难得到，一般情况下，一个 $2^{k} \times n$ 的 ROM 包括一个 $k$-$2^{k}$ 译码器和 $n$ 个或门，每个或门有 $2^{k}$ 个输入，它们通过可编程连接点连接到译码器的每个输出。
+
+### 可编程逻辑阵列
+
+**可编程逻辑阵列** (programmable logic array, PLA)，与 ROM 在概念上类似，区别在于 PLA 不提供变量的全译码，不生成所有的最小项。PLA 用一个与门阵列代替译码器，已变成产生输入变量的乘积项。这些乘积项可选地连接到或门，以便生成所需布尔表达式的积之和。

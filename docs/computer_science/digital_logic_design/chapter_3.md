@@ -103,29 +103,29 @@ comments: true
 
 实现译码功能的组合电路称作**译码器** (decoder)，具体地，对于一个 $n$ 输入 $m$ 输出的译码器，记为 $n$ - $m$ 译码器。
 
-### $n$ - $2^{n}$ 译码器
+### $n$-$2^{n}$ 译码器
 
-接下来我们讨论将 $n$ 位二进制数译码为 $2^{n}$ 位独热码的 $n$ - $2^{n}$ 译码器的实现。
+接下来我们讨论将 $n$ 位二进制数译码为 $2^{n}$ 位独热码的 $n$-$2^{n}$ 译码器的实现。
 
-#### $1$ - $2$ 译码器
+#### 1-2 译码器
 
-$1$ - $2$ 译码器的实现是简单的，只需将输出独热码的两位分别对应原本的输入信号和取反后的输入信号即可。
+1-2 译码器的实现是简单的，只需将输出独热码的两位分别对应原本的输入信号和取反后的输入信号即可。
 
 <div style="text-align: center; margin-top: 0px;">
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_4.png" width="70%" style="margin: 0 auto;">
 </div>
 
-#### $2$ - $4$ 译码器
+#### 2-4 译码器
 
-从这里开始，更大规模的译码器便是由较小规模的译码器组合实现的了。$2$ - $4$ 译码器只需将两个 $1$ - $2$ 译码器相连即可。
+从这里开始，更大规模的译码器便是由较小规模的译码器组合实现的了。2-4 译码器只需将两个 1-2 译码器相连即可。
 
 <div style="text-align: center; margin-top: 0px;">
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_5.png" width="70%" style="margin: 0 auto;">
 </div>
 
-#### $3$ - $8$ 译码器
+#### 3-8 译码器
 
-沿用先前的思路，$3$ - $8$ 译码器只需将一个 $1$ - $2$ 译码器和一个 $2$ - $4$ 译码器相连即可。
+沿用先前的思路，3-8 译码器只需将一个 1-2 译码器和一个 2-4 译码器相连即可。
 
 但这里我们要进一步考虑一个问题。我们知道译码器的每一个输出可以看作是一个输入的最小项，自然地，随着译码器规模的增大，用于计算最小项的与门也就越多。
 
@@ -137,20 +137,20 @@ $1$ - $2$ 译码器的实现是简单的，只需将输出独热码的两位分�
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_6.png" width="70%" style="margin: 0 auto;">
 </div>
 
-#### 任意的 $n$ - $2^{n}$ 译码器
+#### 任意的 $n$-$2^{n}$ 译码器
 
-按照这样的思路，任意的 $n$ - $2^{n}$ 译码器都可以由两个译码器驱动：
+按照这样的思路，任意的 $n$-$2^{n}$ 译码器都可以由两个译码器驱动：
 
 - 若 $n$ 为偶数，则两个译码器都有 $2^{k - 1}$ 个输出
 - 若 $n$ 为奇数，则两个译码器分别有 $2^{\frac{k + 1}{2}}$ 个和 $2^{\frac{k - 1}{2}}$ 个输出
 
-按照这一方法递归地分级实现译码器，直到使用 $1$ - $2$ 译码器为止。
+按照这一方法递归地分级实现译码器，直到使用 1 - 2 译码器为止。
 
 ### 带使能的译码器
 
 带使能的译码器可以通过再译码器的输出端连接 $m$ 个使能电路来实现。
 
-> 带使能的 $2$ - $4$ 译码器实现如下：
+> 带使能的 2-4 译码器实现如下：
 > <div style="text-align: center; margin-top: 0px;">
 > <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_7.png" width="70%" style="margin: 0 auto;">
 > </div>
@@ -159,7 +159,7 @@ $1$ - $2$ 译码器的实现是简单的，只需将输出独热码的两位分�
 
 ### 基于译码器的组合电路
 
-一个 $n$ 输入变量的译码器可以产生 $2^{n}$ 个最小项。因为任何布尔函数都可以由最小项之和表示，所以可以使用一个译码器来产生这些最小项，并由一个额外的或门来实现最小项之和。按照这种方法，任何 $n$ 输入 $m$ 输出的组合电路都可以用 1 个 $n$ - $2^{n}$ 译码器和 $m$ 个或门实现。
+一个 $n$ 输入变量的译码器可以产生 $2^{n}$ 个最小项。因为任何布尔函数都可以由最小项之和表示，所以可以使用一个译码器来产生这些最小项，并由一个额外的或门来实现最小项之和。按照这种方法，任何 $n$ 输入 $m$ 输出的组合电路都可以用 1 个 $n$-$2^{n}$ 译码器和 $m$ 个或门实现。
 
 ## 编码
 
@@ -167,9 +167,9 @@ $1$ - $2$ 译码器的实现是简单的，只需将输出独热码的两位分�
 
 ### 优先编码器
 
-在介绍优先编码器之前，我们先按照前述的 $2$ - $2^{n}$ 译码器，设想一下其相对应的 $2^{n}$ - $2$ 编码器。不难想见，这一译码器有大量的无关项。这会造成一个问题，即一旦有多于一个输入为 $1$ 时，输出就没有意义。
+在介绍优先编码器之前，我们先按照前述的 2-$2^{n}$ 译码器，设想一下其相对应的 $2^{n}$-2 编码器。不难想见，这一译码器有大量的无关项。这会造成一个问题，即一旦有多于一个输入为 `1` 时，输出就没有意义。
 
-为此，我们采用优先编码器，即可以实现优先级函数的组合电路。具体地，当多于一个的输入为 $1$ 时，优先级最高的输入将被优先处理。这样的实现不仅解决了问题，还很大程度上简化了真值表的复杂程度。我们以四输入优先级编码器为例，其真值表如下：
+为此，我们采用优先编码器，即可以实现优先级函数的组合电路。具体地，当多于一个的输入为 `1` 时，优先级最高的输入将被优先处理。这样的实现不仅解决了问题，还很大程度上简化了真值表的复杂程度。我们以四输入优先级编码器为例，其真值表如下：
 
 <div style="text-align: center; margin-top: 0px;">
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_8.png" width="70%" style="margin: 0 auto;">
@@ -189,13 +189,57 @@ $1$ - $2$ 译码器的实现是简单的，只需将输出独热码的两位分�
 
 ### 多路复用器
 
-用于从多个输入中选择一个输入，并将信息传输到的输出的组合电路称作**多路复用器** (multiplexer)。具体的选择由一组输入变量控制，这些变量被称作**选择输入** (selection input)。
+用于从多个输入中选择一个输入，并将信息传输到的输出的组合电路称作**多路复用器** (multiplexer, MUX)。具体的选择由一组输入变量控制，这些变量被称作**选择输入** (selection input)。多路复用器也称作**数据选择器** (data selector)，因为它从多个信息输入中选择一个，并将这个二进制信息传递到输出。
+
+通常，有 $2^{n}$ 个待选择输入和 $n$ 个选择输入，选择输入的位组合决定选择哪个输入。
+
+#### 2-1 多路复用器
+
+最基本的多路复用器即为 2-1 多路复用器，其有 2 个信息输入 $I_{0}, I_{1}$，1 个选择输入 $S$ 和输出 $Y$。其真值表如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_11.png" width="70%" style="margin: 0 auto;">
+</div>
+
+不难得到对应的表达式为 $Y = \overline{S} I_{0} + S \overline{I_{1}}$。
+
+于是我们可以构建对应的电路：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_12.png" width="70%" style="margin: 0 auto;">
+</div>
+
+由图可见，多路复用器可以分为译码器和使能电路两部分，这一结构会在更大规模的多路复用器中再次出现。另外，我们常将这一个多路复用器以右图的形式表示。
+
+#### 4-1 多路复用器
+
+从 2-1 多路复用器出发推广，一个 4-1 多路复用器应当有 4 个信息输入 $I_{0}, I_{1}, I_{2}, I_{3}$，2 个选择输入 $S_{0}, S_{1}$ 和输出 $Y$。我们可以用紧凑真值表来表示其功能：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_13.png" width="70%" style="margin: 0 auto;">
+</div>
+
+对应的表达式为 $Y = (\overline{S_{1}} \overline{S_{0}}) I_{0} + (\overline{S_{1}} S_{0}) I_{1} + (S_{1} \overline{S_{0}}) I_{2} + (S_{1} S_{0}) I_{3}$。
+
+注意到这里我们采用了存在括号改变了运算顺序的形式，而非不含括号的最简积之和的形式。这样做虽然导致了门输入成本的上升，但却带来了结构更加规整和具有规律性的电路：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_14.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以看到，与 2-1 多路复用器一致，4-1 多路复用器也可以分为译码器和使能电路两部分。据此，我们可以继承这一结构扩展至更多输入位数的多路复用器。
+
+### 基于多路复用器的组合电路
+
+由前所述，将一个译码器和一个 $m \times 2$ 与或门组合在一起，就可以实现一个多路复用器。具体来说，译码器产生选择输入的最小项，与或门提供使能电路以判断最小项是否传递到或门。使能用信号输入 $I_{i}$ 作为使能信息，当 $I_{i} = 1$，最小项 $m_{i}$ 就传递到或门；当 $I_{i} = 0$，最小项 $m_{i}$ 就用 $0$ 代替。
+
+因此，只需要将 $I$ 输入固定，就可以用一个有 $n$ 个选择输入、$w^{n}$ 个数据输入的多路复用器来实现一个有 $n$ 个变量的布尔函数。进一步来说，一个 $m$ 位输出函数可以通过将一个 $m$ 位多路复用器的 $m$ 位信息向量的值固定来实现。
 
 ## 分配
 
 **分配** (distribution) 是选择的逆操作，实现这一功能的组合电路称作**多路分配器** (demultiplexer)，其由 $n$ 个选择输入的组合控制，将 1 个输入信息传送到 $2^{n}$ 个输出。
 
-事实上，一种常见的多路分配器的实现方式就是采用带使能的译码器。让我们先重新考察前文提到的带使能的 $2$ - $4$ 译码器：
+事实上，一种常见的多路分配器的实现方式就是采用带使能的译码器。让我们先重新考察前文提到的带使能的 2-4 译码器：
 
 <div style="text-align: center; margin-top: 0px;">
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_10.png" width="70%" style="margin: 0 auto;">

@@ -1,0 +1,3288 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Walker_V's Notebook">
+      
+      
+        <meta name="author" content="Walker_V">
+      
+      
+        <link rel="canonical" href="https://VictorWang712.github.io/Note/computer_science/digital_logic_design/chapter_3/">
+      
+      
+        <link rel="prev" href="../chapter_2/">
+      
+      
+        <link rel="next" href="../chapter_5/">
+      
+      
+      <link rel="icon" href="../../../assets/images/icons/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>第三章 - 组合逻辑电路的设计 - Walker_V's Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen:300,300i,400,400i,700,700i%7CCodeNewRoman+Nerd+Font+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"LXGW WenKai Screen";--md-code-font:"CodeNewRoman Nerd Font Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/css/card.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/css/flink.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/css/rounded_corner.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Walker_V&#39;s Notebook" class="md-header__button md-logo" aria-label="Walker_V's Notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2h-5v8l-2.5-2.25L8 12V4H6v16h12z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Walker_V's Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第三章 - 组合逻辑电路的设计
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label=""  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="" for="__palette_1" hidden>
+        <?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
+fill="currentColor" stroke="none">
+<path d="M4099 9390 c-94 -16 -177 -75 -225 -162 l-29 -53 -3 -301 c-3 -286
+-2 -303 18 -358 29 -75 100 -147 175 -175 172 -64 365 16 425 175 20 55 21 72
+18 358 -3 272 -5 304 -22 336 -72 135 -210 205 -357 180z"/>
+<path d="M8750 9164 c-25 -9 -63 -29 -85 -44 -22 -16 -1730 -1720 -3796 -3787
+-3386 -3388 -3758 -3763 -3780 -3813 -35 -82 -34 -195 4 -271 32 -66 99 -132
+165 -162 72 -33 188 -30 267 6 55 25 372 340 3831 3800 3095 3096 3775 3781
+3795 3822 19 41 24 66 24 140 0 78 -4 97 -28 147 -32 65 -90 122 -156 151 -62
+28 -180 33 -241 11z"/>
+<path d="M1964 8511 c-49 -12 -134 -63 -160 -94 -14 -17 -37 -53 -52 -81 -24
+-45 -27 -62 -27 -141 1 -135 22 -169 248 -393 223 -220 250 -237 382 -237 105
+0 163 23 230 90 65 64 89 125 89 225 1 135 -17 166 -235 386 -213 214 -256
+243 -372 249 -40 3 -86 1 -103 -4z"/>
+<path d="M6194 8511 c-76 -20 -136 -67 -317 -250 -220 -222 -232 -243 -232
+-376 0 -71 5 -100 21 -136 31 -67 87 -124 152 -156 50 -24 69 -28 147 -28 133
+0 159 17 387 244 224 223 243 254 243 391 -1 77 -4 91 -34 148 -38 70 -70 101
+-144 138 -54 28 -165 40 -223 25z"/>
+<path d="M4020 7893 c-327 -32 -604 -127 -860 -296 -424 -280 -715 -729 -795
+-1227 -79 -494 50 -1006 353 -1395 98 -126 161 -189 223 -222 48 -24 65 -28
+144 -28 107 0 163 22 233 93 67 66 87 119 87 227 0 107 -19 151 -110 255 -125
+141 -220 317 -265 486 -138 529 114 1088 602 1335 432 218 940 150 1308 -176
+95 -84 155 -110 255 -110 95 0 165 28 229 90 62 62 91 134 91 230 0 140 -48
+210 -250 367 -269 209 -589 334 -940 368 -104 9 -227 11 -305 3z"/>
+<path d="M1053 6383 c-57 -20 -138 -94 -171 -157 -24 -45 -27 -62 -27 -146 0
+-84 3 -101 27 -146 15 -28 50 -72 78 -97 82 -73 101 -77 426 -77 332 0 358 5
+444 90 159 160 102 452 -105 529 -52 20 -75 21 -343 20 -228 0 -296 -4 -329
+-16z"/>
+<path d="M7004 5536 c-180 -91 -232 -242 -164 -477 38 -132 57 -236 71 -380
+13 -141 13 -121 0 -264 -17 -186 -69 -411 -122 -530 -24 -54 -132 -249 -163
+-295 -86 -128 -262 -313 -360 -380 -27 -18 -57 -41 -66 -50 -24 -24 -128 -86
+-196 -117 -33 -14 -62 -30 -65 -35 -8 -13 -193 -77 -284 -98 -44 -11 -125 -26
+-181 -34 -169 -26 -280 -101 -329 -223 -47 -119 -31 -238 54 -376 22 -37 41
+-70 41 -73 0 -3 18 -26 40 -51 22 -25 53 -66 69 -90 36 -54 191 -216 287 -300
+193 -168 511 -346 744 -416 235 -71 414 -97 668 -97 194 0 312 13 487 50 106
+23 335 95 345 108 3 4 34 20 70 36 78 34 233 115 240 126 3 5 46 35 96 68 164
+107 375 314 505 492 30 41 61 87 68 102 8 15 23 37 33 48 20 22 117 211 139
+273 7 20 16 37 20 37 9 0 73 204 98 310 59 253 74 586 38 820 -31 200 -96 449
+-132 505 -6 11 -38 76 -70 145 -31 69 -69 141 -84 160 -16 19 -35 49 -44 66
+-9 17 -42 66 -75 110 -133 178 -331 368 -497 479 -49 33 -97 66 -105 74 -8 8
+-76 44 -150 80 -74 36 -137 68 -140 72 -8 10 -182 67 -289 94 -152 39 -267 57
+-401 62 l-125 5 -71 -36z m724 -843 c51 -25 110 -59 132 -77 21 -17 64 -49 96
+-71 131 -92 301 -294 380 -452 27 -54 52 -100 56 -103 14 -11 78 -218 93 -305
+25 -142 30 -331 11 -470 -21 -157 -82 -376 -111 -397 -7 -5 -7 -8 0 -8 6 0 5
+-4 -2 -8 -6 -4 -30 -45 -52 -92 -68 -141 -235 -344 -365 -442 -39 -29 -78 -60
+-87 -69 -23 -23 -130 -82 -209 -115 -36 -16 -67 -31 -70 -35 -10 -14 -208 -69
+-305 -85 -135 -22 -362 -22 -479 0 -92 18 -254 68 -265 83 -3 4 -44 27 -91 50
+-97 47 -131 69 -264 171 -88 67 -107 92 -71 92 7 0 15 3 17 8 2 4 61 34 133
+67 71 33 143 70 160 81 16 12 75 50 129 85 55 34 107 69 115 78 9 9 51 45 94
+80 146 118 315 300 412 441 112 162 126 185 172 280 25 52 50 98 57 102 6 4 7
+8 1 8 -6 0 -6 3 0 8 22 15 103 254 141 412 20 82 20 82 27 100 28 70 47 442
+28 542 -7 35 -15 71 -18 81 -7 25 13 19 135 -40z"/>
+<path d="M2277 4590 c-81 -21 -125 -55 -313 -244 -227 -228 -239 -246 -239
+-381 0 -71 5 -100 21 -136 31 -67 87 -124 152 -156 50 -24 69 -28 147 -28 133
+0 159 17 387 244 222 221 242 253 243 386 0 67 -4 89 -28 136 -32 66 -100 132
+-162 160 -52 23 -154 32 -208 19z"/>
+</g>
+</svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label=""  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8m0-1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5m5.657-8.157a.75.75 0 0 1 0 1.061l-1.061 1.06a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734l1.06-1.06a.75.75 0 0 1 1.06 0Zm-9.193 9.193a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 1 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0M8 0a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 8 0M3 8a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 3 8m13 0a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 16 8m-8 5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 13m3.536-1.464a.75.75 0 0 1 1.06 0l1.061 1.06a.75.75 0 0 1-1.06 1.061l-1.061-1.06a.75.75 0 0 1 0-1.061M2.343 2.343a.75.75 0 0 1 1.061 0l1.06 1.061a.75.75 0 0 1-.018 1.042.75.75 0 0 1-1.042.018l-1.06-1.06a.75.75 0 0 1 0-1.06Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label=""  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.598 1.591a.75.75 0 0 1 .785-.175 7.001 7.001 0 1 1-8.967 8.967.75.75 0 0 1 .961-.96 5.5 5.5 0 0 0 7.046-7.046.75.75 0 0 1 .175-.786m1.616 1.945a7 7 0 0 1-7.678 7.678 5.499 5.499 0 1 0 7.678-7.678"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/VictorWang712/Note/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    VictorWang712/Note
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../mathematics/mathematical_analysis/" class="md-tabs__link">
+          
+  
+    
+  
+  Mathematics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../chemistry/general_chemistry/" class="md-tabs__link">
+          
+  
+    
+  
+  Chemistry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../programming_and_algorithm_basics/" class="md-tabs__link">
+          
+  
+    
+  
+  Computer Science
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../science_research/papers/arXiv_2306_13063/" class="md-tabs__link">
+          
+  
+    
+  
+  Science Research
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../others/OPP/" class="md-tabs__link">
+          
+  
+    
+  
+  Others
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Walker_V&#39;s Notebook" class="md-nav__button md-logo" aria-label="Walker_V's Notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2h-5v8l-2.5-2.25L8 12V4H6v16h12z"/></svg>
+
+    </a>
+    Walker_V's Notebook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/VictorWang712/Note/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    VictorWang712/Note
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../friends_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Mathematics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Mathematics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathematics/mathematical_analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数学分析（甲）I (H)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../mathematics/discrete_mathematics/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    离散数学
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            离散数学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathematics/discrete_mathematics/chapter_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一章 - 基础：逻辑和证明
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathematics/discrete_mathematics/chapter_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第二章 - 基本结构：集合、函数、序列、求和与矩阵
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathematics/discrete_mathematics/chapter_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第三章 - 算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathematics/discrete_mathematics/chapter_4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第四章 - 归纳与递归
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathematics/discrete_mathematics/chapter_5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第五章 - 计数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chemistry
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Chemistry
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../chemistry/general_chemistry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    普通化学 (H)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Computer Science
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming_and_algorithm_basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    程序设计与算法基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    数字逻辑设计
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            数字逻辑设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一章 - 数字系统和信息
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第二章 - 组合逻辑电路
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    第三章 - 组合逻辑电路的设计
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    第三章 - 组合逻辑电路的设计
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      分层设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      工艺映射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本逻辑函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本逻辑函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      定值、传递和取反
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      使能
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      译码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="译码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n-2n" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(n\)-\(2^{n}\) 译码器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="\(n\)-\(2^{n}\) 译码器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-2 译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-4 译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-8 译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-2n_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      任意的 \(n\)-\(2^{n}\) 译码器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      带使能的译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于译码器的组合电路
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      编码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      优先编码器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选择">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      多路复用器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="多路复用器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-1 多路复用器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-1 多路复用器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于多路复用器的组合电路
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      分配
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第五章 - 数字硬件实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../data_structure_basics/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    数据结构基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            数据结构基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_structure_basics/chapter_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一章 - 算法分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_structure_basics/chapter_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第二章 - 表、栈和队列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_structure_basics/chapter_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第三章 - 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_structure_basics/chapter_4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第四章 - 优先队列（堆）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_structure_basics/mistakes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    错题整理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Science Research
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Science Research
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    论文阅读
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            论文阅读
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2306_13063/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ICLR] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2405_12641/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [TSE] Fight Fire with Fire: How Much Can We Trust ChatGPT on Source Code-Related Tasks?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2404_19318/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [arXiv] Enhancing Trust in LLM-Generated Code Summaries with Calibrated Confidence Scores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2306_00108/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ASE] Better patching using LLM prompting, via Self-Consistency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2402_02047/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ICSE] Calibration and Correctness of Language Models for Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2403_16437/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ICSE] Reasoning Runtime Behavior of a Program with LLM: How Far Are We?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2404_14662/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ICML] NExT: Teaching Large Language Models to Reason about Code Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../science_research/papers/arXiv_2503_04149/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [arXiv] Dynamic Benchmarking of Reasoning Capabilities in Code Large Language Models Under Data Contamination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../others/OPP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Oxford Prospects Programmes '25 Winter
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Oxford Prospects Programmes '25 Winter
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome Lecture - Introduction to Oxford University
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 1 - Academic Presentation Skills
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 2 - AI-Driven Innovation: Shaping the Future of Energy System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 3 - Particle Accelerators: From Producing Higgs Boson to Curing Cancer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 4 - Geometric Deep Learning: Part 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 2 - British Culture and Etiquette
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 5 - Writing Computer Programmes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 6 - Multicomponent High-Entropy Cantor Alloys
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 7 - Artificial Intelligence for Decision-Making and Robotics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 8 - The Probabilistic Method
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 3 - Film Production
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 4 - Critical Thinking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 9 - Engineering Science: Air Pollution from Vehicles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 10 - Ethics and Artificial Intelligence
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 11 - Applications of Particle Accelerators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 12 - Water Resources, Rights, and Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 13 - Weighing the Invisible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 5 - Student Panel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 6 - Postgraduate Studies Workshop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/workshop_7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop 7 - Public Speaking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 14 - Fluid Mechanics for Offshore Renewable Energy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_15/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 15 - Social Networks from Math to Measurement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_16/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Special Guest Lecture - Downton Abbey
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 17 - Geometric Deep Learning: Part 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_18/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 18 - The Age of (Healthcare) Big Data: Past, Present, Future
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_19/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 19 - The Changing Faces of Deepfakes and Generative AI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_20/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 20 - Battery Modelling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../others/OPP/lecture_21/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture 21 - The Next Generation of Nuclear Power
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      分层设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      工艺映射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本逻辑函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本逻辑函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      定值、传递和取反
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      使能
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      译码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="译码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n-2n" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(n\)-\(2^{n}\) 译码器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="\(n\)-\(2^{n}\) 译码器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-2 译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-4 译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-8 译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-2n_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      任意的 \(n\)-\(2^{n}\) 译码器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      带使能的译码器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于译码器的组合电路
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      编码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      优先编码器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选择">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      多路复用器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="多路复用器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-1 多路复用器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-1 多路复用器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于多路复用器的组合电路
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      分配
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="-">第三章 - 组合逻辑电路的设计</h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3682 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 12 分钟</p>
+</div>
+<p>一般地，设计一个数字系统的过程为：</p>
+<ol>
+<li>指定所需的行为</li>
+<li>以布尔方程或真值表的方式对系统的输入和输出关系形式化</li>
+<li>优化逻辑行为的表示，减少所需逻辑门的数量</li>
+<li>将优化后的逻辑映射到可以实现的工艺上</li>
+<li>验证最后设计的正确性</li>
+</ol>
+<p>本章我们将主要讨论其中的前四步。</p>
+<h2 id="_1">分层设计</h2>
+<p>对于复杂的数字系统，一种典型的设计方法是<strong>分层设计</strong> (hierarchical design)，而不是将设计过程应用在整个系统层面上，由此产生的相关概念构成了电路设计的<strong>层次</strong> (hierarchy) 结构。</p>
+<p>为了处理复杂电路，电路被我们分成称之为<strong>模块</strong> (block) 的多个部分，并按照前述的设计过程设计模块。模块之间相互连接构成电路。如果一个模块作为单一实体仍然太大而难以设计，则可以将这个模块分成多个更小的模块。</p>
+<p>分层设计可以极大程度上简化复杂电路的表示。我们进一步给出如下定义：分层设计末端的模块称作<strong>原子模块</strong> (primitive block)，我们认为原子模块都是<strong>预定义</strong> (predefine) 的，在电路图中用符号而不用逻辑图来表示，其功能用程序或语言描述而不用电路图来定义。</p>
+<p>分层设计的另一个特性是模块的<strong>可重用</strong> (reuse) 性，即在同一电路中，可以有许多模块的功能是一致的。实现这个目标的先决条件是电路必须是<strong>规整</strong> (regularity) 的，即这个<strong>规整电路</strong> (regular circuit) 可以通过重用一定数量的不同模块来实现；而<strong>不规整电路</strong> (irregular circuit) 则没有这个特性。</p>
+<p>对于一个给定的可重用的模块，其设计只需要一次。出现在设计中的模块称作这个模块的一个<strong>实例</strong> (instance)，其应用称作<strong>实例化</strong> (instantiation)。</p>
+<p>显然各种电路的规整程度都不一样，我们常这样衡量电路的规整度，即考察最终电路中原子模块的数量与分层设计框图中基本模块（包括原子模块）的数量之比。比值越大，该电路就越规整。</p>
+<p>接下来我们将讨论位于分层逻辑设计较低层的预定义和可重用模块。这些中等大小的模块在在数字设计中提供基本功能，并允许设计者在原子模块（即逻辑门）上进行大部分的设计工作。我们称这些模块为<strong>功能模块</strong> (functional block)，即预定义的门级互联电路。</p>
+<details class="note" open="open">
+<summary>Note</summary>
+<p>大部分功能模块属于<a href="https://victorwang712.github.io/Note/computer_science/digital_logic_design/chapter_5/#_2">中规模集成电路</a>。</p>
+</details>
+<h2 id="_2">工艺映射</h2>
+<p><strong>工艺映射</strong> (technology mapping) 是将逻辑图或网表转化成可以用工艺实现的新的图或网表的过程。</p>
+<p>正如我们在第二章提到的，与非门和或非门都是<a href="https://victorwang712.github.io/Note/computer_science/digital_logic_design/chapter_2/#_3">通用门</a>。而在线代晶体管技术中，与非门和或非门较与门和或门的性能也更好。因此我们将讨论如何将逻辑电路转化为仅有与非门（或或非门）与反相器实现的逻辑电路。</p>
+<p>给定一个已经优化的，有与门、或门和反相器组成的电路，可以通过如下步骤将其变成由与非门（或或非门）组成的电路：</p>
+<ol>
+<li>用与非门（或或非门）和反相器替换原电路中的与门和或门，形成新的等效电路。</li>
+<li>消除所有反相器对。</li>
+<li>在不改变逻辑函数的前提下：<ol>
+<li>将能够前置的反相器置于逻辑门前。</li>
+<li>用一个反相器替代所有并联的反相器。</li>
+<li>重复以上两步。</li>
+</ol>
+</li>
+</ol>
+<p>下图是对以上步骤的可视化呈现：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_1.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>某种工艺映射的结果与原始电路或映射前的方程形式有关。例如，输出为或门的电路在与非门映射下会得到与非门，在或非门映射下会得到被或非门驱动的反相器。</p>
+<p>鉴于这些差异的存在，积之和式更适于使用与非门；和之积式更适于使用或非门，以消去输出端的反相器。</p>
+<h2 id="_3">基本逻辑函数</h2>
+<p>基本逻辑函数包括定值、传递、取反和使能。</p>
+<h3 id="_4">定值、传递和取反</h3>
+<p>这三种逻辑函数都是单变量函数，其真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(X\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(F = 0\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(F = X\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(F = \overline{X}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(F = 1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>在表中，<span class="arithmatex">\(F = 0\)</span> 和 <span class="arithmatex">\(F = 1\)</span> 为<strong>定值</strong> (value fixing) 操作；<span class="arithmatex">\(F = X\)</span> 为<strong>传递</strong> (transferring)；<span class="arithmatex">\(F = \overline{X}\)</span> 为<strong>取反</strong> (inverting) 操作。</p>
+<p>这四个函数的实现方式如下图：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_2.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>对于正逻辑，习惯用电气接地符号表示常数 <span class="arithmatex">\(0\)</span>，用电源电压符号表示常数 <span class="arithmatex">\(1\)</span>，一般用 <span class="arithmatex">\(V_{\text{CC}}\)</span> 或 <span class="arithmatex">\(V_{\text{DD}}\)</span> 表示。传递用连接 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(F\)</span> 的线表示。取反用反相器表示。</p>
+<h3 id="_5">使能</h3>
+<p>一般地，<strong>使能</strong> (enable) 允许信号从输入传播到输出。非使能可以用高阻态、固定输出值 <span class="arithmatex">\(0\)</span> 或 <span class="arithmatex">\(1\)</span> 来代替输入信号。这个附加的输入信号通常记为 ENABLE 或 EN，用以决定输出是否被使能。</p>
+<p>我们一般这样实现电路中的使能：</p>
+<ul>
+<li>若非使能值为 <span class="arithmatex">\(0\)</span>，则将输入与 EN 信号通过与门再输出</li>
+<li>若非使能值为 <span class="arithmatex">\(1\)</span>，则将输入与取反的 EN 信号通过或门再输出</li>
+</ul>
+<p>两种情况分别对应下面两图：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_3.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<h2 id="_6">译码</h2>
+<p>一种 <span class="arithmatex">\(n\)</span> 位二进制码可以表示 <span class="arithmatex">\(2^{n}\)</span> 个不同的编码信息。<strong>译码</strong> (decode) 是将一个 <span class="arithmatex">\(n\)</span> 位的输入码转换成一个 <span class="arithmatex">\(m\)</span> 位的输出码，其中 <span class="arithmatex">\(n \leq m \leq 2^{n}\)</span>，以保证每一个有效的输入码都产生唯一的输出码。</p>
+<p>实现译码功能的组合电路称作<strong>译码器</strong> (decoder)，具体地，对于一个 <span class="arithmatex">\(n\)</span> 输入 <span class="arithmatex">\(m\)</span> 输出的译码器，记为 <span class="arithmatex">\(n\)</span> - <span class="arithmatex">\(m\)</span> 译码器。</p>
+<h3 id="n-2n"><span class="arithmatex">\(n\)</span>-<span class="arithmatex">\(2^{n}\)</span> 译码器</h3>
+<p>接下来我们讨论将 <span class="arithmatex">\(n\)</span> 位二进制数译码为 <span class="arithmatex">\(2^{n}\)</span> 位独热码的 <span class="arithmatex">\(n\)</span>-<span class="arithmatex">\(2^{n}\)</span> 译码器的实现。</p>
+<h4 id="1-2">1-2 译码器</h4>
+<p>1-2 译码器的实现是简单的，只需将输出独热码的两位分别对应原本的输入信号和取反后的输入信号即可。</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_4.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<h4 id="2-4">2-4 译码器</h4>
+<p>从这里开始，更大规模的译码器便是由较小规模的译码器组合实现的了。2-4 译码器只需将两个 1-2 译码器相连即可。</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_5.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<h4 id="3-8">3-8 译码器</h4>
+<p>沿用先前的思路，3-8 译码器只需将一个 1-2 译码器和一个 2-4 译码器相连即可。</p>
+<p>但这里我们要进一步考虑一个问题。我们知道译码器的每一个输出可以看作是一个输入的最小项，自然地，随着译码器规模的增大，用于计算最小项的与门也就越多。</p>
+<p>如果我们仍然简单增加与门的输入个数，不仅电路的门输入成本增加太快，还会由于门的<a href="https://victorwang712.github.io/Note/computer_science/digital_logic_design/chapter_5/#_4">扇入限制</a>而无法实现过大的译码器。</p>
+<p>此时我们可以应用分级的思想来构建电路，这样门输入成本的增加就相对较慢，且在相同的扇入限制下能实现更大规模的译码器。其具体实现如下图：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_6.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<h4 id="n-2n_1">任意的 <span class="arithmatex">\(n\)</span>-<span class="arithmatex">\(2^{n}\)</span> 译码器</h4>
+<p>按照这样的思路，任意的 <span class="arithmatex">\(n\)</span>-<span class="arithmatex">\(2^{n}\)</span> 译码器都可以由两个译码器驱动：</p>
+<ul>
+<li>若 <span class="arithmatex">\(n\)</span> 为偶数，则两个译码器都有 <span class="arithmatex">\(2^{k - 1}\)</span> 个输出</li>
+<li>若 <span class="arithmatex">\(n\)</span> 为奇数，则两个译码器分别有 <span class="arithmatex">\(2^{\frac{k + 1}{2}}\)</span> 个和 <span class="arithmatex">\(2^{\frac{k - 1}{2}}\)</span> 个输出</li>
+</ul>
+<p>按照这一方法递归地分级实现译码器，直到使用 1 - 2 译码器为止。</p>
+<h3 id="_7">带使能的译码器</h3>
+<p>带使能的译码器可以通过再译码器的输出端连接 <span class="arithmatex">\(m\)</span> 个使能电路来实现。</p>
+<blockquote>
+<p>带使能的 2-4 译码器实现如下：
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_7.png" width="70%" style="margin: 0 auto;">
+</div></p>
+</blockquote>
+<p>需要说明的是，对于大规模的译码器，往往将使能电路放置在译码器的输入端及其反向端，而非每个译码器的输出端。这样做有助于减少门输入成本。</p>
+<h3 id="_8">基于译码器的组合电路</h3>
+<p>一个 <span class="arithmatex">\(n\)</span> 输入变量的译码器可以产生 <span class="arithmatex">\(2^{n}\)</span> 个最小项。因为任何布尔函数都可以由最小项之和表示，所以可以使用一个译码器来产生这些最小项，并由一个额外的或门来实现最小项之和。按照这种方法，任何 <span class="arithmatex">\(n\)</span> 输入 <span class="arithmatex">\(m\)</span> 输出的组合电路都可以用 1 个 <span class="arithmatex">\(n\)</span>-<span class="arithmatex">\(2^{n}\)</span> 译码器和 <span class="arithmatex">\(m\)</span> 个或门实现。</p>
+<h2 id="_9">编码</h2>
+<p><strong>编码</strong> (encode) 是译码的逆操作，实现这一功能的组合电路称作<strong>编码器</strong> (encoder)，其接受输入并输出相对应的二进制码。</p>
+<h3 id="_10">优先编码器</h3>
+<p>在介绍优先编码器之前，我们先按照前述的 2-<span class="arithmatex">\(2^{n}\)</span> 译码器，设想一下其相对应的 <span class="arithmatex">\(2^{n}\)</span>-2 编码器。不难想见，这一译码器有大量的无关项。这会造成一个问题，即一旦有多于一个输入为 <code>1</code> 时，输出就没有意义。</p>
+<p>为此，我们采用优先编码器，即可以实现优先级函数的组合电路。具体地，当多于一个的输入为 <code>1</code> 时，优先级最高的输入将被优先处理。这样的实现不仅解决了问题，还很大程度上简化了真值表的复杂程度。我们以四输入优先级编码器为例，其真值表如下：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_8.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>可见，这一真值表中的一行可以替代原真值表中的 <span class="arithmatex">\(2^{p}\)</span> 行，<span class="arithmatex">\(p\)</span> 是行中 <span class="arithmatex">\(\times\)</span> 的个数。我们据此真值表写出最小项之和，并利用卡诺图化简后，就可以设计出四输入优先编码器的电路。</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_9.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<h2 id="_11">选择</h2>
+<p>在介绍完译码和编码这一对功能的逻辑电路后，我们接下来关注选择和分离这一对功能的逻辑电路。</p>
+<p>在计算机中，对信息进行<strong>选择</strong> (selection) 是一个非常重要的功能，执行选择的电路通常由一组供选择的输入、一个单独的输入和一组决定选择的控制输入组成。</p>
+<h3 id="_12">多路复用器</h3>
+<p>用于从多个输入中选择一个输入，并将信息传输到的输出的组合电路称作<strong>多路复用器</strong> (multiplexer, MUX)。具体的选择由一组输入变量控制，这些变量被称作<strong>选择输入</strong> (selection input)。多路复用器也称作<strong>数据选择器</strong> (data selector)，因为它从多个信息输入中选择一个，并将这个二进制信息传递到输出。</p>
+<p>通常，有 <span class="arithmatex">\(2^{n}\)</span> 个待选择输入和 <span class="arithmatex">\(n\)</span> 个选择输入，选择输入的位组合决定选择哪个输入。</p>
+<h4 id="2-1">2-1 多路复用器</h4>
+<p>最基本的多路复用器即为 2-1 多路复用器，其有 2 个信息输入 <span class="arithmatex">\(I_{0}, I_{1}\)</span>，1 个选择输入 <span class="arithmatex">\(S\)</span> 和输出 <span class="arithmatex">\(Y\)</span>。其真值表如下：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_11.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>不难得到对应的表达式为 <span class="arithmatex">\(Y = \overline{S} I_{0} + S \overline{I_{1}}\)</span>。</p>
+<p>于是我们可以构建对应的电路：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_12.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>由图可见，多路复用器可以分为译码器和使能电路两部分，这一结构会在更大规模的多路复用器中再次出现。另外，我们常将这一个多路复用器以右图的形式表示。</p>
+<h4 id="4-1">4-1 多路复用器</h4>
+<p>从 2-1 多路复用器出发推广，一个 4-1 多路复用器应当有 4 个信息输入 <span class="arithmatex">\(I_{0}, I_{1}, I_{2}, I_{3}\)</span>，2 个选择输入 <span class="arithmatex">\(S_{0}, S_{1}\)</span> 和输出 <span class="arithmatex">\(Y\)</span>。我们可以用紧凑真值表来表示其功能：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_13.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>对应的表达式为 <span class="arithmatex">\(Y = (\overline{S_{1}} \overline{S_{0}}) I_{0} + (\overline{S_{1}} S_{0}) I_{1} + (S_{1} \overline{S_{0}}) I_{2} + (S_{1} S_{0}) I_{3}\)</span>。</p>
+<p>注意到这里我们采用了存在括号改变了运算顺序的形式，而非不含括号的最简积之和的形式。这样做虽然导致了门输入成本的上升，但却带来了结构更加规整和具有规律性的电路：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_14.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>可以看到，与 2-1 多路复用器一致，4-1 多路复用器也可以分为译码器和使能电路两部分。据此，我们可以继承这一结构扩展至更多输入位数的多路复用器。</p>
+<h3 id="_13">基于多路复用器的组合电路</h3>
+<p>由前所述，将一个译码器和一个 <span class="arithmatex">\(m \times 2\)</span> 与或门组合在一起，就可以实现一个多路复用器。具体来说，译码器产生选择输入的最小项，与或门提供使能电路以判断最小项是否传递到或门。使能用信号输入 <span class="arithmatex">\(I_{i}\)</span> 作为使能信息，当 <span class="arithmatex">\(I_{i} = 1\)</span>，最小项 <span class="arithmatex">\(m_{i}\)</span> 就传递到或门；当 <span class="arithmatex">\(I_{i} = 0\)</span>，最小项 <span class="arithmatex">\(m_{i}\)</span> 就用 <span class="arithmatex">\(0\)</span> 代替。</p>
+<p>因此，只需要将 <span class="arithmatex">\(I\)</span> 输入固定，就可以用一个有 <span class="arithmatex">\(n\)</span> 个选择输入、<span class="arithmatex">\(w^{n}\)</span> 个数据输入的多路复用器来实现一个有 <span class="arithmatex">\(n\)</span> 个变量的布尔函数。进一步来说，一个 <span class="arithmatex">\(m\)</span> 位输出函数可以通过将一个 <span class="arithmatex">\(m\)</span> 位多路复用器的 <span class="arithmatex">\(m\)</span> 位信息向量的值固定来实现。</p>
+<h2 id="_14">分配</h2>
+<p><strong>分配</strong> (distribution) 是选择的逆操作，实现这一功能的组合电路称作<strong>多路分配器</strong> (demultiplexer)，其由 <span class="arithmatex">\(n\)</span> 个选择输入的组合控制，将 1 个输入信息传送到 <span class="arithmatex">\(2^{n}\)</span> 个输出。</p>
+<p>事实上，一种常见的多路分配器的实现方式就是采用带使能的译码器。让我们先重新考察前文提到的带使能的 2-4 译码器：</p>
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_10.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<p>前文中，我们主要关注这一电路的译码功能，因此考察的是在不同使能下译码的变化，即固定 <span class="arithmatex">\(A_{0}\)</span> 和 <span class="arithmatex">\(A_{1}\)</span>，改变 EN。</p>
+<p>但是，如果我们固定 EN，改变 <span class="arithmatex">\(A_{0}\)</span> 和 <span class="arithmatex">\(A_{1}\)</span>，我们就实现了通过改变 2 个选择输入 <span class="arithmatex">\(A_{0}, A_{1}\)</span>，将 1 个输入信息 EN 传送到 4 个输出。这正是我们期望多路分配器所实现的功能！</p>
+<p>因此，多路分配器与带使能的译码器的电路实质上是一致的。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  <!-- <h2 id="__comments">Comments</h2> -->
+  <!-- Insert generated snippet here -->
+    <script src="https://giscus.app/client.js"
+            data-repo="VictorWang712/Note"
+            data-repo-id="R_kgDONsUD6w"
+            data-category="Announcements"
+            data-category-id="DIC_kwDONsUD684CmR5S"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="0"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Walker_V
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/VictorWang712/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/59307750/" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<victorwang712@zju.edu.cn>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tracking", "navigation.tabs", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

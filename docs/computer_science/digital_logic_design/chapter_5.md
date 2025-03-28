@@ -126,3 +126,11 @@ ROM 器件的框图如下：
 ### 可编程逻辑阵列
 
 **可编程逻辑阵列** (programmable logic array, PLA)，与 ROM 在概念上类似，区别在于 PLA 不提供变量的全译码，不生成所有的最小项。PLA 用一个与门阵列代替译码器，已变成产生输入变量的乘积项。这些乘积项可选地连接到或门，以便生成所需布尔表达式的积之和。
+
+我们以下图中的 3 输入、2 输出 PLA 为例：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_5.png" width="70%" style="margin: 0 auto;">
+</div>
+
+

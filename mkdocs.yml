@@ -112,6 +112,9 @@ nav:
       - computer_science/data_structure_basics/chapter_3.md
       - computer_science/data_structure_basics/chapter_4.md
       - computer_science/data_structure_basics/mistakes.md
+    - 静态程序分析*:
+      - computer_science/static_program_analysis/index.md
+      - computer_science/static_program_analysis/chapter_1.md
   - Science Research:
     - 论文阅读:
       - science_research/papers/arXiv_2306_13063.md
@@ -122,6 +125,8 @@ nav:
       - science_research/papers/arXiv_2403_16437.md
       - science_research/papers/arXiv_2404_14662.md
       - science_research/papers/arXiv_2503_04149.md
+      - science_research/papers/arXiv_1511_06279.md
+      - science_research/papers/arXiv_1611_01989.md
   - Others:
     - Oxford Prospects Programmes '25 Winter:
       - others/OPP/index.md

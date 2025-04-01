@@ -84,7 +84,7 @@ MOS 晶体管模型的行为取决于晶体管的类型。CMOS 工艺引入了�
 
 #### 成本
 
-对于集成电路，基本们的成本通常与电路布局单元所占的面积有关。布局单元的面积与晶体管的大小以及门的布局布线成比例。若忽略布线面积，则门的面积正比于门中晶体管的数目，而晶体管数目又正比于门输入成本。
+对于集成电路，基本门的成本通常与电路布局单元所占的面积有关。布局单元的面积与晶体管的大小以及门的布局布线成比例。若忽略布线面积，则门的面积正比于门中晶体管的数目，而晶体管数目又正比于门输入成本。
 
 ## 可编程实现技术
 
@@ -99,7 +99,11 @@ MOS 晶体管模型的行为取决于晶体管的类型。CMOS 工艺引入了�
 
 在这四代技术中，前两代技术是永久的，即器件在编程确定功能后，不能重编程。第三代技术可以重编程，但是具有易失性，即编程逻辑在电源断开后将丢失。第四代技术允许重编程，且不具有易失性。
 
-接下来我们将讨论四种具体的 PLD。
+在具体讨论每种 PLD 之前，我们先给出各种 PLD 能够编程的部分，读者可以在这里进行一些理解记忆，并带着这些内容继续阅读下文。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_4.png" width="70%" style="margin: 0 auto;">
+</div>
 
 ### 只读存储器
 
@@ -108,20 +112,43 @@ MOS 晶体管模型的行为取决于晶体管的类型。CMOS 工艺引入了�
 ROM 器件的框图如下：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_4.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_5.png" width="70%" style="margin: 0 auto;">
 </div>
 
 可以看到，其有 $k$ 个输入，$n$ 个输出。输入提供存储器的**地址** (address)，输出则给出由地址选定的存储字的数据位。一个 ROM 的字数由地址输入决定，$k$ 个地址输入决定有 $2^{k}$ 个字。注意，ROM 没有数据输入，因为其没有写操作。
 
-我们以一个 $32 \times 8$ 的 ROM 为例：
+我们以一个 $2^{5} \times 8$ 的 ROM 为例：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_5.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_6.png" width="70%" style="margin: 0 auto;">
 </div>
 
-该 ROM 有 32 个字，每个字 8 位，有 5 根输入线，以产生 $0$ 到 $31$ 的二进制地址。5 个输入通过 5-32 译码器译码成 32 个不同的输入，译码器的每个输入表示一个**存储地址** (memory address)。32 个输出通过可编程连接点连接到 8 个或门上。
+该 ROM 有 $2^{5} = 32$ 个字，每个字 8 位，有 5 根输入线，以产生 $0$ 到 $31$ 的二进制地址。5 个输入通过 5-32 译码器译码成 32 个不同的输入，译码器的每个输入表示一个**存储地址** (memory address)。32 个输出通过可编程连接点连接到 8 个或门上。
 
 由此不难得到，一般情况下，一个 $2^{k} \times n$ 的 ROM 包括一个 $k$-$2^{k}$ 译码器和 $n$ 个或门，每个或门有 $2^{k}$ 个输入，它们通过可编程连接点连接到译码器的每个输出。
+
+### 可编程阵列逻辑器件
+
+**可编程阵列逻辑器件** (programmable array logic, PAL) 是一个或门阵列固定、与门阵列可编程的 PLD。由于只有与门可以编程，并且多个函数不能共用与门的输出，因此利用 PAL 器件进行设计是容易的，但灵活性则相对较弱。
+
+我们以下图的 PAL 为例进行说明：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_7.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以看到，图中器件有 4 个输入、4 个输出，每个输入连接至一个缓冲-反相器，每个输出由固定的或门产生。具体地，图中各输出的值为：
+
+- $W = A B \overline{C} + \overline{A} \overline{B} C \overline{D}$
+- $X = A + B C D$
+- $Y = \overline{A} B + \overline{B} \overline{C} + C D$
+- $Z = A \overline{C} \overline{D} + \overline{A} \overline{B} \overline{C} D + W$
+
+值得注意的是，$Z$ 的输出依赖于 $W$ 的输出，这样的方式有助于减少乘积项，以符合电路中某些门可能的扇入限制。当然，如果要用这种迭代的形式做电路实现，$W$ 的值就不能变动了。
+
+???+ note
+
+    一般这样的迭代最多迭代一层。
 
 ### 可编程逻辑阵列
 
@@ -130,7 +157,46 @@ ROM 器件的框图如下：
 我们以下图中的 3 输入、2 输出 PLA 为例：
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_5.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_8.png" width="70%" style="margin: 0 auto;">
 </div>
 
+可以看到，每个输入连接至一个缓冲-反相器，然后和与门阵列相连输出所有需要的乘积项，再和或门阵列输出每个输出所需的乘积项。特殊的是，信号在最后输出前，和一个常量一起通过异或门，这样便可以输出积之和整体本身（即与 0 异或）或者整体的反（即与 1 异或）。具体地，图中个输出的值为：
 
+- $F_{1} = A \overline{B} + A C + \overline{A} B \overline{C}$
+- $F_{2} = \overline{A C + B C}$
+
+可以发现，在最后与常量进行异或的操作，有利于减少在电路前部需要输出的乘积项，这同样是为符合电路中某些门可能的扇入限制而采取的方法。
+
+基于这一点，当我们用 PLA 实现组合电路时，我们需要考察每个输出的原函数和反函数并合理选择采用哪一个，以期望各输出间共用的乘积项尽量多。
+
+推广到一般情况，对于一个有 $n$ 个输入、$k$ 个乘积项和 $m$ 个输出的 PLA，其内部由 $n$ 个缓冲-反相器、$k$ 个与门、$m$ 个或门和 $m$ 个异或门组成。在输入和异或门之间有 2n \times k$$ 个可编程连接点，在与门和或门之间有 $k \times m$ 个编程连接点，在或门和异或门之间有 $m$ 个可编程连接点。
+
+### 现场可编程门阵列
+
+**现场可编程门阵列** (field-programmable gate array, FPGA) 是当下最为广泛应用的 PLD。尽管各个厂商所生产的 FPGA 具有不同的特性，但基本上都可以分为三个可编程部件：
+
+- 可编程逻辑块
+- 可编程互联
+- 可编程输入/输出引脚
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_5_9.png" width="70%" style="margin: 0 auto;">
+</div>
+
+#### 可编程逻辑块
+
+绝大多数 FPGA 中的可编程逻辑块是通过**查找表** (Look-Up Table, LUT) 实现的。一个查找表是一个 $2^{k} \times 1$ 的存储器，用来实现带有 $k$ 个变量的函数的真值表，称作 $k$-LUT。
+
+可以想到，小规模的查找表可以用多路复用器实现，大规模的查找表可以用小规模的查找表实现。
+
+???+ note
+
+    实际情况中，直接由 MUX 实现的查找表一般是 4 输入或 6 输入的。
+
+#### 可编程互联
+
+可编程互联，即 FPGA 中的逻辑块之间是可以连接的。这么做的原因也是不难理解的：查找表的数量是随函数的输入而指数级增加的，一味增加查找表的数量是不可行的。于是通过逻辑块之间的连接，就可以提供更多的函数实现。
+
+### 可编程输入/输出引脚
+
+这一部分和实际环境有关，即用于满足 FPGA 和外部世界的联通。为了模块的通用性，大多数 FPGA 应当由大量可以配置的引脚，这些引脚既可配置成输入，又可配置成输出，而且能够支持不同的电气接口标准。

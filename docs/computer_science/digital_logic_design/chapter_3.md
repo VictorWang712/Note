@@ -239,6 +239,8 @@ comments: true
 
 **分配** (distribution) 是选择的逆操作，实现这一功能的组合电路称作**多路分配器** (demultiplexer)，其由 $n$ 个选择输入的组合控制，将 1 个输入信息传送到 $2^{n}$ 个输出。
 
+### 多路分配器实现
+
 事实上，一种常见的多路分配器的实现方式就是采用带使能的译码器。让我们先重新考察前文提到的带使能的 2-4 译码器：
 
 <div style="text-align: center; margin-top: 0px;">
@@ -250,3 +252,85 @@ comments: true
 但是，如果我们固定 EN，改变 $A_{0}$ 和 $A_{1}$，我们就实现了通过改变 2 个选择输入 $A_{0}, A_{1}$，将 1 个输入信息 EN 传送到 4 个输出。这正是我们期望多路分配器所实现的功能！
 
 因此，多路分配器与带使能的译码器的电路实质上是一致的。
+
+## 迭代组合电路
+
+接下来我们将讨论算术功能模块。由于算术规则的一致性，对每一位的运算处理往往是相同的，因此完整的算术功能模块需要若干功能相同的子功能块。这些子功能块称作**单元** (cell)，整个模块的实现是一个**单元阵列** (array of cell)，也称**迭代阵列** (iterative array)。
+
+概念的介绍总是抽象的，希望读者能对这些内容稍加记忆，在之后的实例中进一步理解。
+
+## 二进制加法器
+
+我们从最基本的算术电路，即二进制加法器开始介绍。
+
+从最底层开始设计，即设计一个电路实现两个一位二进制数相加。容易想到这一运算的结果需要两位表示：进位与和，其中进位将加到下一个高位的有效位中。
+
+因此，有两个基本的算术模块：
+
+- **半加器** (half adder)：实现两位相加的组合电路
+- **全加器** (full adder)：实现三个位（两个有效位和一个先前位产生的进位）相加的电路
+
+### 半加器
+
+半加器的实现是简单的。用 $X$ 和 $Y$ 表示两个输入，用 $S$（和）和 $C$（进位）表示两个输出。容易得到：
+
+- $S = X \overline{Y} + \overline{X} Y = X \oplus Y$
+- $C = X Y$
+
+### 全加器
+
+全加器可以由两个半加器实现（这也是其得名的原因）。我们用 $X$ 和 $Y$ 表示两个有效位输入，$Z$ 表示进位输入，输出 $S$ 和 $C$ 保持不变。可得：
+
+- $S = X \overline{Y} \overline{Z} + \overline{X} Y \overline{Z} + \overline{X} \overline{Y} Z + X Y Z = X \oplus Y \oplus Z$
+- $C = X Y + X Z + Y Z$
+
+在电路实现中，我们常将表达式变形为 $S = (X \oplus Y) \oplus Z, C = X Y + Z (X \oplus Y)$，其中 $X Y$ 称作**进位生成** (carry generate)，$X \oplus Y$ 称作**进位传播** (carry propagate)，这样做的原因将在后文指出。于是全加器可以用下图中的电路实现：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_15.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### 二进制行波进位加法器
+
+一个并行加法器是一个仅采用组合逻辑计算出两个二进制数算术和的数字电路。其并行地连接 $n$ 个全加器，所有输入为同时加载至全加器以产生和。
+
+并行加法器中的所有全加器用级联的方式来连接在一起，一个全加器的进位输出连接到下一个全加器的进位输入。由于加法器最低有效位产生的进位 `1` 可能经过多个全加器传递到最高有效位，就像一个小卵石丢入池塘激起的波浪一样，因此这种并行加法器又称作**行波进位加法器** (ripple carry adder)。
+
+下图给出了由 4 个全加器级联形成的一个 4 位行波进位加法器：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_16.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### 超前进位加法器
+
+回顾全加器的进位传播和进位生成，如果我们定义如下两个函数：
+
+- **传播函数** (generate function)：$P_{i} = A_{i} \oplus B_{i}$
+- **生成函数** (propagate function)：$G_{i} = A_{i} B_{i}$
+
+则 $S_{i} = P_{i} \oplus C_{i}, C_{i + 1} = G_{i} + P_{i} C_{i}$。
+
+在行波加法器中，计算 $S_{i}, C_{i + 1}$ 必须等待 $C_{i}$ 计算完成，因此行波加法器的延迟和其位数线性相关。
+
+为了解决这一问题，我们采用的改进方案称作**超前进位加法器** (carry lookahead adder)。
+
+具体地，我们将除 $C_{0}$ 外的 $C_{i}$ 递归地代入表达式，使得最终每个 $C_{i}$ 都可用 $P_{i}$ 和 $C_{0}$ 表示，而这几个输入都是事先给出的。于是这样就避免了计算 $C_{i + 1}$ 对 $C_{i}$ 的依赖，也就解决了线性的传播延迟问题。
+
+具体地，我们考察 4 位超前进位加法器，其对 $C_{i}$ 的表达式变形如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_17.png" width="70%" style="margin: 0 auto;">
+</div>
+
+对应的电路实现如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_3_18.png" width="70%" style="margin: 0 auto;">
+</div>
+
+如图中所示，因为剥离了每个全加器中原本的进位计算部分，因为现在电路中的算术模块称作**部分全加器** (partial full adder)。
+
+更进一步地，我们还可以使用小规模的超前进位加法器组合得到大规模的超前进位加法器。
+
+## 二进制减法

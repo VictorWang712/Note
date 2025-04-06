@@ -37,6 +37,7 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - content.code.copy
+    - content.code.select
 
 extra:
   generator: true
@@ -116,6 +117,7 @@ nav:
     - 静态程序分析*:
       - computer_science/static_program_analysis/index.md
       - computer_science/static_program_analysis/chapter_1.md
+      - computer_science/static_program_analysis/chapter_2.md
   - Science Research:
     - 论文阅读:
       - science_research/papers/arXiv_2306_13063.md

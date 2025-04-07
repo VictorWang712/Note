@@ -101,7 +101,7 @@ void Topsort(Graph G) {
             }
         }
     }
-    if (Counter != Numvertex) {
+    if (Counter != NumVertex) {
         Error("Graph has a cycle");
     }
     DisposeQueue(Q);

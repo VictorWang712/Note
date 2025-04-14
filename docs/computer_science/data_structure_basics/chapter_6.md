@@ -10,7 +10,7 @@ comments: true
 
 一个**图** (graph) $G = (V, E)$ 由**顶点** (vertex) 集 $V$ 和**边** (edge) 集 $E$ 组成。每一条边是一个点对 $(u, v)$，有时边也称作**弧** (arc)。如果点对是有序的，那么图就是**有向** (directed) 的，图称作**有向图** (diagraph)。有向图上去掉每条边的方向性而得到的无向图称作该有向图的**基础图** (underlying graph)。顶点 $v$ 和 $w$ **邻接** (adjacent) 当且仅当 $(v, w) \in E$。有时边具有**权** (weight) 或**值** (cost)。
 
-图中的一条**路径** (path) 是一个顶点序列 $w_{1}, w_{2}, \cdots, w_{N}$ 满足 $(w_{i}, w_{i + 1}) \in E, 1 \leq i < N$。这样一条路径的**长** (length) 即为路径上各边的边权之和。一条**简单路径** (simple path) 即为一条路径上各顶点互异，但第一个顶点和最后一个顶点可能相同的路径。
+图中的一条**路径** (path) 是一个顶点序列 $w_{1}, w_{2}, \cdots, w_{N}$ 满足 $(w_{i}, w_{i + 1}) \in E, 1 \leq i < N$。一条**简单路径** (simple path) 即为一条路径上各顶点互异，但第一个顶点和最后一个顶点可能相同的路径。
 
 ???+ note
 
@@ -52,7 +52,7 @@ comments: true
 
 构造拓扑序列的算法是简单的，只需要重复以下两步：
 
-1. 从图中选择一个入度为 0 的点。
+1. 从图中选择一个入度为 0 的顶点。
 2. 输出该顶点，从图中删除此顶点及其所有的出边。
 
 其伪代码如下：
@@ -111,3 +111,126 @@ void Topsort(Graph G) {
 当使用邻接表表示图时，这个算法的时间复杂度即为 $O(|E| + |V|)$。
 
 从以上讨论中我们可以发现，拓扑排序的结果是不唯一的。如果我们希望得到字典序最小（或最大）的拓扑序列，我们只需将上述算法中存放入度为 0 的顶点的数据结构由队列换为最小堆（或最大堆）即可。
+
+## 最短路径算法
+
+对于一个赋权图，即每条边 $(v_{i}, v_{j})$ 具有边权 $c_{i, j}$，则路径 $v_{1} v_{2} \cdots v_{N}$ **赋权路径长** (weighted path length) 即为 $\sum_{i = 1}^{N - 1} c_{i, i + 1}$，**无权路径长** (unweighted path length) 只是路径上的边数，即 $N - 1$。
+
+一般地，我们要解决单源最短路径问题，即给定一个赋权图 $G = (V, E)$ 和一个指定顶点 $s$ 作为输入，找出 $s$ 到 $G$ 中每个其他顶点的最短赋权路径。
+
+在讨论解决这一问题的算法之前，我们需要先关注一些可能的特殊情况。
+
+首先，对于有向图，两个节点之间不一定有路径。其次，如果一个图中存在「负权边」，即边权为负数的边，那么就要关注是否有**负值圈** (negative-cost cycle)，即一个总路径长为负数的循环路径。如果有负值圈存在，那么路径就可以包含循环路径任意多次，故这种情况下没有最短路径。
+
+### 无权最短路径
+
+对于无权图，每条边都是等价的，故我们只需考察起点到达每个终点的最少边数。一个简单的想法是利用**广度优先搜索** (breadth-first search)，即按层处理顶点。
+
+为了做到这一点，我们需要记录一些信息。我们用 $d_{v}$ 记录从 $s$ 出发到达顶点 $v$ 的路径长度。在开始时除 $d_{s} = 0$ 外，其余顶点的 $d_{v}$ 均为 $\infty$。我们用 $p_{v}$ 记录顶点 $v$ 第一次被访问的来源，即是从哪个前驱顶点出发的路径被访问到的。记录 $p_{v}$ 可以得到最短路的路径。最后，我们自然需要一个 `Known` 来记录每个顶点是否被访问到了。当一个顶点已经被访问过了，我们就不会再去寻找到达它的更短路径了。
+
+有了这些信息，算法的伪代码如下：
+
+```c
+void Unweighed(Table T) {
+    int CurrDist;
+    Vertex V, W;
+    for (CurrDist = 0; CurrDist < NumVertex; CurrDist++) {
+        for each vertex V {
+            if (!T[V].Known && T[V].Dist == CurrDist) {
+                T[V].Known = True;
+                for each W adjacent to V {
+                    if (T[W].Dist == Infinity) {
+                        T[W].Dist = CurrDist + 1;
+                        T[W].Path = V;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+注意到双层嵌套的 `for` 循环，该算法的时间复杂度为 $O(|V|^{2})$。算法的低效之处在于，就算所有顶点都已经有 `Known` 标记了，最外层的循环仍然要继续。这一点在不修改核心算法的情况下是难以改进的。
+
+分析代码，可以发现如果我们能记录所有 $d_{v} = \texttt{CurrDist}$ 和 $d_{v} = \texttt{CurrDist} + 1$ 的顶点，我们就不必每次遍历全图来寻找适于下一次访问的顶点。于是我们采用队列这一数据结构来完成记录。
+
+在每轮迭代开始时，队列中含有距离为 $\texttt{CurrDist}$ 的顶点。然后我们将这些顶点顺次出队，并将由它们出发访问得到的，距离为 $\texttt{CurrDist} + 1$ 的顶点入队。当所有距离为 $\texttt{CurrDist}$ 的顶点出队后，一轮迭代结束，此时队列里就只含有距离为 $\texttt{CurrDist} + 1$ 的顶点，即为下一轮迭代的初始条件。
+
+容易想到，按照这样的迭代方法，如果一个顶点到最后距离仍然为 $\infty$，则表明其是从开始结点出发不可达的。于是我们便不再需要 `Known` 标记。改进后的伪代码如下：
+
+```c
+void Unweighted(Table T) {
+    Queue Q;
+    Vertex V, W;
+    Q = CreateQueue(NumVertex); MakeEmpty(Q);
+    Enqueue(S, Q);
+    while (!IsEmpty(Q)) {
+        V = Dequeue(Q);
+        for each W adjacent to V {
+            if (T[W].Dist == Infinity) {
+                T[W].Dist = T[V].Dist + 1;
+                T[W].Path = V;
+                Enqueue(W, Q);
+            }
+        }
+    }
+    DisposeQueue(Q);
+}
+```
+
+使用邻接表储存图的话，该算法的时间复杂度即为 $O(|E| + |V|)$。
+
+### Dijkstra 算法
+
+对于赋权图，处理方法就有所不同了。但我们仍然可以沿用处理无权图时记录的信息，$d_{v}, p_{v}$ 和 `Known`。
+
+解决单源最短路径问题的一般方法为 Dijkstra 算法，其是一个**贪心算法** (greedy algorithm)。其核心思想为：对于每轮迭代，在所有未知顶点中选择具有最小 $d_{v}$ 的顶点 $v$，声明 $s$ 到 $v$ 的路径已经为最短路，并更新所有从 $v$ 出发的边的终点节点的路径最小值。
+
+既然我们要动态地更新并调用每个时刻下具有最小 $d_{v}$ 的顶点 $v$，那么容易想到采用优先队列来辅助算法实现，以避免每次 $O(|V|)$ 地寻找这个最小距离顶点。
+
+采用邻接表存储图的话，其声明、初始化和 Dijkstra 算法的伪代码如下：
+
+```c
+typedef int Vertex;
+
+struct TableEntry {
+    List Header;
+    int Known;
+    DistType Dist;
+    Vertex Path;
+};
+
+#define NotAVertex (-1)
+typedef struct TableEntry Table[NumVertex];
+
+void InitTable(Vertex Start, Graph G, Table T) {
+    ReadGraph(G, T);
+    for (int i = 0; i < NumVertex; i++) {
+        T[i].Known = False;
+        T[i].Dist = Infinity;
+        T[i].Path = NotAVertex;
+    }
+    T[Start].Dist = 0;
+}
+
+void Dijkstra(Table T) {
+    Vertex V, W;
+    while (True) {
+        V = smallest unknown distance vertex;
+        if (V == NotAVertex) {
+            break;
+        }
+        T[V].Known = True;
+        for each W adjacent to V {
+            if (!T[W].Known) {
+                if (T[V].Dist + Cvw < T[W].Dist) {
+                    Decrease(T[W].Dist to T[V].Dist + Cvw);
+                    T[W].Path = V;
+                }
+            }
+        }
+    }
+}
+```
+
+如果采用优先队列维护距离最小值，那么每次查找最小值的时间复杂度即为 $O(\log |V|)$，算法的总复杂度即为 $O(|E| \log |V| + |V| \log |V|) = O(|E| \log |V|)$。

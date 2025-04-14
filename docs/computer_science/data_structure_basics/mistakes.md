@@ -87,3 +87,15 @@ If an undirected graph G = (V, E) contains 12 vertices. Then to guarantee that G
 正确答案：C
 
 解析：「in any cases」指的是对于所有连通图中找边最少的一种，而非在确定边数的情况下找确定能连通的。
+
+---
+
+期中考 程序填空题 5-2
+
+```c
+T->Left = BuildTree( );
+```
+
+正确答案：`in + 0, pre + 1, i`
+
+解析：从中间访问数组应当用指针的加减法运算实现。

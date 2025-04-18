@@ -105,6 +105,7 @@ nav:
       - computer_science/digital_logic_design/chapter_1.md
       - computer_science/digital_logic_design/chapter_2.md
       - computer_science/digital_logic_design/chapter_3.md
+      - computer_science/digital_logic_design/chapter_4.md
       - computer_science/digital_logic_design/chapter_5.md
     - 数据结构基础:
       - computer_science/data_structure_basics/index.md
@@ -131,6 +132,7 @@ nav:
       - science_research/papers/arXiv_2503_04149.md
       - science_research/papers/arXiv_1511_06279.md
       - science_research/papers/arXiv_1611_01989.md
+      - science_research/papers/arXiv_2504_01943.md
   - Others:
     - Oxford Prospects Programmes '25 Winter:
       - others/OPP/index.md

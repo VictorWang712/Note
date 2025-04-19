@@ -64,32 +64,6 @@ Suppose that the level-order traversal sequence of a max-heap is { 82, 65, 17, 2
 
 ---
 
-期中考 单选题 2-13
-
-If an undirected graph G = (V, E) contains 12 vertices. Then to guarantee that G is connected in any cases, there has to be at least __ edges.
-
-=== "A"
-
-    12
-
-=== "B"
-
-    67
-
-=== "C"
-
-    11
-
-=== "D"
-
-    66
-
-正确答案：C
-
-解析：「in any cases」指的是对于所有连通图中找边最少的一种，而非在确定边数的情况下找确定能连通的。
-
----
-
 期中考 程序填空题 5-2
 
 ```c

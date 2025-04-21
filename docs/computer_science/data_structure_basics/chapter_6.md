@@ -234,3 +234,193 @@ void Dijkstra(Table T) {
 ```
 
 如果采用优先队列维护距离最小值，那么每次查找最小值的时间复杂度即为 $O(\log |V|)$，算法的总复杂度即为 $O(|E| \log |V| + |V| \log |V|) = O(|E| \log |V|)$。
+
+### 具有负边值的图
+
+如果图具有负边值，那么 Dijkstra 算法是无法解决的。因为对于一个已经入队的顶点，可能存在一个未被扩展到的顶点 $v$，其到 $u$ 有负的路径。这样选取从 $s$ 到 $v$ 再到 $u$ 的路径就比从 $s$ 到 $u$ 的路径要更好。
+
+???+ warning
+
+    在介绍正确的算法之前，我们先来讨论一种错误的做法。
+    
+    一个朴素的想法是将每条边的边权都加上一个常数，使得每条边的边权都非负。然后使用前述算法求出最短路，再减去路径上加上的常数之和。
+
+    但这个做法的问题在于，每条路径的增加量和这条路径上的边数有关，这样做会导致边数较多的路径增加的边权和大于边数较少的路径。
+
+接下来我们尝试提出一个算法来解决这个问题：
+
+- 初始时，我们将 $s$ 入队。
+- 在之后的每一阶段，让一个顶点 $v$ 出队。
+- 遍历所有与 $v$ 邻接的顶点 $w$，找到所有满足 $d_{w} > d_{v} + c_{v, w}$ 的顶点。
+- 更新这些顶点的 $d_{w}$ 和 $p_{w}$，并将顶点 $w$ 入队。
+
+这个算法的伪代码如下：
+
+```c
+void WeightedNegative(Table T) {
+    Queue Q;
+    Vertex V, W;
+    Q = CreateQueue(NumVertex); MakeEmpty(Q);
+    Enqueue(S, Q);
+    while (!IsEmpty(Q)) {
+        V = Dequeue(Q);
+        for each W adjacent to V {
+            if (T[V].Dist + Cvw < T[W].Dist) {
+                T[W].Dist = T[V].Dist + Cvw;
+                T[W].Path = V;
+                if (W is not already in Q) {
+                    Enqueue(W, Q);
+                }
+            }
+        }
+    }
+    DisposeQueue(Q);
+}
+```
+
+进一步分析这个算法，可以发现其时间复杂度是较高的。由于每个顶点最多可以出队 $|V|$ 次，则总时间复杂度为 $O(|E| \cdot |V|)$。同时，一个小的改进在于，我们可以采用「状态压缩」的思想，用一个 01 串来记录每个顶点是否在队列中的情况，若一个顶点已在队列中，则对应的比特位就为 $1$，否则为 $0$。这样可以有效减少队列的空间存储成本和确定元素是否在队中的所需的查询时间。
+
+但是这个算法仍然存在一个可能的风险，即无法正确处理具有负值圈的情况。事实上，如果负值圈存在，算法会进入死循环。为了解决这个问题，我们引入一个判断。据前述分析，每个顶点最多可以出队 $|V|$ 次，故当任意顶点出队 $|V| + 1$ 次时跳出循环即可。这也为我们提供了一种判断图中是否有负值圈的方法。
+
+### 无圈图
+
+**无圈图** (acyclic graphs) 即为没有圈的图，它具有一些良好的性质，便于我们解决一些问题。
+
+#### Dijkstra 算法改进
+
+在无圈图上使用 Dijkstra 算法求最短路时，我们不必再使用一个优先队列来维护需要扩展的节点，而是直接根据拓扑序扩展即可。
+
+这个做法的正确性是显然的，因为无圈图上任何顶点的最短路径，只可能由在拓扑序中较其更前的顶点扩展而来。
+
+由于不需要优先队列维护，故每次选取节点是常数时间的，此时算法的总复杂度为 $O(|E| + |V|)$。
+
+#### 关键路径分析法
+
+无圈图另一个重要的应用是**关键路径分析法** (critical path analysis)，这是一种应用于**动作节点图** (activity-node graph) 上的方法。
+
+下图是一张动作节点图的示例：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_2.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以看到，在动作节点图中，每个顶点同时记录了完成该顶点对应动作所需的时间。同时，两个顶点间的路径表示一种优先关系，边 $(v, w)$ 意味着动作 $v$ 必须在动作 $w$ 开始前完成。这一关系保证了动作节点图是一张无圈图。
+
+一张动作节点图可以转化为一张**事件节点图** (event-node graph)，前文中动作节点图对应的事件节点图如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_3.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以看到，事件节点图将动作节点图中位于顶点上的信息转换到了边上，而新图中的节点则代表整个工作可能进行到的一个「状态」。为了保证事件间的优先关系，可以发现在事件节点图的构造中引入了哑边和哑节点。
+
+在事件节点图上，我们需要考察的是每个节点状态的**最早完成时间** (the earliest completion time, EC) ，和每个节点状态能够完成而不影响总体完成时间的**最晚完成时间** (the latest completion time, LC)。
+
+根据定义，我们容易得到两个时间的递推式：
+
+- $EC_{1} = 0, EC_{w} = \max_{(v, w) \in E} (EC_{v} + c_{v, w})$
+- $LC_{n} = EC_{n}, LC_{v} = \min_{(u, v) \in E} (LC_{w} - c_{v, w})$
+
+同样得益于无圈图的性质，我们仍然可以利用拓扑排序来完成递推求解。计算 $EC$ 时只需按照拓扑序从前往后计算，而计算 $LC$ 时只需倒转拓扑序从后往前计算，即可保证结果的正确性。
+
+在求得每个节点的 EC 和 LC 后，我们就可以求得每条边对应动作的**松弛时间** (slack time)，即该动作可以延迟而不推迟总体完成的最大时间量。根据定义，可以得到 $\text{Slack}_{(v, w)} = LC_{w} - EC_{v} - c_{v, w}$。
+
+如果一条边的松弛时间为 $0$，则称该边为零松弛边，该边对应的动作为关键动作，即不能被延迟，必须在被扩展时马上开始以按计划结束的动作。在事件节点图中，至少存在一条完全由零松弛边组成的路径，这样的路径称作**关键路径** (critical path)。
+
+## 网络流问题
+
+对于一个有向图 $G = (V, E)$，我们给每条边赋一个边容量 $c_{v, w}$，代表可以通过该边的最大流量。同时我们在图 $G$ 中指定一个**发点** (source) $s$，一个**收点** (sink) $t$。除了这两个点外，每个顶点的流入流量必须等于流出流量。最大流问题就是求从 $s$ 到 $t$ 可以通过的最大流量。
+
+下图中呈现了一个有向图与其最大流的示例。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_4.png" width="70%" style="margin: 0 auto;">
+</div>
+
+解决最大流问题的首要想法是分阶段进行。我们从图 $G$ 开始并构造一个流图 $G_{f}$，表示算法在任意阶段每条边已经到达的流量。开始时 $G_{f}$ 所有的边都没有流，我们希望当算法终止时 $G_{f}$ 包含最大流。我们再构造**残余图** (residual graph) $G_{r}$，表示算法在任意阶段每条边还能再添加多少流量。显然地，对于每一条边，我们可以从容量中减去当前流量而计算出残余的流量。$G_{r}$ 中的边称作**残余边** (residual edge)。
+
+在每个阶段中，我们寻找图 $G_{r}$ 中从 $s$ 到 $t$ 中的一条路径，这条路径称作**增长通路** (augmenting path)。这条路径上的最小值边就是可以添加到流图 $G_{f}$ 路径上每条边的流量。每一次选取增长通路并对每条边进行增加操作称作「增广」，于是最终得到的网络流可以被视为若干次增广分别得到的流的叠加。
+
+但是我们的问题在于，这条增长路径的选取是不确定的，而我们难以用贪心等自然的方式来确定我们选取增长路径的的顺序，因为这样得到的最后的流不一定是最大流，对应的反例是好构造的。为了解决这个问题，我们要引入反向边。
+
+对于每条边 $(u, v)$，我们都新建一条反向边 $(v, u)$。我们约定 $f(u, v) = -f(v, u)$，这一性质可以通过在每次增广时引入退流操作来保证，即 $f(u, v)$ 增加时 $f(v, u)$ 应当减少同等的量。
+
+于是我们可以注意到，在增广的过程中，真正有意义的是 $G_{r}$ 中的剩余容量。因为反向边流量的减少等价于反向边剩余容量的增加，这意味着我们在下一次增广中可以通过走反向边来和原先正向的增广抵消，这代表一种「反悔」的操作。而这种操作带来的「抵消」效果使得我们无需担心我们按照「错误」的顺序选择了增广路。
+
+容易发现，只要在存在反向边的 $G_f$ 上存在增广路，那么对其增广就可以令总流量增加；否则说明总流量已经达到最大可能值，即求得最大流。
+
+虽然对这一算法的具体代码实现不会在本课程中展开，但我们仍然可以给出一个算法的时间复杂度上界，即 $O(f|E|)$，其中 $f$ 是 $G$ 上的最大流。这是因为单次增广的时间复杂度是 $O(|E|)$，而增广会导致总流量增加，故增广轮数不会超过 $f$。
+
+## 最小生成树
+
+对最小生成树的讨论一般在正边权无向图中进行。一个无向图 $G$ 的**最小生成树** (minimum spanning tree, MST) 是指一个在所有 $G$ 的连通子图中，边权和最小的子图。
+
+一个显然的结论是，最小生成树应当包含 $|V| - 1$ 条边，因为这是保证图联通的最少边数，再添加任何边都会导致边权和增大。这也是这张子图是一个「树」的原因。
+
+解决最小生成树有两个常用算法。在下文的讨论中，我们都以下图中的图 $G$ 为例：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_5.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### Prim 算法
+
+求解最小生成树的一种方法是使其一步步地「长成」，即在每一步将一个节点当作根并往上加边。
+
+在算法的任意时刻，一个已经在生成树中的点集 $P$ 和未在生成树中的点集 $Q$ 都是确定的。于是我们只需找到所有满足 $u \in P, v \in Q$ 的边 $(u, v)$ 中边权最小的一条，并将这条边和其对应的未在生成树中的点添加到最小生成树中即可。
+
+对于每一个顶点 $v$，我们记录 $d_{v}, p_{v}$ 两个值，分别是顶点 $v$ 到生成树中所有顶点的最短边权，和导致 $d_{v}$ 发生改变的最后顶点。而 $d_{v}$ 的更新是简单的，只需在向生成树添加顶点 $v$ 后，将所有与 $v$ 邻接的，且还未在生成树中的顶点 $w$，作更新 $d_{w} = \min(d_{w}, c_{v, w})$。
+
+下图给出了在图 $G$ 上使用 Prim 算法求最小生成树的过程：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_6.png" width="70%" style="margin: 0 auto;">
+</div>
+
+不难发现，Prim 算法时间复杂度的主要瓶颈在于每次找到最小的树内树外边。不用堆时，算法的时间复杂度为 $O(|V|^{2})$；用二叉堆维护树内树外边时时间复杂度为 $O(|E| \log |V|)$。因此，不用堆维护的 Prim 算法适用于稠密图。而使用堆维护的 Prim 算法在稀疏图上可以得到一个好的界。
+
+### Kruskal 算法
+
+如果说 Prim 算法的出发点是顶点，即每次选取加入生成树代价最小的顶点，那么 Kruskal 算法的出发点就是边，即每次选取加入生成树代价最小的边。
+
+具体来说，我们按照边权对图中所有的边排序，并按照从小到大的顺序遍历。如果一条边选取后在图上不会产生圈，那么就把这条边加入到最小生成树中。容易知道，按照这样的方式选取 $|V| - 1$ 条边后，形成的子图即为最小生成树。
+
+于是算法的关键点就在于，如何判断一条边选取后在图上是否会产生圈。这一点可以应用第五章中的[不相交集](https://victorwang712.github.io/Note/computer_science/data_structure_basics/chapter_5/) 这一数据结构解决。即如果一条边的两个端点在不相交集中不位于同一集合内，就表明这两个点尚未连通，这条边就是可以选取的。在选取这条边后，将其两个端点在不相交集中合并至同一集合内即可。
+
+下图给出了在图 $G$ 上使用 Kruskal 算法求最小生成树的过程：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_7.png" width="70%" style="margin: 0 auto;">
+</div>
+
+我们也给出 Kruskal 算法的伪代码：
+
+```c
+void Kruskal(Graph G) {
+    int EdgesAccepted;
+    DisjSet S;
+    PriorityQueue H;
+    Vertex U, V;
+    SetType Uset, Vset;
+    Edge E;
+    Initialise(S);
+    ReadGrapghIntoHeapArray(G, H);
+    BuildHeap(H);
+    EdgesAccepted = 0;
+    while (EdgesAccepted < NumVertex - 1) {
+        E = DeleteMin(H);
+        Uset = Find(U, S);
+        Vset = Find(V, S);
+        if (Uset != Vset) {
+            EdgesAccepted++;
+            SetUnion(S, Uset, Vset);
+        }
+    }
+}
+```
+
+???+ note
+
+    请注意，像伪代码中一样，使用堆来维护边是可选的。在更多时候我们只需要对所有边进行一次排序即可。
+
+无论是使用堆维护还是排序，Kruskal 算法的时间复杂度都为 $O(|E| \log |E|)$，又因为 $|E| = O(|V|^{2})$，故实际的时间复杂度为 $O(|E| \log |V|)$。

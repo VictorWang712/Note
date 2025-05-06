@@ -96,7 +96,8 @@ nav:
       - mathematics/discrete_mathematics/chapter_3.md
       - mathematics/discrete_mathematics/chapter_4.md
       - mathematics/discrete_mathematics/chapter_5.md
-      - mathematics/discrete_mathematics/chapter_8.md
+      - mathematics/discrete_mathematics/chapter_6.md
+      - mathematics/discrete_mathematics/chapter_7.md
   - Chemistry:
     - chemistry/general_chemistry.md
   - Computer Science:
@@ -116,6 +117,7 @@ nav:
       - computer_science/data_structure_basics/chapter_4.md
       - computer_science/data_structure_basics/chapter_5.md
       - computer_science/data_structure_basics/chapter_6.md
+      - computer_science/data_structure_basics/chapter_7.md
       - computer_science/data_structure_basics/mistakes.md
     - 静态程序分析*:
       - computer_science/static_program_analysis/index.md

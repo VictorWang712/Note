@@ -385,7 +385,7 @@ void WeightedNegative(Table T) {
 
 具体来说，我们按照边权对图中所有的边排序，并按照从小到大的顺序遍历。如果一条边选取后在图上不会产生圈，那么就把这条边加入到最小生成树中。容易知道，按照这样的方式选取 $|V| - 1$ 条边后，形成的子图即为最小生成树。
 
-于是算法的关键点就在于，如何判断一条边选取后在图上是否会产生圈。这一点可以应用第五章中的[不相交集](https://victorwang712.github.io/Note/computer_science/data_structure_basics/chapter_5/) 这一数据结构解决。即如果一条边的两个端点在不相交集中不位于同一集合内，就表明这两个点尚未连通，这条边就是可以选取的。在选取这条边后，将其两个端点在不相交集中合并至同一集合内即可。
+于是算法的关键点就在于，如何判断一条边选取后在图上是否会产生圈。这一点可以应用第五章中的[不相交集](https://victorwang712.github.io/Note/computer_science/data_structure_basics/chapter_5/)这一数据结构解决。即如果一条边的两个端点在不相交集中不位于同一集合内，就表明这两个点尚未连通，这条边就是可以选取的。在选取这条边后，将其两个端点在不相交集中合并至同一集合内即可。
 
 下图给出了在图 $G$ 上使用 Kruskal 算法求最小生成树的过程：
 
@@ -424,3 +424,110 @@ void Kruskal(Graph G) {
     请注意，像伪代码中一样，使用堆来维护边是可选的。在更多时候我们只需要对所有边进行一次排序即可。
 
 无论是使用堆维护还是排序，Kruskal 算法的时间复杂度都为 $O(|E| \log |E|)$，又因为 $|E| = O(|V|^{2})$，故实际的时间复杂度为 $O(|E| \log |V|)$。
+
+## 深度优先搜索
+
+**深度优先搜索** (depth-first search, DFS) 是对先序遍历的一般化。对于某个顶点 $v$，我们先访问 $v$，再递归地遍历所有与 $v$ 邻接的顶点。为了避免重复搜索，我们需要记录一个顶点是否被访问过。DFS 的一般模板如下：
+
+```c
+void DFS (Vertex V) {
+    Visited[V] = True;
+    for each W adjacent to V {
+        if (!Visited[V]) {
+            DFS(W);
+        }
+    }
+}
+```
+
+因为这种方法保证每一个顶点和每一条边都只访问一次，所以总时间复杂度即为 $O(|E| + |V|)$。
+
+DFS 可以用于解决很多问题。
+
+### 无向图
+
+当且仅当无向图是连通的，从图上任意节点出发的 DFS 能访问到每一个节点。
+
+对于一次 DFS 的过程，我们可以对应构造出一棵**深度优先生成树** (depth-first spanning tree)。具体来说，我们将这棵树的根设定为 DFS 的起点。之后，在遍历顶点 $v$ 的每一条边 $(v, w)$ 时，如果 $w$ 未被标记，我们就在生成树上为顶点 $v$ 创建一个子节点 $w$，并连接 $v$ 和 $w$；如果 $w$ 已被标记，那我们就在树上从 $v$ 出发创建一条**背向边** (back edge) 连向 $w$。
+
+> 举一个例子，对于下图中的图：
+>
+> <div style="text-align: center; margin-top: 0px;">
+> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_8.png" width="70%" style="margin: 0 auto;">
+> </div>
+>
+> 如果我们从顶点 $A$ 开始进行 DFS，并按照逆时针顺序遍历每个顶点的边，则可以得到如下的深度优先生成树：
+>
+> <div style="text-align: center; margin-top: 0px;">
+> <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_9.png" width="70%" style="margin: 0 auto;">
+> </div>
+
+如果图不是连通的，那么对每个连通子图的 DFS 都将得到一棵生成树，全部生成树的集合即为**深度优先生成森林** (depth-first spanning forest)。
+
+### 双连通性
+
+如果一个连通的无向图中，删去任意顶点后图仍然连通，则称该图是**双连通** (biconnected) 的。
+
+如果一个图不是双连通的，那么那些删除后使得图不再连通的顶点称作**割点** (articulation point)。
+
+更进一步地，一个图中的极大双连通子图，称作图的**双连通分量** (biconnected component)。
+
+利用 DFS，我们可以求出图中的所有割点。为方便理解，之后的讨论将在下图中的图上进行：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_10.png" width="70%" style="margin: 0 auto;">
+</div>
+
+首先，从图中任意顶点开始，我们执行 DFS，并在每个顶点 $v$ 被访问时给予其一个编号 $\texttt{Num}(v)$，表示在 DFS 过程中该顶点被搜索的次序。然后，对于深度优先生成树上的每一个顶点 $v$，寻找所有能从 $v$ 出发，并经过若干条边和不多于 $1$ 条背向边能访问到的节点中，$\texttt{Num}$ 值最小的一个节点。我们将这个节点的编号记作 $\texttt{Low}(v)$。根据这两个定义，我们可以得到上图对应的深度优先生成树以及每个节点的 $\texttt{Num}$ 和 $\texttt{Low}$（按照 $\texttt{Num}$/$\texttt{Low}$ 的格式给出，且数字对应顶点字母在字母表中的顺序，如 A 对应 1）。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_10.png" width="70%" style="margin: 0 auto;">
+</div>
+
+进一步分析 $\texttt{Low}(v)$，根据 $\texttt{Low}$ 的定义可知，$\texttt{Low}(v)$ 的值即为以下三种量中的最小值：
+
+- $\texttt{Num}(v)$
+- 所有背向边 $(v, w)$ 中最小的 $\texttt{Num}(w)$
+- 所有边 $(v, w)$ 中最小的 $\texttt{Low}(w)$
+
+据此不难发现，需要先得到每个顶点的子节点的 $\texttt{Low}$，才能得到该顶点的 $\texttt{Low}$，因此需要利用后序遍历。另外，在算法的具体实现中，我们可以通过 $\texttt{Num}(v)$ 和 $\texttt{Num}(w)$ 判断边 $(v, w)$ 是一条边还是背向边。计算所有顶点的 $\texttt{Low}$ 的时间复杂度为 $O(|E| + |V|)$。
+
+在得到了深度优先生成树上每个节点的 $\texttt{Num}$ 和 $\texttt{Low}$ 后，我们就可以利用这些信息寻找割点。我们直接给出结论：根节点 $r$ 是割点，当且仅当其只有一个子节点；非根节点 $v$ 是割点，当且仅当其存在某个子节点 $w$ 使得 $\texttt{Low}(w) \geq \texttt{Num}(v)$。
+
+最后，我们给出在一次 DFS 中，完整求 $\texttt{Num}, \texttt{Low}$ 并寻找割点的伪代码。
+
+```c
+void FindArt(Vertex V) {
+    Vertex W;
+    Visited[V] = True;
+    Low[V] = Num[V] = Counter++;
+    for each W adjacent to V {
+        if (!Visited[W]) {
+            Parent[W] = V;
+            FindArt(W);
+            if (Low[W] >= Num[V]) {
+                printf("%v is an articulation point\n", v);
+            }
+            Low[V] = Min(Low[V], Low[W]);
+        }
+        else if (Parent[V] != W) { // Back edge
+            Low[V] = Min(Low[V], Num[W]);
+        }
+    }
+}
+```
+
+### 欧拉回路
+
+对于一个图，如果存在一条路径，使得该路径恰好经过图的每条边一次，则称该路径为**欧拉路径** (Euler path)；如果存在一条路径，使得该路径恰好经过图的每条边一次且起点与终点相同，则称该路径为**欧拉回路** (Euler circuit)。存在欧拉回路的图称作**欧拉图** (Euler Graph)。
+
+两个重要的性质是：
+
+- 一个图中存在欧拉回路，当且仅当该图中所有顶点的度数均为偶数。
+- 一个图中存在非回路的欧拉路径，当且仅当该图中仅存在两个顶点的度数为奇数，此时这两个顶点必定为欧拉路径的起点和终点。
+
+后一条性质可以通过将这两个度数为奇数的顶点连接在一起并通过前一条性质证明。这也启发我们，求解欧拉路径可以通过连接奇度数顶点边并求解欧拉回路得到。
+
+接下来我们来讨论求解欧拉回路的算法。这需要利用欧拉图的另一个重要性质，即欧拉图可以被拆解为若干条不共边回路的并。
+
+具体来说，我们先从图中用 DFS 找到一条回路作为当前回路。并从当前回路中所有剩余度数不为零的顶点出发找到一条新的回路，并将该回路与当前回路合并。重复该过程指导当前回路中所有点均无剩余度数，此时的当前回路即为欧拉回路。在具体实现中，我们应当采用合适的数据结构存储回路（如使用类链表的结构储存环），这样算法的总时间复杂度为 $O(|E| + |V|)$。

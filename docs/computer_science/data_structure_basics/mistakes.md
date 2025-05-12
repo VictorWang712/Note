@@ -73,3 +73,65 @@ T->Left = BuildTree( );
 正确答案：`in + 0, pre + 1, i`
 
 解析：从中间访问数组应当用指针的加减法运算实现。
+
+---
+
+第十一周 判断题 1-1
+
+For a graph, if each vertex has an even degree or only two vertexes have odd degree, we can find a cycle that visits every edge exactly once.
+
+正确答案：F
+
+解析：题目中要求的是「cycle」，即欧拉回路，故顶点只能是全偶度数。
+
+---
+
+第十一周 选择题 2-2
+
+Graph G is an undirected completed graph of 20 nodes. Is there an Euler circuit in G? If not, in order to have an Euler circuit, what is the minimum number of edges which should be removed from G?
+
+=== "A"
+
+    Yes, Graph G has an Euler circuit.
+
+=== "B"
+
+    No, Graph G has no Euler circuit. 10 edges should be removed.
+
+=== "C"
+
+    No, Graph G has no Euler circuit. 20 edges should be removed.
+
+=== "D"
+
+    No, Graph G has no Euler circuit. 40 edges should be removed.
+
+正确答案：B
+
+解析：已知在 20 个顶点的完全图中，每个顶点的度数均为 19。于是只需要删去「1-11」「2-12」……「10-20」 这 20 条边，即可使每个顶点变为偶度数。
+
+---
+
+第十二周 选择题 2-1
+
+To sort {8, 3, 9, 11, 2, 1, 4, 7, 5, 10, 6} by Shell Sort, if we obtain (4, 2, 1, 8, 3, 5, 10, 6, 9, 11, 7) after the first run, and (1, 2, 3, 5, 4, 6, 7, 8, 9, 11, 10) after the second run, then the increments of these two runs must be __ , respectively.
+
+=== "A"
+
+    3 and 1
+
+=== "B"
+
+    3 and 2
+
+=== "C"
+
+    5 and 2
+
+=== "D"
+
+    5 and 3
+
+正确答案：B
+
+解析：依次代入 increment 的值模拟即可。

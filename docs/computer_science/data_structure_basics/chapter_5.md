@@ -55,6 +55,7 @@ comments: true
 我们用树来表示每个集合（这些树的集合构成一个**森林** (forest)），开始时每个集合只有一个元素。由于我们对这些树的形态没有任何要求，因此我们只需要用记录每个节点的父节点。更具体地，我们只需要用一个数组 `P[i]` 表示元素 `i` 的父节点。如果 `i` 是根，则 `P[i]=0`。
 
 > 我们以含有 8 个节点的情况为例，下图即为初状态：
+>
 > <div style="text-align: center; margin-top: 0px;">
 > <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_5_1.png" width="70%" style="margin: 0 auto;">
 > </div>
@@ -62,6 +63,7 @@ comments: true
 为执行两个集合的 `Union` 操作，我们只需将一个节点的父指针指向另一棵树的根节点。显然这种操作花费常数时间。一般地，我们规定 `Union(X, Y)` 后新的根为 `X`。
 
 > 沿用前例，在执行 `Union(5, 6)`、`Union(7, 8)`、`Union(5, 7)` 后的森林如下图：
+>
 > <div style="text-align: center; margin-top: 0px;">
 > <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_5_2.png" width="70%" style="margin: 0 auto;">
 > </div>

@@ -4,7 +4,7 @@ comments: true
 
 # 错题整理
 
-第五周 单选题 2-5
+第五周 选择题 2-5
 
 Among the following binary trees, which one can possibly be the decision tree (the external nodes are excluded) for binary search?
 
@@ -38,7 +38,7 @@ Among the following binary trees, which one can possibly be the decision tree (t
 
 ---
 
-期中考 单选题 2-8
+期中考 选择题 2-8
 
 Suppose that the level-order traversal sequence of a max-heap is { 82, 65, 17, 26, 8, 12, 3 }. Use the linear algorithm to adjust this max-heap into a min-heap, and then call DeleteMin. The preorder traversal sequence of the resulting tree is:
 
@@ -135,3 +135,39 @@ To sort {8, 3, 9, 11, 2, 1, 4, 7, 5, 10, 6} by Shell Sort, if we obtain (4, 2, 1
 正确答案：B
 
 解析：依次代入 increment 的值模拟即可。
+
+---
+
+第十三周 判断题 1-2
+
+During the sorting, processing every element which is not yet at its final position is called a "run". To sort a list of integers using quick sort,  it may reduce the total number of recursions by processing the small partion first in each run.
+
+正确答案：F
+
+解析：无论先处理较小的区间还是较大的区间，递归调用的次数应该是相同的，处理顺序的不同并不会减少总的递归次数。
+
+---
+
+第十三周 选择题 2-1
+
+During the sorting, processing every element which is not yet at its final position is called a "run".  Which of the following cannot be the result after the second run of quicksort?
+
+=== "A"
+
+    5, 2, 16, 12, 28, 60, 32, 72
+
+=== "B"
+
+    2, 16, 5, 28, 12, 60, 32, 72
+
+=== "C"
+
+    2, 12, 16, 5, 28, 32, 72, 60
+
+=== "D"
+
+    5, 2, 12, 28, 16, 32, 72, 60
+
+正确答案：D
+
+解析：在 D 选项的序列中，第一个 pivot 可以选择 12 或 32。但无论选择哪一个作为第一个 pivot 后，都无法选出第二个 pivot。

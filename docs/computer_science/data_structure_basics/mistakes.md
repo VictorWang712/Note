@@ -171,3 +171,29 @@ During the sorting, processing every element which is not yet at its final posit
 正确答案：D
 
 解析：在 D 选项的序列中，第一个 pivot 可以选择 12 或 32。但无论选择哪一个作为第一个 pivot 后，都无法选出第二个 pivot。
+
+---
+
+第十四周 选择题 2-1
+
+The average search time of searching a hash table with $N$ elements is:
+
+=== "A"
+
+    $O(1)$
+
+=== "B"
+
+    $O(\log N)$
+
+=== "C"
+
+    $O(N)$
+
+=== "D"
+
+    cannot be determined
+
+正确答案：D
+
+解析：题目中没有给出散列表的构造方法和解决冲突的策略，因此是无法确定具体的时间复杂度的。

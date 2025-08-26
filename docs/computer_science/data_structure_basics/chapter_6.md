@@ -481,7 +481,7 @@ DFS 可以用于解决很多问题。
 首先，从图中任意顶点开始，我们执行 DFS，并在每个顶点 $v$ 被访问时给予其一个编号 $\texttt{Num}(v)$，表示在 DFS 过程中该顶点被搜索的次序。然后，对于深度优先生成树上的每一个顶点 $v$，寻找所有能从 $v$ 出发，并经过若干条边和不多于 $1$ 条背向边能访问到的节点中，$\texttt{Num}$ 值最小的一个节点。我们将这个节点的编号记作 $\texttt{Low}(v)$。根据这两个定义，我们可以得到上图对应的深度优先生成树以及每个节点的 $\texttt{Num}$ 和 $\texttt{Low}$（按照 $\texttt{Num}$/$\texttt{Low}$ 的格式给出，且数字对应顶点字母在字母表中的顺序，如 A 对应 1）。
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_10.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/chapter_6_11.png" width="70%" style="margin: 0 auto;">
 </div>
 
 进一步分析 $\texttt{Low}(v)$，根据 $\texttt{Low}$ 的定义可知，$\texttt{Low}(v)$ 的值即为以下三种量中的最小值：

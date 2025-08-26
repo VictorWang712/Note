@@ -10,14 +10,22 @@ comments: true
     - 学分：4.0
     - 学期：大一秋冬
 
-## 习题代码
+## 课程资料
+
+!!! warning
+
+    本部分所有内容仅供学习与参考之用，严禁以任何形式将其直接或间接用于作业提交。具体包括但不限于：提交原始文件，修改文件名、变量名，提交给 AI 重写或其他形式的「洗稿」后提交等行为。
+    
+    未经作者明确许可，禁止将本部分内容整体或部分下载后上传至其他平台（如网盘、论坛、课程资源共享站点等）以提供公开下载服务。引用本部分内容时，仅允许通过链接至本博客页面的方式进行说明和推荐。严禁将本部分内容用于任何盈利性活动，包括但不限于课程代做、商业培训、出售代码等行为。
+    
+    使用者下载、克隆或以其他方式获取本仓库内容，即视为已充分阅读、理解并同意本声明的全部内容。作者不对因违反上述条款而导致的任何后果（包括学术不端、违纪处分等）承担责任，并保留最终解释权和依法追究相关责任的权利。
 
 以下代码适用于**何钦铭**老师班级布置的习题，其他老师的习题安排有较大差异。
 
 <div class="card file-block" markdown="1">
 <div class="file-icon"><img src="/Note/assets/images/icons/zip.svg" style="height: 3em;"></div>
 <div class="file-body">
-<div class="file-title">习题代码</div>
+<div class="file-title">课程资料</div>
 <div class="file-meta">4.66 MB / 2025-01-24</div>
 </div>
 <a class="down-button" target="_blank" href="/Note/assets/files/computer_science/programming_and_algorithm_basics_code.zip" markdown="1">:fontawesome-solid-download: 下载</a>
@@ -28,7 +36,6 @@ comments: true
     - `Curricular`：课堂练习
     - `Experiment`：实验课习题
     - `Homework`：课后作业
-
 
 ## 易错题整理
 

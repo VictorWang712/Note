@@ -113,8 +113,8 @@ $$
 12 &  \qquad\qquad \textbf{let } a_{j} \text{ be the top of the stack} \\
 13 &  \qquad\qquad \text{pop } a_{j} \text{ from the stack} \\
 14 &  \qquad \text{create a single-node tree with the value } s_{i} \\
-15 &  \qquad \textbf{let } \text{the left child pointer of } s_{i} \text{ to } a_{2} \\
-16 &  \qquad \textbf{let } \text{the right child pointer of } s_{i} \text{ to } a_{1} \\
+15 &  \qquad \textbf{let } \text{the left child pointer of } s_{i} \text{ to } a_{j} \\
+16 &  \qquad \textbf{let } \text{the right child pointer of } s_{i} \text{ to } a_{i} \\
 17 &  \qquad \text{push a pointer to the node } s_{i} \text{ into the stack} \\
 \end{array}
 $$

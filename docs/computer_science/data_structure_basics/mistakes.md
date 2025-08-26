@@ -32,9 +32,11 @@ Among the following binary trees, which one can possibly be the decision tree (t
     <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/data_structure_basics/mistakes_4.png" width="70%" style="margin: 0 auto;">
     </div>
 
-正确答案：A
+??? abstract "答案解析"
 
-解析：在二分搜索中，每次求中间值时向下取整还是向上取整是唯一确定的。对应地，向下取整会导致剩下的小于中间值的值少于大于中间值的值，从而使得决策树上的中间值节点的左子树在大小上小于右子树；向上取整则反之。因此本题就是需要判断哪个树的每一个节点都满足左子树小于右子树，或反之。
+    正确答案：A
+
+    解析：在二分搜索中，每次求中间值时向下取整还是向上取整是唯一确定的。对应地，向下取整会导致剩下的小于中间值的值少于大于中间值的值，从而使得决策树上的中间值节点的左子树在大小上小于右子树；向上取整则反之。因此本题就是需要判断哪个树的每一个节点都满足左子树小于右子树，或反之。
 
 ---
 
@@ -58,9 +60,11 @@ Suppose that the level-order traversal sequence of a max-heap is { 82, 65, 17, 2
 
     8, 17, 26, 65, 12, 82
 
-正确答案：D
+??? abstract "答案解析"
 
-解析：线性时间建堆指的是，对于任何一个完全二叉树，从最后一个非叶子节点开始向下调整。
+    正确答案：D
+
+    解析：线性时间建堆指的是，对于任何一个完全二叉树，从最后一个非叶子节点开始向下调整。
 
 ---
 
@@ -70,9 +74,11 @@ Suppose that the level-order traversal sequence of a max-heap is { 82, 65, 17, 2
 T->Left = BuildTree( );
 ```
 
-正确答案：`in + 0, pre + 1, i`
+??? abstract "答案解析"
 
-解析：从中间访问数组应当用指针的加减法运算实现。
+    正确答案：`in + 0, pre + 1, i`
+
+    解析：从中间访问数组应当用指针的加减法运算实现。
 
 ---
 
@@ -80,9 +86,11 @@ T->Left = BuildTree( );
 
 For a graph, if each vertex has an even degree or only two vertexes have odd degree, we can find a cycle that visits every edge exactly once.
 
-正确答案：F
+??? abstract "答案解析"
 
-解析：题目中要求的是「cycle」，即欧拉回路，故顶点只能是全偶度数。
+    正确答案：F
+
+    解析：题目中要求的是「cycle」，即欧拉回路，故顶点只能是全偶度数。
 
 ---
 
@@ -106,9 +114,11 @@ Graph G is an undirected completed graph of 20 nodes. Is there an Euler circuit 
 
     No, Graph G has no Euler circuit. 40 edges should be removed.
 
-正确答案：B
+??? abstract "答案解析"
 
-解析：已知在 20 个顶点的完全图中，每个顶点的度数均为 19。于是只需要删去「1-11」「2-12」……「10-20」 这 20 条边，即可使每个顶点变为偶度数。
+    正确答案：B
+
+    解析：已知在 20 个顶点的完全图中，每个顶点的度数均为 19。于是只需要删去「1-11」「2-12」……「10-20」 这 20 条边，即可使每个顶点变为偶度数。
 
 ---
 
@@ -132,9 +142,11 @@ To sort {8, 3, 9, 11, 2, 1, 4, 7, 5, 10, 6} by Shell Sort, if we obtain (4, 2, 1
 
     5 and 3
 
-正确答案：B
+??? abstract "答案解析"
 
-解析：依次代入 increment 的值模拟即可。
+    正确答案：B
+
+    解析：依次代入 increment 的值模拟即可。
 
 ---
 
@@ -142,9 +154,11 @@ To sort {8, 3, 9, 11, 2, 1, 4, 7, 5, 10, 6} by Shell Sort, if we obtain (4, 2, 1
 
 During the sorting, processing every element which is not yet at its final position is called a "run". To sort a list of integers using quick sort,  it may reduce the total number of recursions by processing the small partion first in each run.
 
-正确答案：F
+??? abstract "答案解析"
 
-解析：无论先处理较小的区间还是较大的区间，递归调用的次数应该是相同的，处理顺序的不同并不会减少总的递归次数。
+    正确答案：F
+
+    解析：无论先处理较小的区间还是较大的区间，递归调用的次数应该是相同的，处理顺序的不同并不会减少总的递归次数。
 
 ---
 
@@ -168,9 +182,11 @@ During the sorting, processing every element which is not yet at its final posit
 
     5, 2, 12, 28, 16, 32, 72, 60
 
-正确答案：D
+??? abstract "答案解析"
 
-解析：在 D 选项的序列中，第一个 pivot 可以选择 12 或 32。但无论选择哪一个作为第一个 pivot 后，都无法选出第二个 pivot。
+    正确答案：D
+
+    解析：在 D 选项的序列中，第一个 pivot 可以选择 12 或 32。但无论选择哪一个作为第一个 pivot 后，都无法选出第二个 pivot。
 
 ---
 
@@ -194,6 +210,48 @@ The average search time of searching a hash table with $N$ elements is:
 
     cannot be determined
 
-正确答案：D
+??? abstract "答案解析"
 
-解析：题目中没有给出散列表的构造方法和解决冲突的策略，因此是无法确定具体的时间复杂度的。
+    正确答案：D
+
+    解析：题目中没有给出散列表的构造方法和解决冲突的策略，因此是无法确定具体的时间复杂度的。
+
+---
+
+期末考 判断题 1-7
+
+During the insertion sort process, the order of magnitude of the number of comparisons is independent of the initial state of the sequence.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：在序列已经有序的情况下，只需要与已排序部分的最后一个元素比较一次即结束排序。此时时间复杂度为 $O(N)$。
+
+---
+
+期末考 选择题 2-13
+
+To compute the shortest path in a weighted graph, Dijkstra's algorithm using a min-priority queue is a popular choice. For this algorithm, what is the total time spent on running the relaxation step "decrease the distance of each vertex adjacent from the current visited one"?
+
+=== "A"
+
+    $O(|E|)$
+
+=== "B"
+
+    $O(|V||E|)$
+
+=== "C"
+
+    $O(|V| \log |V|)$
+
+=== "D"
+
+    $O(|E| \log |V|)$
+
+??? abstract "答案解析"
+
+    正确答案：D
+
+    解析：一般最小堆是由二叉堆实现，故每次 `DecreaseKey` 操作耗时 $O(\log |V|)$。Dijkstra 算法中每条边最多引发一次 `DecreaseKey` 操作，故总时间复杂度为 $O(|E| \log |V|)$。

@@ -110,6 +110,8 @@ nav:
       - computer_science/digital_logic_design/chapter_4.md
       - computer_science/digital_logic_design/chapter_5.md
       - computer_science/digital_logic_design/chapter_6.md
+    - 计算机组成:
+      - computer_science/computer_organisation/index.md
     - 数据结构基础:
       - computer_science/data_structure_basics/index.md
       - computer_science/data_structure_basics/chapter_1.md
@@ -121,6 +123,9 @@ nav:
       - computer_science/data_structure_basics/chapter_7.md
       - computer_science/data_structure_basics/chapter_8.md
       - computer_science/data_structure_basics/mistakes.md
+    - 高级数据结构与算法分析:
+      - computer_science/advanced_data_structure/index.md
+      - computer_science/advanced_data_structure/chapter_1.md
     - 静态程序分析*:
       - computer_science/static_program_analysis/index.md
       - computer_science/static_program_analysis/chapter_1.md

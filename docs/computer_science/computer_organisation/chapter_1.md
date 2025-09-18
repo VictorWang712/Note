@@ -47,6 +47,18 @@ comments: true
 
 **晶体管** (transistor) 是一种受电流控制的开关。**集成电路** (integrated circuit, IC) 是由成千上万个晶体管组成的芯片。如今计算机领域普遍采用的是**超大规模集成电路** (very larg-scale integrated circuit, VLSI)。
 
+下图表示了集成电路制造的全过程：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_1_2.png" width="70%" style="margin: 0 auto;">
+</div>
+
+集成电路的成本，可以用以下公式定量表示：
+
+- $\text{每芯片的价格} = \frac{\text{每晶圆的价格}}{\text{每晶圆的芯片数} \times \text{成品率}}$
+- $\text{每晶圆的芯片数} \approx \frac{\text{晶圆面积}}{\text{芯片面积}}$
+- $\text{成品率} = \frac{1}{(1 + \frac{\text{单位面积的瑕疵数} \times \text{芯片面积}}{2})^{2}}$
+
 ## 性能
 
 ### 性能的定义

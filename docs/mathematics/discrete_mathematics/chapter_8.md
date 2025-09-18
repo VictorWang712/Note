@@ -2,215 +2,62 @@
 comments: true
 ---
 
-# 第八章 - 高级计数技术
+# 第八章 - 图
 
-## 求解线性递推关系
+## 图和图模型
 
-### 求解常系数线性齐次递推关系
+这部分请参考[数据结构基础 - 第六章 - 图论算法](https://victorwang712.github.io/Note/computer_science/data_structure_basics/chapter_6/#_2)。
 
-一个常系数的 $k$ 阶**线性齐次递推关系** (linear homogeneous recurrence relation) 是形如 $a_{n} = c_{a} a_{n - 1} + c_{2} a_{n - 2} + \cdots + c_{k} a_{n - k}$ 的递推关系，其中 $c_{1}, c_{2}, \cdots, c_{k}$ 是实数，$c_{k} \neq 0$。
+我们给出一个表格供参考：
 
-这个定义中的递推关系是线性的，因为右式是序列前项的倍数之和；这个递推关系是齐次的，因为所处选的各项都是 $a_{j}$ 的倍数；序列各项的系数都是常数而不是依赖于 $n$ 的函数。
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_8_1.png" width="70%" style="margin: 0 auto;">
+</div>
 
-在正式求解之前，我们先给出如下定义。我们按照 $a_{n} = r^{n}$ 的形式代入递推式，得到方程 $r^{n} = c_{1} r^{n - 1} + c_{2} r^{n - 2} + \cdots + c_{k} r^{n - k}$，这个方程称作递推关系的**特征方程** (characteristic equation)，方程的解称作递推关系的**特征根** (characteristic root)。
+## 图的术语
 
-现在，我们先考虑二阶线性齐次递推关系。
+我们先约定如下记号。
 
-对于递推关系 $a_{n} = c_{1} a_{n - 1} + c_{2} a_{n - 2}$，设方程 $r^{2} = c_{1} r + c_{2}$ 的两个根为 $r_{1}$ 和 $r_{2}$。若 $r_{1} \neq r_{2}$，则 $a_{n} = \alpha_{1} r_{1}^{n} + \alpha_{2} r_{2}^{n}$；若 $r_{1} = r_{2} = r_{0}$，则 $a_{n} = \alpha_{1} r_{0}^{n} + \alpha_{2} n r_{0}^{n}$。其中 $\alpha_{1}$ 和 $\alpha_{2}$ 可以根据初始条件解出。
+图 $G = (V, E)$ 中，顶点 $v$ 的所有相邻顶点的集合记作 $N(v)$。若 $A$ 是 $V$ 的子集，我们用 $N(A)$ 表示图 $G$ 中至少和 $A$ 中一个顶点相邻的所有顶点的集合，即 $N(A) = \cup_{v \in A} N(v)$。
 
-这一定理的证明请读者参阅组合数学相关教科书或网络资料。
+顶点 $v$ 的**度** (degree) 是与该顶点相关联的边的数目，记作 $\deg (v)$。在带有有向边的图里，以 $v$ 作为终点的边数称作顶点 $v$ 的入度，记作 $\deg^{-} (v)$；以 $v$ 作为起点的边数称作顶点 $v$ 的出度，记作 $\deg^{+} (v)$。
 
-进一步地，我们考察更高阶的，也就是一般的情况。
+根据这些定义，我们可以得到许多有关图的性质。
 
-若特征方程 $r^{k} = c_{1} r^{k - 1} + \cdots c_{k}$ 有 $k$ 个不相等的根 $r_{1}, r_{2}, \cdots r_{k}$，则 $a_{n} = \alpha_{1} r_{1}^{n} + \alpha_{2} r_{2}^{n} + \cdots \alpha_{k} r_{k}^{n}$ 是递推关系 $a_{n} = c_{1} a_{n - 1} + \cdots c_{k} a_{n - k}$ 的解。其中 $\alpha_{1}, \alpha_{2}, \cdots \alpha_{k}$ 可以根据初始条件解出。
+设 $G = (V, E)$ 是有 $m$ 条边的无向图，则 $2m = \sum_{v \in V} \deg (v)$。这个结论被称作**握手定理** (handshaking lemma)。
 
-除此之外，我们还需要了解存在重根的情况。
+无向图有偶数个度为奇数的顶点。
 
-若特征方程 $r^{k} = c_{1} r^{k - 1} + \cdots c_{k}$ 有 $t$ 个不相等的根 $r_{1}, r_{2}, \cdots r_{t}$，其重数分别为 $m_{1}, m_{2}, \cdots, m_{t}$ 满足 $m_{i} \geq 1, \sum_{i} m_{i} = k$，则 
+对于有向图 $G = (V, E)$，有 $\sum_{v \in V} \deg^{-} (v) = \sum_{v \in V} \deg^{+} (v) = |E|$。
 
-$$\begin{aligned}
-    a_{n} = & (\alpha_{1, 0} + \alpha_{1, 1} n + \cdots + \alpha_{1, m_{1} - 1} n^{m_{1} - 1}) r_{1}^{n} \\
-    & + (\alpha_{2, 0} + \alpha_{2, 1} n + \cdots + \alpha_{2, m_{2} - 1} n^{m_{2} - 1}) r_{2}^{n} \\
-    & + \cdots \\
-    & + (\alpha_{t, 0} + \alpha_{t, 1} n + \cdots + \alpha_{t, m_{t} - 1} n^{m_{t} - 1}) r_{t}^{n}
-\end{aligned}
-$$
+这些性质都是容易从定义得到的。
 
-是递推关系 $a_{n} = c_{1} a_{n - 1} + \cdots c_{k} a_{n - k}$ 的解。其中 $\alpha_{i, j}$ 可以根据初始条件解出。
+## 几种特殊的图
 
-### 求解常系数线性非齐次递推关系
+在每对不同顶点间恰有一条边的简单图称作**完全图** (complete graph)，有 $n$ 个顶点的完全图记作 $K_{n}$。
 
-形如 $a_{n} = c_{a} a_{n - 1} + c_{2} a_{n - 2} + \cdots + c_{k} a_{n - k} + F(n)$ 的递推关系是常系数**线性非齐次递推关系** (linear nonhomogeneous recurrence relation)。对应的 $a_{n} = c_{a} a_{n - 1} + c_{2} a_{n - 2} + \cdots + c_{k} a_{n - k}$ 是「相伴的」齐次递推关系，其在求解非齐次递推关系中发挥了重要作用。
+由 $n (n \geq 3)$ 个顶点 $v_{1}, v_{2}, \cdots, v_{n}$ 以及边 $\{ v_{1}, v_{2} \}, \{ v_{2}, v_{3} \}, \cdots, \{ v_{n - 1}, v_{n} \}, \{ v_{n}, v_{1} \}$ 组成的图称作**圈图** (cycle graph)，记作 $C_{n}$。
 
-关于常系数线性非齐次递推关系的一个关键事实在于，每个解都是一个特解与相伴的线性齐次递推关系的一个解的和。形式化的定理如下：
+对于圈图 $C_{n}, n \geq 3$，添加一个新顶点，并且该顶点与 $C_{n}$ 中的 $n$ 个顶点均相连，则得到**轮图** (wheel graph)，记作 $W_{n}$。下图展示了一些轮图：
 
-如果 $\{ a_{n}^{(p)} \}$ 是常系数线性非齐次递推关系 $a_{n} = c_{a} a_{n - 1} + c_{2} a_{n - 2} + \cdots + c_{k} a_{n - k} + F(n)$ 的一个特解，而 $\{ a_{n}^{(h)} \}$ 是相伴的齐次递推关系的一个解，则原非齐次递推关系的每个解都是 $\{ a_{n}^{(p)} + a_{n}^{(h)} \}$ 的形式。
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_8_2.png" width="70%" style="margin: 0 auto;">
+</div>
 
-更进一步地，如果我们能够确定 $F(n)$ 的形式，那么我们可以给出一个更具体的解。
+若一个图含有 $2^{n}$ 个顶点，且两个顶点相邻当且仅当其下标数的二进制表示仅有一位不同，则这样的图称作**$n$ 立方体图** ($n$-cube graph)。下图展示了一些立方体图：
 
-对于线性非齐次递推关系 $a_{n} = c_{a} a_{n - 1} + c_{2} a_{n - 2} + \cdots + c_{k} a_{n - k} + F(n)$，其中 $F(n) = (b_{t} n^{t} + b_{t - 1} n^{t - 1} + \cdots + b_{1} n + b_{0}) s^{n}$。当 $s$ 不是相伴的线性齐次递推关系的特征方程的根时，存在一个形式为 $(p_{t} n^{t} + p_{t - 1} n^{t - 1} + \cdots + p_{1} n + p_{0}) s^{n}$ 的特解；当 $s$ 是相伴的线性齐次递推关系的特征方程的 $m$ 重根时，存在一个形式为 $n^{m} (p_{t} n^{t} + p_{t - 1} n^{t - 1} + \cdots + p_{1} n + p_{0}) s^{n}$ 的特解。
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/discrete_mathematics/chapter_8_3.png" width="70%" style="margin: 0 auto;">
+</div>
 
-## 分治递推关系
+若简单图 $G$ 的顶点集可以被分成两个不相交的非空集合 $V_{1}$ 和 $V_{2}$，使得图中的每一条边的两个端点刚好分别属于 $V_{1}$ 和 $V_{2}$，则称 $G$ 为**二分图** (bipartite graph)。此时称 $(V_{1}, V_{2})$ 为 $G$ 的顶点集的一个二部划分。
 
-假设一个递归算法把一个规模为 $n$ 的问题分成 $a$ 个子问题，其中每个子问题的规模是 $\frac{n}{b}$。将每个子问题的解组合成原来问题的解的算法需要总量为 $g(n)$ 的额外运算。则求解规模为 $n$ 的问题所需的运算数的总量 $f(n)$ 满足递推关系 $f(n) = a f(\frac{n}{b}) + g(n)$。这样的关系称作**分治递推关系** (divide-and-conquer recurrence relation)。
+一个简单图是耳根图，当且仅当能够对图中的每个顶点赋予两种不同的颜色之一，并使得没有两个相邻的顶点被赋予相同的颜色。
 
-我们直接给出一类 $g(n) = c b^{dk}$ 时 $f(n)$ 的阶。这个定理非常重要，被称作**主定理** (master theorem)。
+若简单图的顶点集划分成分别含有 $m$ 和 $n$ 个顶点的两个子集，且两个顶点之间有边当且仅当两个顶点分别属于两个子集，则称该图为**完全二分图** (complete bipartite graph)，记作 $K_{m, n}$。
 
-设 $f$ 满足递推关系 $f(n) = a f(\frac{n}{b}) + c n^{d}$，其中 $n = b^{k}$，则
+在简单图 $G = (V, E)$ 中的一个**匹配** (matching) $M$ 是边集 $E$ 的子集，该自己种没有两条边关联相同的顶点。包含最多边数的一个匹配称作**最大匹配** (maximum matching)。若一个二分图的划分为 $(V_{1}, V_{2})$，且 $|M| = |V_{1}|$，则称匹配 $M$ 是从 $V_{1}$ 到 $V_{2}$ 的一个**完全匹配** (complete matching)。
 
-$$f(n) = \begin{cases}
-    O(n^{d}), & a < b^{d} \\
-    O(n^{d} \log n), & a = b^{d} \\
-    O(n^{\log_{b} a}), & a > b^{d}
-\end{cases}
-$$
+带有二部划分 $(V_{1}, V_{2})$ 的二分图 $G = (V, E)$ 中存在从 $V_{1}$ 到 $V_{2}$ 的一个完全匹配，当且仅当对于 $V_{1}$ 的所有子集 $A$，有 $|N(A)| \geq |A|$。这一定理称作**霍尔婚姻定理** (Hall's marriage theorem)。
 
-## 生成函数
 
-### 定义
-
-数列 $a_{0}, a_{1}, \cdots, a_{k}, \cdots$ 的**生成函数** (generating function) 是无穷级数 $G(x) = a_{0} + a_{1} x + \cdots + a_{k} x^{k} + \cdots = \sum_{k = 0}^{\infty} a_{k} x^{k}$。
-
-特别地，这样的生成函数称作普通生成函数。因为事实上还存在其他形式的生成函数。
-
-另一种常用的生成函数是指数生成函数，即为无穷级数 $\hat{G}(x) = a_{0} + a_{1} \frac{x}{1!} + a_{2} \frac{x^{2}}{2!} + a_{3} \frac{x^{3}}{3!} + \cdots = \sum_{k = 0}^{\infty} a_{k} \frac{x^{k}}{k!}$
-
-通过之后的讨论，我们可以发现指数生成函数常用于基于 $e^{x}$ 变形得到的生成函数。
-
-同时，为了后续的数学表示简便，我们还定义广义二项式系数。对于实数 $u$ 和非负整数 $k$，广义二项式系数
-
-$$ {u \choose k} = \begin{cases}
-    \frac{u (u - 1) \cdots (u - k + 1)}{k!}, & k > 0 \\
-    1, & k = 0
-\end{cases}
-$$
-
-据此，我们可以得到广义二项式定理。
-
-设 $|x| < 1$，则 $(1 + x)^{u} = \sum_{k = 0}^{\infty} {u \choose k} x^{k}$。
-
-### 性质
-
-当用生成函数求解计数问题时，通常将它们视作形式幂级数，即不考察其收敛性，而只将其当作运算对象。
-
-我们首先需要了解两个生成函数是怎样相加和相乘的，事实上处理方法和幂级数是一致的。令 $f(x) = \sum_{k = 0}^{\infty} a_{k} x^{k}, g(x) = \sum_{k = 0}^{\infty} b_{k} x^{k}$，则 $f(x) + g(x) = \sum_{k = 0}^{\infty} (a_{k} + b_{k}) x^{k}, f(x) g(x) = \sum_{k = 0}^{\infty} (\sum_{j = 0}^{k} a_{j} b_{k - j}) x^{k}$。
-
-我们给出如下常用的生成函数。
-
-|$G(x)$|$a_{k}$|
-|:-:|:-:|
-|$(1 + x)^{n} = \sum_{k = 0}^{n} C(n, k) x^{k} = 1 + C(n, 1) x + C(n, 2) x^{2} + \cdots + x^{n}$|$C(n, k)$|
-|$(1 + ax)^{n} = \sum_{k = 0}^{n} C(n, k) a^{k} x^{k} = 1 + C(n, 1) ax + C(n, 2) a^{2} x^{2} + \cdots + a^{n} k^{n}$|$C(n, k) a^{k}$|
-|$(1 + x^{r})^{n} = \sum_{k = 0}^{n} C(n, k) x^{rk} = 1 + C(n, 1) x^{r} + C(n, 2) x^{2r} + \cdots + x^{rn}$|若 $r \mid k$，则 $C(n, \frac{k}{r})$；否则为 $0$|
-|$\frac{1 - x^{n + 1}}{1 - x} = \sum_{k = 0}^{n} x^{k} = 1 + x + x^{2} + \cdots + x^{n}$|若 $k \leq n$，则为 $1$；否则为 $0$|
-|$\frac{1}{1 - x} = \sum_{k = 0}^{\infty} x^{k} = 1 + x + x^{2} + \cdots$|$1$|
-|$\frac{1}{1 - ax} = \sum_{k = 0}^{\infty} a^{k} x^{k} = 1 + ax + a^{2} x^{2} + \cdots$|$a^{k}$|
-|$\frac{1}{1 - x^{r}} = \sum_{k = 0}^{\infty} x^{rk} = 1 + x^{r} + x^{2r} + \cdots$|若 $r \mid k$，则为 $1$；否则为 $0$|
-|$\frac{1}{(1 - x)^{2}} = \sum_{k = 0}^{\infty} (k + 1) x^{k} = 1 + 2x + 3x^{2} + \cdots$|$k + 1$|
-|$\frac{1}{(1 - x)^{n}} = \sum_{k = 0}^{\infty} C(n + k - 1, k) x^{k} = 1 + C(n, 1) x + C(n + 1, 2) x^{2} + \cdots$|$C(n + k - 1, k) = C(n + k - 1, n - 1)$|
-|$\frac{1}{(1 + x)^{n}} = \sum_{k = 0}^{\infty} C(n + k - 1, k) x^{k} = 1 - C(n, 1) x + C(n + 1, 2) x^{2} - \cdots$|$(-1)^{k} C(n + k - 1, k) = (-1)^{k} C(n + k - 1, n - 1)$|
-|$\frac{1}{(1 - ax)^{n}} = \sum_{k = 0}^{\infty} C(n + k - 1, k) a^{k} x^{k} = 1 + C(n, 1) ax + C(n + 1, 2) a^{2} x^{2} + \cdots$|$C(n + k - 1, k) a^{k} = C(n + k - 1, n - 1) a^{k}$|
-|$e^{x} = \sum_{k = 0}^{\infty} \frac{x^{k}}{k!} = 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6} + \cdots$|$\frac{1}{k!}$|
-|$\ln (1 + x) = \sum_{k = 0}^{\infty} \frac{(-1)^{k + 1}}{k} x^{k} = x - \frac{x^{2}}{2} + \frac{x^{3}}{3} - \frac{x^{4}}{4} + \cdots$|$\frac{(-1)^{k + 1}}{k}$|
-
-### 计数问题与生成函数
-
-生成函数可以用于求解各种计数问题。
-
-我们先来看一类问题，求 $e_{1} + e_{2} + \cdots + e_{n} = C$ 的解，其中 $e_{i}$ 为有受到约束的非负整数，$C$ 为常数。我们用下面这个例子来展示生成函数的使用方法。
-
-> 求 $e_{1} + e_{2} + e_{3} = 17$ 的解的个数，其中 $e_{1}. e_{2}, e_{3}$ 为非负整数，且满足 $2 \leq e_{1} \leq 5, 3 \leq e_{2} \leq 6, 4 \leq e_{3} \leq 7$。
->
-> 考察生成函数 $(x^{2} + x^{3} + x^{4} + x^{5})(x^{3} + x^{4} + x^{5} + x^{6})(x^{4} + x^{5} + x^{6} + x^{7})$，则原题的答案即为该生成函数中 $x^{17}$ 这一项的系数。
-
-进一步地，我们使用生成函数解决这类问题中的一个典型问题，求出从 $n$ 类不同物体中选择 $r$ 个物体，且每类物体至少选 $1$ 个的方式数。
-
-记 $a_{r}$ 为从 $n$ 类不同物体中选择 $r$ 个物体，且每类物体至少选 $1$ 个的方式数。因为每类物体至少需要选 $1$ 个，因此这 $n$ 个类中每类物体都对序列 $\{ a_{r} \}$ 的生成函数 $G(x)$ 贡献了因子 $(x + x^{2} + x^{3} + \cdots)$。故有生成函数
-
-$$G(x) = (x + x^{2} + x^{3} + \cdots)^{n} = x^{n} (1 + x + x^{2} + \cdots)^{n} = \frac{x^{n}}{(1 - x)^{n}}$$
-
-利用广义二项式定理进一步变形：
-
-$$\begin{aligned}
-    G(x) & = \frac{x^{n}}{(1 - x)^{n}} \\
-    & = x^{n} (1 - x)^{-n} \\
-    & = x^{n} \sum_{r = 0}^{\infty} {{-n} \choose {r}} (-x)^{r} \\
-    & = x^{n} \sum_{r = 0}^{\infty} (-1)^{r} C(n + r - 1, r) (-1)^{r} x^{r} \\
-    & = \sum_{r = 0}^{\infty} C(n + r - 1, r) x^{r} \\
-    & = \sum_{r = n}^{\infty} C(r - 1, r - n) x^{r}
-\end{aligned}$$
-
-故方法数即为 $C(r - 1, r - n)$。
-
-### 使用生成函数求解递推关系
-
-使用生成函数求解递推关系的一般步骤是：
-
-1. 以幂级数形式设出生成函数
-2. 利用递推关系得到生成函数的封闭形式
-3. 根据常用生成函数得到封闭形式函数对应的数列
-
-这样的表述是十分概括而抽象的。我们用下面这个例子加以说明：
-
-> 求解递推关系 $a_{0} = 2, a_{k} = 3 a_{k - 1}$。
->
-> 设 $G(x)$ 是 $\{ a_{n} \}$ 的生成函数，即 $G(x) = \sum_{k = 0}^{\infty} a_{k} x_{k}$。
->
-> 则根据递推关系，有 $G(x) - 3x G(x) = a_{0} = \sum_{k = 1}^{\infty} (a_{k} - 3a_{k - 1}) x^{k} = 2$，于是变形得到 $G(x)$ 的封闭形式 $G(x) = \frac{2}{1 - 3x}$。
->
-> 与常用生成函数 $\frac{1}{1 - ax} = \sum_{k = 0}^{\infty} a^{k} x^{k}$ 比较，得到 $G(x) = \sum_{k = 0}^{\infty} 2 \cdot 3^{k} x^{k}$。故 $a_{k} = 2 \cdot 3^{k}$。
-
-## 容斥
-
-在第五章中，我们已经介绍过[容斥原理的简单形式](https://victorwang712.github.io/Note/mathematics/discrete_mathematics/chapter_5/#_3)。接下来我们将讨论更一般情况下的容斥原理。
-
-### 容斥原理
-
-设 $A_{1}, A_{2}, \cdots, A_{n}$ 是有穷集，则
-
-$$\begin{aligned}
-    |A_{1} \cup A_{2} \cup \cdots \cup A_{n}| = & \sum_{1 \leq i \leq n} |A_{i}| - \sum_{1 \leq i < j \leq n} |A_{i} \cap A_{j}| \\
-    & + \sum_{1 \leq i < j < k \leq n} |A_{i} \cap A_{j} \cap A_{k}| - \cdots \\
-    & + (-1)^{n + 1} |A_{1} \cap A_{2} \cap \cdots \cap A_{n}|
-\end{aligned}$$
-
-这里有必要提及一下容斥原理的证明。
-
-!!! abstract "Proof"
-
-    我们考察左式中每个元素在右式中被计数的次数。
-
-    设 $a \in |A_{1} \cup A_{2} \cup \cdots \cup A_{n}|$，假设其恰好为 $A_{1}, A_{2}, \cdots, A_{n}$ 中 $r$ 个集合的元素。则 $a$ 被右式中第一项 $\sum_{1 \leq i \leq n} |A_{i}|$ 计数了 $C(r, 1)$ 次，被第二项 $-\sum_{1 \leq i < j \leq n} |A_{i} \cap A_{j}|$ 计数了 $C(r, 2)$ 次。以此类推，其在右式中最终被计数的次数为 $C(r, 1) - C(r, 2) + \cdots + (-1)^{r + 1} C(r, r)$。
-
-    根据组合数的恒等式 $C(r, 0) - C(r, 1) + C(r, 2) - \cdots + (-1)^{r} C(r, r) = 0$，得到上式 $C(r, 1) - C(r, 2) + \cdots + (-1)^{r + 1} C(r, r) = C(r, 0) = 1$。
-
-    因此，左式中每个元素恰好在右式中被计数 $1$ 次。即证。
-
-### 容斥原理的另一种形式
-
-设 $A_{i}$ 是具有性质 $P_{i}$ 的元素的子集。同时具有性质 $P_{i_{1}}, P_{i_{2}}, \cdots, P_{i_{k}}$ 的元素数记为 $N(P_{i_{1}} P_{i_{2}} \cdots P_{i_{k}})$，即 $|A_{i_{1}} \cap A_{i_{2}} \cap \cdots \cap A_{i_{k}}| = N(P_{i_{1}} P_{i_{2}} \cdots P_{i_{k}})$。
-
-同时不具有性质 $P_{i_{1}}, P_{i_{2}}, \cdots, P_{i_{k}}$ 的元素数记为 $N(P_{i_{1}}' P_{i_{2}}' \cdots P_{i_{k}}')$，全集中的元素数记为 $N$，则
-
-$$\begin{aligned}
-    N(P_{1}' P_{2}' \cdots P_{n}') & = N - |A_{1} \cup A_{2} \cup \cdots \cup A_{n}| \\
-    & = N - \sum_{1 \leq i \leq n} N(P_{i}) + \sum_{1 \leq i < j \leq n} N(P_{i} P_{j}) - \cdots + (-1)^{n} N(P_{1} P_{2} \cdots P_{n})
-\end{aligned}$$
-
-### 映上函数的个数
-
-这里我们需要讨论利用容斥原理解决的两类具体问题。第一类为求映上函数的个数，即两个集合间能建立多少种可能的满射。
-
-考虑一个 $m$ 元素集合到 $n$ 元素集合的满射，其中 $m \geq n$，则可能的满射数为
-
-$$n^{m} - C(n, 1)(n - 1)^{m} + C(n, 2)(n - 2)^{m} - \cdots + (-1)^{n - 1} C(n, n - 1) 1^{m}$$
-
-再从另一个角度思考，从 $m$ 元素集合到 $n$ 元素集合的满射等价于：讲定义域中的 $m$ 个元素分配到 $n$ 个不可区别的盒子中，并保证每个盒子都不是空的。故根据我们在[第五章对这类问题的讨论](https://victorwang712.github.io/Note/mathematics/discrete_mathematics/chapter_5/#_18)，我们所求的满射数即为第二类斯特林数 $S(m, n)$ 再乘上 $n$ 个元素的集合的排列数，故最终答案也可以表示为 $n! S(m, n)$。
-
-### 错位排列
-
-另一类经典的问题被称作**错位排列** (derangement) 问题，即求 $n$ 个元素没有一个在初始位置上的排列方案数。
-
-这个问题的答案被称作错位排列数，记作 $D_{n}$，具体为
-
-$$D_{n} = n! \left[ 1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \cdots + (-1)^{n} \frac{1}{n!} \right]$$

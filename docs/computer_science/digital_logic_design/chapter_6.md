@@ -34,7 +34,7 @@ comments: true
 
 具体来说，我们用一个单独的控制信号 Load 来控制时钟脉冲对寄存器有影响的时钟周期，当不希望寄存器的内容改变时，就阻止时钟脉冲到达寄存器。在前文的 4 位寄存器中，就满足表达式
 
-$$C\ \text{Imput} = \overline{\text{Load}} + \text{Clock}$$
+$$C\ \text{Input} = \overline{\text{Load}} + \text{Clock}$$
 
 为了使电路正常工作，Load 必须在 Clock 为 $0$ 期间稳定在正确值 $0$ 或 $1$。一种实现方法是使 Load 信号来自于时钟上升沿触发的触发器，系统中所有触发器都用时钟上升沿来触发。由于使在寄存器 $C$ 输入利用逻辑门来控制始终开关，因此这种技术称作**门控时钟** (clock gating)。
 
@@ -143,4 +143,119 @@ $$K_{1}: R0 \leftarrow R1, \overline{K_{1}} K_{2}: R0 \leftarrow R2$$
 
 显然这样的设计可以扩展到具有 $n$ 个源的多路复用器。
 
+### 移位寄存器
 
+具有单向或双向移动存储数据功能的寄存器称作**移位寄存器** (shift register)。一个移位寄存器有一系列的触发器组成，每一个触发器的输出连接下一触发器的输入，所有触发器使用相同的时钟脉冲输入来触发移位操作。
+
+下图是一个最简单的移位寄存器：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_9.png" width="70%" style="margin: 0 auto;">
+</div>
+
+在该移位寄存器中，每一触发器的输出都直接连接到其右端下一触发器输入 $D$ 上，**串行输入** (serial input) 信号 $SI$ 连接到最左端的触发器输入上，**串行输出** (serial output) 信号 $SO$ 从最右端的触发器的输出端上引出。
+
+#### 具有并行加载功能的移位寄存器
+
+如果一个移位寄存器的所有触发器输出都是可访问的，那么通过串行移位操作进入的信息就可以从触发器的输出端并行读出。如果一个移位寄存器具有并行加载功能，那么并行进入的数据同样能够串行地是移位输出。因而，具有可访问的触发器输出以及并行加载的移位寄存器能够用于实现并行输入数据到串行输出数据的转换，反之亦然。
+
+下图是一个具有并行加载功能的 4 位移位寄存器的逻辑图以及符号表示：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_10.png" width="70%" style="margin: 0 auto;">
+</div>
+
+根据电路图，不难得到该寄存器可执行的操作为：
+
+|Shift|Load|操作|
+|:-:|:-:|:-:|
+|0|0|没有变化（保持）|
+|0|1|加载并行数据|
+|1|×|按从 $Q_{0}$ 到 $Q_{3}$ 的顺序左移|
+
+用语句定义即为：
+
+$$\text{Shift}: Q \leftarrow \text{sl } Q \\ \overline{\text{Shift}} \cdot \text{Load}: Q \leftarrow D$$
+
+#### 双向移位寄存器
+
+只具有单向移位功能的寄存器称作**单向移位寄存器** (unidirectional shift register)，具有双向移位功能的寄存器称作**双向移位寄存器** (bidirectional shift register)。
+
+下图是双向移位寄存器中某一集的逻辑图以及符号表示：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_11.png" width="70%" style="margin: 0 auto;">
+</div>
+
+根据电路图，不难得到该寄存器可执行的操作为：
+
+|$S_{1}$|$$S_{0}|操作|
+|:-:|:-:|:-:|
+|0|0|保持不变|
+|0|1|向左移位|
+|1|0|向右移位|
+|1|1|并行加载|
+
+用语句定义即为：
+
+$$\overline{S_{1}} \cdot S_{0}: Q \leftarrow \text{sl } Q \\ S_{1} \cdot \overline{S_{0}}: Q \leftarrow \text{sr } Q \\ S_{1} \cdot S_{0}: Q \leftarrow D$$
+
+### 计数器
+
+能够在输入脉冲序列的激励下遍历指定状态序列的寄存器称作**计数器** (counter)。计数器可分为两种类型：行波计数器和同步计数器。在行波计数器中，某些触发器输出值的跳变可以改变其他一些触发器中的值。也就是说，加载到某些触发器 $C$ 输入端的值不是公用的时钟脉冲，而是其它触发器的输出信号。而在同步计数器中，所有触发器的 $C$ 输入端都是加载的公用时钟脉冲，并且计数器下一状态的值取决于其当前所处的状态。
+
+#### 行波计数器
+
+下图是一个 4 位的二进制行波计数器。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_12.png" width="70%" style="margin: 0 auto;">
+</div>
+
+据图可以看出，该计数器由 4 位 $D$ 触发器串联组合而成，每一个触发器在其 $C$ 输入信号的上升沿改变自身的状态。触发器的反向输出连接到下一个触发器的 $C$ 输入，而处于最低位触发器的 $C$ 输入则加载输入的时钟脉冲。加载到触发器 $R$ 输入的复位信号为 $1$ 时，触发器将异步清零。
+
+行波计数器的优点是硬件实现简单。但遗憾的是，它是一种异步时序电路，当逻辑级增加时，将增大电路的时延，并将增加电路操作的不稳定性，这在那些从计数器输出到计数器输入存在反馈路径的逻辑电路中体现得尤为明显。同时，信号在电路中以行波方式前进需要很长时间，这使得位数较多的行波计数器的工作频率会很慢。因此，同步计数器在几乎所有方面都较行波计数器有优势。唯一的例外是行波计数器相较同步计数器功耗更低。
+
+#### 同步计数器
+
+与行波计数器不同，同步计数器在所有触发器的 $C$ 输入端口都加载公用的时钟信号。这样，同一个时钟脉冲将同时触发所有的触发器，不同于行波计数器中那样每次仅触发一个触发器。
+
+下图是 4 位同步二进制计数器的逻辑图与符号表示：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_13.png" width="70%" style="margin: 0 auto;">
+</div>
+
+一般来说，同步计数器有两种设计方式，即为图中的串行和并行。
+
+在图 a 中，一条二输入与门链用于为计数器中的每一级提供其前一级的状态信息这与行波进位加法器中的进位逻辑类似。使用这种逻辑的计数器称作带有**串行门控** (serial gating) 功能，因此其也称为**串行计数器** (serial counter)。
+
+由于与行波进位加法器相似，这意味着串行计数器中可能存在有类似于先行进位加法器的计数器逻辑。这种逻辑可以通过简化先行进位加法器得到，其结果即为图 b 所示。这种设计称作计数器中的**并行门控** (parallel gating)，对应的计数器就称作**并行计数器** (parallel counter)。这种设计的优势在于信号时延减小，可以使计数器以更快的速度工作。
+
+通过将若干并行计数器连接，即可得到更多位数的并行计数器。通过这种方法，可以扩展产生任意长度的计数器。
+
+#### 具有并行加载功能的计数器
+
+数字系统中的计数器一般需要具有并行数据加载功能，用于在正式开始计数之前加载计数初始值。下图即为具有并行加载功能的 4 位二进制计数器。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_14.png" width="70%" style="margin: 0 auto;">
+</div>
+
+#### 其它类型计数器
+
+自然地，通过设置并行加载的载入值和载入条件，即可得到一定范围内的循环计数器。如果不满足于从 0 开始的计数方式，也可以通过推到状态表进行修改。因此更一般地说，基于以上基本的计数器结构，并利用时序电路的设计方式，即可得到任意计数序列的计数器。
+
+## 寄存器单元设计
+
+将一位的迭代组合电路单元与一个触发器连接起来就构成一个具有两个状态的时序电路，称之为**寄存器单元** (register cell)。
+
+根据触发器的输出是否作为其迭代电路的输入信号，寄存器单元的下一状态可由其当前状态和输入信号共同决定，或仅仅由输入信号决定。如果仅由输入信号决定，那么可以先直接设计迭代组合电路然后将它与触发器相连即可。但是，如果触发器的状态输出作为反馈连接到了迭代电路单元的输入，那么也可以采用时序设计的方法对寄存器进行设计。
+
+## 基于多路复用器和总线的多寄存器传输
+
+一个典型的数字系统中包含有多个寄存器，在不同的寄存器之间必然存在着传输数据的通路。如果每个寄存器都使用专用的多路复用器，那么逻辑电路的大小和连线数量将十分的巨大。在不同寄存器之间传输数据更为有效的方案是使用一种称为**总线** (bus) 的共享传输通路。总线的特征在于它是一组通用连线，每根连线由选择逻辑来驱动。在每一个传输时钟周期中，选择逻辑的控制信号会为总线选择一个源器件和一个或多个目的器件。
+
+构造总线主要有两种形式：多路复用器总线和三态总线。
+
+### 多路复用器总线

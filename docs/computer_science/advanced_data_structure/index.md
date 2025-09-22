@@ -28,3 +28,4 @@ comments: true
 - *Introduction to Algorithms*, Third Edition
 - 陈昊老师的课件
 - [OI Wiki](https://oi-wiki.org/)
+- [💎 高级数据结构 | Advanced Data Structure - Isshiki修's Notebook](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/)

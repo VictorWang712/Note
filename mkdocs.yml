@@ -102,6 +102,7 @@ nav:
     - 概率论与数理统计:
       - mathematics/probability_and_statistics/index.md
       - mathematics/probability_and_statistics/chapter_1.md
+      - mathematics/probability_and_statistics/chapter_2.md
   - Chemistry:
     - chemistry/general_chemistry.md
   - Computer Science:
@@ -118,6 +119,7 @@ nav:
       - computer_science/computer_organisation/index.md
       - computer_science/computer_organisation/chapter_1.md
       - computer_science/computer_organisation/chapter_2.md
+      - computer_science/computer_organisation/chapter_3.md
     - 数据结构基础:
       - computer_science/data_structure_basics/index.md
       - computer_science/data_structure_basics/chapter_1.md

@@ -259,3 +259,21 @@ $$\overline{S_{1}} \cdot S_{0}: Q \leftarrow \text{sl } Q \\ S_{1} \cdot \overli
 构造总线主要有两种形式：多路复用器总线和三态总线。
 
 ### 多路复用器总线
+
+采用多路复用器和具有并行加载功能的寄存器可以实现具有多个来源的寄存器传输操作。传统的电路需要为每个寄存器提供一个专用的多路复用器，但如果使用一个公共通路使得多路复用器的输出为多个寄存器所共享，那么这些输出线就称作总线。下图即展示了两者架构的差别：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_15.png" width="70%" style="margin: 0 auto;">
+</div>
+
+同时，我们给出该电路采用总线时的寄存器传输：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_6_16.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可以看到，使用单总线代替专用多路复用器，会降低硬件开销，但同时限制了并行传输操作的实现。
+
+### 高阻态输出
+
+

@@ -134,6 +134,8 @@ nav:
     - 高级数据结构与算法分析:
       - computer_science/advanced_data_structure/index.md
       - computer_science/advanced_data_structure/chapter_1.md
+      - computer_science/advanced_data_structure/chapter_2.md
+      - computer_science/advanced_data_structure/chapter_3.md
       - computer_science/advanced_data_structure/mistakes.md
     - 静态程序分析*:
       - computer_science/static_program_analysis/index.md

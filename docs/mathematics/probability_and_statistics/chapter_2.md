@@ -215,3 +215,47 @@ $$F(x) = \begin{cases}
 $$P\{ X > t_{0} + t \} = P\{ X > t_{0} \} \cdot P\{ X > t \}$$
 
 这被称作指数分布的「无记忆性」。
+
+### $\Gamma$ 分布
+
+若随机变量 $X$ 具有密度函数
+
+$$f(x) = \begin{cases}
+\frac{\lambda e^{-\lambda x} (\lambda x)^{\alpha - 1}}{\Gamma(\alpha)}, x > 0 \\
+0, x \leq 0
+\end{cases}, \alpha > 0, \lambda > 0$$
+
+则称 $X$ 服从参数为 $(\alpha, \lambda)$ 的**$\Gamma$ 分布** (Gamma distribution)，记作 $X \sim \Gamma (\alpha, \lambda)$。
+
+其中，$\Gamma (\alpha) = \int_{0}^{+\infty} e^{-x} x^{\alpha - 1} \mathrm{d} x$，且有 $\Gamma(\alpha) = (\alpha - 1) \Gamma (\alpha - 1)$。特别地，当 $n$ 为正整数时，有 $\Gamma (n) = (n - 1)!$。
+
+### 二参数威布尔分布
+
+若随机变量 $X$ 具有密度函数
+
+$$f(x) = \begin{cases}
+\frac{\gamma}{\alpha} (\frac{x}{\alpha})^{\gamma - 1} e^{-(\frac{x}{\alpha})^{\gamma}}, x > 0 \\
+0, x \leq 0
+\end{cases}, \alpha > 0, \lambda > 0$$
+
+则称 $X$ 服从参数为 $(\alpha, \lambda)$ 的**二参数威布尔分布** (Weibull distribution)。
+
+### $\beta$ 分布
+
+若随机变量 $X$ 具有密度函数
+
+$$f(x) = \begin{cases}
+\frac{\Gamma (a + b)}{\Gamma (a) \Gamma (b)} x^{\alpha - 1} (1 - x)^{b - 1}, 0 < x < 1 \\
+0, \text{else}
+\end{cases}, a > 0, b > 0$$
+
+则称 $X$ 服从参数为 $(a, b)$ 的**$\beta$ 分布** (Bamma distribution)，记作 $X \sim \beta (\alpha, \lambda)$。
+
+## 随机变量函数的分布
+
+设 $X$ 为一连续型随机变量，其密度函数为 $f_{X} (x)$，随机变量 $Y = g(X)$。若函数 $y = g(x)$ 为一处处可导的严格单调函数，记 $y = g(x)$ 的反函数为 $x = h(y)$，则 $Y$ 的密度函数为
+
+$$f_{Y} (y) = \begin{cases}
+f_{X} (h(y)) \cdot |h'(y)|, y \in D \\
+0, y \notin D
+\end{cases}$$

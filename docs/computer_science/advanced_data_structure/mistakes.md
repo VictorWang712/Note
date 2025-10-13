@@ -29,3 +29,15 @@ Consider the following buffer management problem. Initially the buffer size (the
     正确答案：D
 
     解析：在不需要扩容的插入操作中，剩余的空缓存数可以使势能减少。又每次操作我们需要「加上」操作的势能，因此势能函数应当为负值。
+
+---
+
+第三周 判断题 1-2
+
+When evaluating the performance of data retrieval, it is important to measure the relevancy of the answer set.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：评估**数据检索** (data retrieval) 的性能时，我们只关注搜索的响应时间和使用的存储大小。评估**信息检索** (information retrieval) 的性能时，我们才关注检索结果的相关性。

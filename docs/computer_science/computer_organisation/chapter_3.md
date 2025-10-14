@@ -221,7 +221,7 @@ $$(-1)^{S} \times F \times 2^{E}$$
 - **双精度** (double)：$2.0_{10} \times 10^{-308} \sim 2.0_{10} \times 10^{308}$
 
 <div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_3_12.png" width="70%" style="margin: 0 auto;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_3_13.png" width="70%" style="margin: 0 auto;">
 </div>
 
 当然，我们也会关注这种表示方法下数的精度。根据两种标准下尾数的位数以及二进制和十进制的换算，可以知道单精度数的精度约为 6 位十进制数，双精度数的精度约为 16 位十进制数。

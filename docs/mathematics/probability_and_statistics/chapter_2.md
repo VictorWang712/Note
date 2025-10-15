@@ -176,7 +176,7 @@ $$F(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(t - \mu)^{2
 
     将积分变量变换成极坐标形式，得
 
-    $$I^{2} = \int_{0}^{2 \theta} \mathrm{d} \theta \int_{0}^{+\infty} r \cdot \frac{1}{2 \pi} e^{-\frac{r^{2}}{2}} \mathrm{d} r = 1$$
+    $$I^{2} = \int_{0}^{2 \pi} \mathrm{d} \theta \int_{0}^{+\infty} r \cdot \frac{1}{2 \pi} e^{-\frac{r^{2}}{2}} \mathrm{d} r = 1$$
 
     即得
 

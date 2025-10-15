@@ -190,7 +190,7 @@ $$F(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(t - \mu)^{2
 
 通常地，我们称参数 $\mu$ 为位置参数，参数 $\sigma$ 为尺度参数。特别地，当 $\mu = 0, \sigma = 1$ 时，此时称 $Z \sim N(0, 1)$ 中的 $Z$ 服从**标准正态分布** (standard normal distribution)，密度函数为 $\phi(x) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^{2}}{2}}, -\infty < x < +\infty$，分布函数为 $\Phi(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^{2}}{2}} \mathrm{d} t$。
 
-标准正态分布的一个良好且重要的性质是：$\Phi(x) + \Phi(-x) + 1$。
+标准正态分布的一个良好且重要的性质是：$\Phi(x) + \Phi(-x) = 1$。
 
 通过变量代换，容易得到当 $X \sim N(\mu, \sigma^{2})$ 时，有 $P\{ a < X < b \} = \Phi(\frac{b - \mu}{\sigma}) - \Phi(\frac{a - \mu}{\sigma})$。因此所有正态函数的概率计算都可以转化为标准正态分布函数的计算。
 

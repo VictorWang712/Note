@@ -41,3 +41,18 @@ When evaluating the performance of data retrieval, it is important to measure th
     正确答案：F
 
     解析：评估**数据检索** (data retrieval) 的性能时，我们只关注搜索的响应时间和使用的存储大小。评估**信息检索** (information retrieval) 的性能时，我们才关注检索结果的相关性。
+
+---
+
+第四周 程序填空题 5-1
+
+```c
+if ( )
+    swap(H1, H2);  //swap H1 and H2
+```
+
+??? abstract "答案解析"
+
+    正确答案：`H1->Element > H2->Element`
+
+    解析：左式堆合并时，取两个根节点中较小的作为新堆的根。因此题目中应当将较小的堆换为 `H1`。

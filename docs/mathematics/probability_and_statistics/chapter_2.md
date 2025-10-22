@@ -137,16 +137,16 @@ $$F(x) = \int_{-\infty}^{x} f(t) \mathrm{d} t$$
 若随机变量 $X$ 具有密度函数
 
 $$f(x) = \begin{cases}
-\frac{1}{b - a}, x \in (a, b) \\
-0, \text{else}
+\frac{1}{b - a}, & x \in (a, b) \\
+0, & \text{else}
 \end{cases}$$
 
 则称 $X$ 服从区间 $(a, b)$ 上的**均匀分布** (uniform distribution)，记作 $X \sim U(a, b)$。其对应的分布函数为
 
 $$F(x) = \begin{cases}
-0, x < a \\
-\frac{x - a}{b - a}, a \leq x < b \\
-1, x \geq b
+0, & x < a \\
+\frac{x - a}{b - a}, & a \leq x < b \\
+1, & x \geq b
 \end{cases}$$
 
 ### 正态分布
@@ -199,15 +199,15 @@ $$F(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(t - \mu)^{2
 若随机变量 $X$ 具有密度函数
 
 $$f(x) = \begin{cases}
-\lambda e^{-\lambda x}, x > 0 \\
-0, x \leq 0
+\lambda e^{-\lambda x}, & x > 0 \\
+0, & x \leq 0
 \end{cases}, \lambda > 0$$
 
 则称 $X$ 服从参数为 $\lambda$ 的**指数分布** (exponential distribution)，记作 $X \sim E(\lambda)$。其对应的分布函数为
 
 $$F(x) = \begin{cases}
-1 - e^{-\lambda x}, x > 0 \\
-0, x \leq 0
+1 - e^{-\lambda x}, & x > 0 \\
+0, & x \leq 0
 \end{cases}, \lambda > 0$$
 
 指数分布的一个重要性质是：
@@ -221,8 +221,8 @@ $$P\{ X > t_{0} + t \} = P\{ X > t_{0} \} \cdot P\{ X > t \}$$
 若随机变量 $X$ 具有密度函数
 
 $$f(x) = \begin{cases}
-\frac{\lambda e^{-\lambda x} (\lambda x)^{\alpha - 1}}{\Gamma(\alpha)}, x > 0 \\
-0, x \leq 0
+\frac{\lambda e^{-\lambda x} (\lambda x)^{\alpha - 1}}{\Gamma(\alpha)}, & x > 0 \\
+0, & x \leq 0
 \end{cases}, \alpha > 0, \lambda > 0$$
 
 则称 $X$ 服从参数为 $(\alpha, \lambda)$ 的**$\Gamma$ 分布** (Gamma distribution)，记作 $X \sim \Gamma (\alpha, \lambda)$。
@@ -234,8 +234,8 @@ $$f(x) = \begin{cases}
 若随机变量 $X$ 具有密度函数
 
 $$f(x) = \begin{cases}
-\frac{\gamma}{\alpha} (\frac{x}{\alpha})^{\gamma - 1} e^{-(\frac{x}{\alpha})^{\gamma}}, x > 0 \\
-0, x \leq 0
+\frac{\gamma}{\alpha} (\frac{x}{\alpha})^{\gamma - 1} e^{-(\frac{x}{\alpha})^{\gamma}}, & x > 0 \\
+0, & x \leq 0
 \end{cases}, \alpha > 0, \lambda > 0$$
 
 则称 $X$ 服从参数为 $(\alpha, \lambda)$ 的**二参数威布尔分布** (Weibull distribution)。
@@ -245,8 +245,8 @@ $$f(x) = \begin{cases}
 若随机变量 $X$ 具有密度函数
 
 $$f(x) = \begin{cases}
-\frac{\Gamma (a + b)}{\Gamma (a) \Gamma (b)} x^{\alpha - 1} (1 - x)^{b - 1}, 0 < x < 1 \\
-0, \text{else}
+\frac{\Gamma (a + b)}{\Gamma (a) \Gamma (b)} x^{\alpha - 1} (1 - x)^{b - 1}, & 0 < x < 1 \\
+0, & \text{else}
 \end{cases}, a > 0, b > 0$$
 
 则称 $X$ 服从参数为 $(a, b)$ 的**$\beta$ 分布** (Bamma distribution)，记作 $X \sim \beta (\alpha, \lambda)$。
@@ -256,6 +256,6 @@ $$f(x) = \begin{cases}
 设 $X$ 为一连续型随机变量，其密度函数为 $f_{X} (x)$，随机变量 $Y = g(X)$。若函数 $y = g(x)$ 为一处处可导的严格单调函数，记 $y = g(x)$ 的反函数为 $x = h(y)$，则 $Y$ 的密度函数为
 
 $$f_{Y} (y) = \begin{cases}
-f_{X} (h(y)) \cdot |h'(y)|, y \in D \\
-0, y \notin D
+f_{X} (h(y)) \cdot |h'(y)|, & y \in D \\
+0, & y \notin D
 \end{cases}$$

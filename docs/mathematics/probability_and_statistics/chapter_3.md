@@ -131,7 +131,7 @@ F_{X} (x) & = P \{ X \leq x \} = P \{ X \leq x, Y \in (-\infty, +\infty) \} \\
 & = \int_{-\infty}^{x} \left[ \int_{-\infty}^{+\infty} f(x, y) \mathrm{d} y \right] \mathrm{d} x
 \end{aligned}$$
 
-由连续型随机变量的定义置 $X$ 为连续型随机变量，且 $X$ 的边际密度函数为
+由连续型随机变量的定义知 $X$ 为连续型随机变量，且 $X$ 的边际密度函数为
 
 $$f_{X} (x) = \int_{-\infty}^{+\infty} f(x, y) \mathrm{d} y$$
 

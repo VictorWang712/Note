@@ -76,14 +76,6 @@ RISC-V 的指令被分为若干个**字段** (field)。每个字段具有不同�
 - rs2：第二个源操作数寄存器
 - immediate：立即数，即常数，以二进制补码形式存储
 
-对于计算机可能面对的各种指令，我们根据功能将其分为了几种类别，并给出每种类别的指令对应的字段分布。
-
-<div style="text-align: center; margin-top: 0px;">
-<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_2_1.png" width="70%" style="margin: 0 auto;">
-</div>
-
-每个指令对应不同的操作码，这可以通过查表得到。
-
 ## 逻辑操作
 
 RISC-V 中也有**逻辑操作** (logical operations) 对应的指令。
@@ -403,4 +395,308 @@ RISC-V 指令均保持 32 位长，但有时我们会使用较长的常量。这
 
 ### 大立即数
 
-RISC-V 指令系统包括指令**取立即数高位** (load upper immediate)。
+RISC-V 指令系统包括指令**取立即数高位** (load upper immediate)，即 `lui`，使用方法是：
+
+```asm
+lui rd, imm
+```
+
+即将一个 20 位立即数 `imm` 加载到寄存器 `rd` 的第 31 位到第 12 位，低 12 位则用 `0` 填充。
+
+> 将 64 位常量 `00000000 00000000 00000000 00000000 00000000 00111101 00000101 00000000` 加载到寄存器 `x19` 的汇编代码是什么？
+>
+> ```asm
+> lui x19, 976 // 976 (dec) = 0000 0000 0011 1101 0000 (bin)
+> addi x19, x19, 1280 // 1280 (dec) = 0000 0101 0000 0000 (bin)
+> ```
+>
+> 即先加载 12 到 31 位，再添加低 12 位即可。
+
+但是，我们需要再看一个例子：
+
+> 将 64 位常量 `00000000 00000000 00000000 00000000 00000000 00111101 00001001 00000000` 加载到寄存器 `x19` 的汇编代码是什么？
+>
+> ```asm
+> lui x19, 977 // 976 (dec) = 0000 0000 0011 1101 0000 (bin)
+> addi x19, x19, 2304 // 2304 (dec) = 0000 1001 0000 0000 (bin)
+> ```
+>
+> 此时请注意，我们的 `lui` 添加的常数不再是 `976`，而是换成了 `977`。
+
+我们将详细地解释这一差别。两次操作的差别在于，我们第二步 `addi` 中加的立即数的最高位，第一次是 `0`，第二次是 `1`。由于 `addi` 会将立即数的最高位视作符号位，并对更高位都采用符号位扩展，即将第 12 位更高的位数全部填充为 `1`。这时为了保证计算结果的正确性，我们选择在 `lui` 第一步为置高位的常数加 $1$，这样多出来的这个 $1$，和 `addi` 时多出来的 $11 \cdots 1$ 相加刚好溢出。从而保证了结果的正确性。
+
+### 分支中的寻址
+
+RISC-V 分支指令中使用的寻址称作绝对寻址，以下是两个例子：
+
+```asm
+bne x10, x11, 2000 // if x10 != x11, go to location 2000 (dec) = 0111 1101 0000 (bin)
+jal x0, 2000 // go to location 2000 (dec) = 0111 1101 0000 (bin)
+```
+
+这种格式可以表示从 $-4096$ 到 $4094$ 的分支地址，且只能跳转到其中的偶数地址。但是很显然的，这个地址范围对于当下的程序来说太小了，因此我们将采用一种称作相对寻址的方法。
+
+常用的相对地址这样计算：
+
+$$\begin{aligned}
+\text{程序计数器} & = \text{寄存器内容} + \text{分支地址偏移量} \\
+& = \text{寄存器内容} + \text{立即数} \times 2
+\end{aligned}$$
+
+即程序计数器（PC）存放着当前指令的地址，我们基于它再距离当前指令的 $\pm 2^{10}$ 个字的地方建立分支。这种形式的寻址方式称作 **PC 相对寻址** (PC-relative addressing)。
+
+这里我们统一解释以下为什么跳转地址只能跳转偶数，以及偏移量是立即数的 2 倍。事实上指令里的立即数存放的是 `imm[:1]` ，而不存放 `imm[0]` 并默认 `imm[0]` 为 `0`。这显然是出于增大立即数能表示的范围的目的，但同时就造成了上述两个特殊性质。这一点在使用中需要特别注意！
+
+容易知道，无条件跳转指令往往比条件跳转指令能存放更远的地址。因此以下述指令为例：
+
+```asm
+beq x10, x0, L1
+```
+
+如果 `L1` 的地址过远，会将条件取反后插入无条件跳转以达成目标。举例来说就是：
+
+```asm
+    bne x10, x0, L2
+    jal x0, L1
+L2:
+```
+
+### RISC-V 寻址模式总结
+
+多种不同的寻址形式称作**寻址模式** (addressing modes)。下图展示了 RISC-V 中的寻址模式：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_2_7.png" width="70%" style="margin: 0 auto;">
+</div>
+
+具体来说：
+
+- 立即数寻址：操作数是指令本身的常量。
+- 寄存器寻址：操作数在寄存器中。
+- 基址或偏移寻址：操作数于内存中，其地址是寄存器和指令中的常量之和。
+- PC 相对寻址：分支地址是 PC 和指令中常量之和。
+
+### 机器语言译码
+
+下表展示了 RISC-V 机器语言对应的二进制编码：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_2_8.png" width="70%" style="margin: 0 auto;">
+</div>
+
+根据这张表，我们即可进行汇编语言和机器码的互译。简要讲述将机器码译为汇编语言的步骤：
+
+- 查看最右边 7 位的 `opcode`，确定指令类型。
+- 查看 `funct7` 和 `funct3`，确定具体指令。
+- 查看剩余字段，并对应该类型指令的格式解释指令。
+
+对于最后一步，我们要查阅下表，即每种类别的指令对应的字段分布。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_2_1.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 同步
+
+鉴于课本上这一章的介绍过于细碎繁琐，同时并非考察重点，为了保证内容的正确性和易读性，这里引用 [NoughtQ 的笔记本中的介绍](https://note.noughtq.top/system/co/2#synchoronization)。
+
+## 翻译并启动程序
+
+鉴于课本上这一章的介绍过于细碎繁琐，同时并非考察重点，为了保证内容的正确性和易读性，这里引用 [NoughtQ 的笔记本中的介绍](https://note.noughtq.top/system/co/2#program-translation)。
+
+## 以 C 排序程序为例的汇总整理
+
+这里我们将展示一些完整的 C 语言函数和对应的汇编语言代码。
+
+### swap 过程
+
+```c
+void swap (long long int v[], size_t k) {
+    long long int temp;
+    temp = v[k];
+    v[k] = v[k + 1];
+    v[k + 1] = temp;
+}
+```
+
+RISC-V 的参数传递默认使用寄存器 `x10` 到 `x17`。由于 `swap` 只有两个参数 `v` 和 `k`，因此将其在 `x10` 和 `x11` 中保存。唯一的一个变量 `temp` 用临时寄存器 `x5` 来保存。
+
+接下来我们一步步实现汇编代码。首先，RISC-V 的内存地址是字节寻址，因此双字实际上相差 $8$ 个字节。所以在将索引 $k$ 与地址相加前，需要将其值乘以 $8$。故第一步如下：
+
+```asm
+slli x6, x11, 3 // reg x6 = k * 8
+add x6, x10, x6 // reg x6 = v + (k * 8)
+```
+
+现在用 `x6` 加载 `v[k]`，用 `x6 + 8` 加载 `v[k + 1]`，请注意，这一步已经隐含实现了 `temp = v[k]`。
+
+```asm
+ld x5, 0(x6) // reg x5 (temp) = v[k]
+ld x7, 8(x6) // reg x7 = v[k + 1]
+```
+
+接下来将 `x5` 和 `x7` 中的值存储到交换的地址。
+
+```asm
+sd x7, 0(x6) // v[k] = reg x7
+sd x5, 8(x6) // v[k + 1] = reg x5 (temp)
+```
+由于这是一个叶过程，因此没有临时寄存器需要保存，这里我们就完成了所有操作。最后我们加上过程标签和返回跳转，给出该函数的完整汇编代码：
+
+```asm
+swap:
+    slli x6, x11, 3 // reg x6 = k * 8
+    add x6, x10, x6 // reg x6 = v + (k * 8)
+    ld x5, 0(x6) // reg x5 (temp) = v[k]
+    ld x7, 8(x6) // reg x7 = v[k + 1]
+    sd x7, 0(x6) // v[k] = reg x7
+    sd x5, 8(x6) // v[k + 1] = reg x5 (temp)
+    jalr x0, 0(x1) // return to calling routine
+```
+
+### sort 过程
+
+```c
+void sort (long long int v[], size_t int n) {
+    size_t i, j;
+    for (i = 0; i < n; i += 1) {
+        for (j = i - 1; j >= 0 && v[j] > v[j + 1]; j -= 1) {
+            swap(v, j);
+        }
+    }
+}
+```
+
+过程 `sort` 的 `v` 和 `n` 两个参数保存在参数寄存器 `x10` 和 `x11` 中，同时我们将寄存器 `x19` 分配给 `i`，`x20` 分配给 `j`。
+
+过程体由两个嵌套的 for 循环和一个包含参数的 `swap` 调用组成。我们从外向内展开代码。
+
+第一个翻译步骤是第一个 for 循环：
+
+```c
+for (i = 0; i < n; i += 1) {
+}
+```
+
+这包括三部分：初始化、循环判断、循环增值。于是第一个 for 循环的代码框架是：
+
+```asm
+    li x19, 0
+for1tst:
+    bge x19, x11, exit1 // go to exit1 if x19 >= x11 (i >= n)
+    ...
+    (body of first for loop)
+    ...
+    addi x19, x19, 1 // x += 1
+    j for1tst // branch to test of outer loop
+exit1:
+```
+
+第二个翻译步骤即第二个 for 循环：
+
+```c
+for (j = i - 1; j >= 0 && v[j] > v[j + 1]; j -= 1) {
+}
+```
+
+类似地，其对应的代码框架是：
+
+```asm
+    addi x20, x19, -1 // j = i - 1
+for2tst:
+    blt x20, x0, exit2 // fo to exit2 if x20 < 0 (j < 0)
+    slli x5, x20, 3 // reg x5 = j * 8
+    add x5, x10, x5 // reg x5 = v + (j * 8)
+    ld x6, 0(x5) // reg x6 = v[j]
+    ld x7, 8(x5) // reg x7 = v[j + 1]
+    ble x6, x7, exit2 // go to exit2 if x6 <= x7
+    ...
+    (body of second for loop)
+    ...
+    addi x20, x20, -1 // j -= 1
+    j for2tst // branch to test of inner loop
+exit2:
+```
+
+下一步就是翻译循环内的操作，即
+
+```c
+swap(v, j);
+```
+
+这对应如下的汇编操作：
+
+```asm
+mv x10, x21 // first swap parameter is v
+mx x11, x20 // second swap parameter is j
+jal x1, swap
+```
+
+最后，还要完成寄存器的保存和恢复。其过程头如下：
+
+```asm
+addi sp, sp, -40 // make room on stack for 5 regs
+sd x1, 32(sp) // save x1 on stack
+sd x22, 24(sp) // save x22 on stack
+sd x21, 16(sp) // save x21 on stack
+sd x20, 8(sp) // save x20 on stack
+sd x19, 0(sp) // save x19 on stack
+```
+
+最后，我们呈现完整的 `sort` 过程：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_2_9.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_2_10.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 数组与指针
+
+在 C 语言中，使用数组和指针往往是两种不同的代码实现方式，而实际上两者对应的汇编代码也不同。
+
+我们先给出两种不同实现对应的 C 语言代码：
+
+```asm
+void clear1 (long long int array[], size_t int size) {
+    size_t i;
+    for (i = 0; i < size; i += 1) {
+        array[i] = 0;
+    }
+}
+
+void clear2 (long long int *array, size_t int size) {
+    long long int *p;
+    for (p = &array[0]; p < &array[size]; p = p + 1) {
+        *p = 0;
+    }
+}
+```
+
+接下来，我们将展示并比较两者汇编代码间的差异。
+
+### 数组实现
+
+```asm
+    li x5 = 0 // i = 0
+loop1:
+    slli x6, x5, 3 // x6 = i * 8
+    add x7, x10, x6 // x7 = address of array[i]
+    sd x0, 0(x7) // array[i] = 0
+    addi x5, x5, 1 // i = i + 1
+    blt x5, x11, loop1 // if (i < size) go to loop1
+```
+
+### 指针实现
+
+```asm
+    mv x5, x10 // p = address of array[0]
+loop2:
+    sd x0, 0(x5) // Memory[p] = 0
+    addi x5, x5, 8 // p = p + 8
+    slli x6, x11, 3 // x6 = size * 8
+    add x7, x10, x6 // x7 = address of array[size]
+    bltu x5, x7, loop2 // if (p < &array[size]) go to loop2
+```

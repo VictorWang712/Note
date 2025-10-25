@@ -20,5 +20,5 @@ comments: true
 <div class="file-title">知识笔记</div>
 <div class="file-meta">11.3 MB / 42 P / 2025-10-25</div>
 </div>
-<a class="down-button" target="_blank" href="/Note/assets/files/physics/mgeneral_physics_I_note.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="/Note/assets/files/physics/general_physics_I_note.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>

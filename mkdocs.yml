@@ -106,7 +106,7 @@ nav:
       - mathematics/probability_and_statistics/chapter_2.md
       - mathematics/probability_and_statistics/chapter_3.md
   - Physics:
-    - pyhsics/general_physics_I.md
+    - physics/general_physics_I.md
   - Chemistry:
     - chemistry/general_chemistry.md
   - Computer Science:

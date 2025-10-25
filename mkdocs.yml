@@ -88,7 +88,8 @@ nav:
     - index.md
     - friends_links.md
   - Mathematics:
-    - mathematics/mathematical_analysis.md
+    - mathematics/mathematical_analysis_I.md
+    - mathematics/mathematical_analysis_II.md
     - 离散数学:
       - mathematics/discrete_mathematics/index.md
       - mathematics/discrete_mathematics/chapter_1.md

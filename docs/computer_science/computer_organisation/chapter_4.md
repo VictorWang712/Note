@@ -307,3 +307,35 @@ $$\text{指令执行时间}_{\text{流水线}} = \fracP{\text{指令执行时间
 流水线技术是一种在顺序指令流中开发指令间**并行性** (parallelism) 的技术。与多处理器编程相比，其优点在于它对程序员是不可见的。
 
 在接下来，我们将开始详细地介绍，对于上述各种问题的具体技术处理方式。
+
+## 流水线数据通路和控制
+
+### 流水线的图形化表示
+
+首先，我们给出两种流水线图。我们以下述指令为例进行说明：
+
+```asm
+ld x10, 40(x1)
+sub x11, x2, x3
+add x12, x3, x4
+ld x13, 48(x1)
+add 14, x5, x6
+```
+
+第一种是**多时钟周期流水线图** (multiple-clock-cycle pipeline diagram)，如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_20.png" width="70%" style="margin: 0 auto;">
+</div>
+
+其中，图形的左半边阴影表示写入，右半边阴影表示读取，全阴影表示两者皆有，无阴影表示实际上不经过该阶段。
+
+第二种是**单时钟周期流水线图** (single-clock-cycle pipeline diagram)，下图是上述指令流程中第 5 个时钟周期的单时钟周期图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_21.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### 流水线控制
+
+现在我们要将控制添加到流水线数据通路中，这一部分可以类比我们[在单周期处理器中的做法](https://victorwang712.github.io/Note/computer_science/computer_organisation/chapter_4/#_7)。

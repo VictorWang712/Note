@@ -150,6 +150,9 @@ nav:
       - computer_science/static_program_analysis/index.md
       - computer_science/static_program_analysis/chapter_1.md
       - computer_science/static_program_analysis/chapter_2.md
+    - 代理式人工智能*:
+      - computer_science/agentic_ai/index.md
+      - computer_science/agentic_ai/chapter_1.md
   - Science Research:
     - 论文阅读:
       - science_research/papers/arXiv_2306_13063.md

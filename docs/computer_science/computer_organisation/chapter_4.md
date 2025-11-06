@@ -339,3 +339,183 @@ add 14, x5, x6
 ### 流水线控制
 
 现在我们要将控制添加到流水线数据通路中，这一部分可以类比我们[在单周期处理器中的做法](https://victorwang712.github.io/Note/computer_science/computer_organisation/chapter_4/#_7)。
+
+第一步是在现有的数据通路上标记控制线，与单周期实现的情况一样，我们假定 PC 在每个时钟周期被写入，因此 PC 没有单独的写入信号。同理，流水线寄存器（IF/ID、ID/EX、EX/MEM 和 MEM/WB）也没有单独的写入信号，因为流水线寄存器也在每个时钟周期内都被写入。
+
+为了详细说明流水线的控制，我们需要在每个流水现阶段上设置控制值。由于每条控制线都只与一个流水线阶段中的功能部件相关，因此我们可以根据流水线阶段将控制线也划分成 5 组：
+
+1. 取指：读指令存储器和写 PC 的控制信号总是有效的，因此在这个阶段没有什么需要特别控制的内容。
+2. 指令译码 / 读寄存器堆：在 RISC-V 指令格式中两个源寄存器总是位于相同的位置，因此在这个阶段也没有什么需要特别控制的内容。
+3. 执行 / 地址计算：要设置的信号是 ALUOp 和 ALUSrc，这个信号选择 ALU 操作，并将读数据 2 或者符号扩展的立即数作为 ALU 的输入。
+4. 存储器访问：本阶段要设置的控制线是 Branch、MemRead 和 MemWrite。这些信号分别由相等则分支、加载和存储指令设置。除非控制电路标示这是一条分支指令并且 ALU 的输出为 $0$，否则将选择线性地址的下一条指令作为 PCSrc 信号。
+5. 写回：两条控制线是 MemtoReg 和 RegWrite，MemtoReg 决定是将 ALU 结果还是将存储器值发送到寄存器堆中，RegWrite 写入所选值。
+
+下图显示了具有扩展流水线寄存器并且将控制线连接到相应流水线阶段的完整数据通路。
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_22.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 数据冒险的处理
+
+### 前递
+
+前面我们已经指出，数据冒险是流水线执行的关键阻碍。本节我们将详细讨论处理数据冒险的方法。我们将基于下面这样一个指令序列的示例进行讨论：
+
+```asm
+sub x2, x1, x3 // Register x2 written by sub
+and x12, x2, x5 // 1st operand(x2) depends on sub
+or x13, x6, x2 // 2nd operand(x2) depends on sub
+add x14, x2, x2 // 1st(x2) & 2nd(x2) depend on sub
+sd x15, 100(x2) // Base(x2) depends on sub
+```
+
+后 4 条指令都相关于第一条指令中得到的存放在寄存器 `x2` 中的结果。这个指令序列是这样在流水线中运行的：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_23.png" width="70%" style="margin: 0 auto;">
+</div>
+
+图中的连线表示了数据冒险具体发生的位置。通过分析寄存器间的时序关系，我们可以得到这样两对冒险的条件：
+
+1. (a) $\texttt{EX/MEM.RegisterRd} = \texttt{ID/EX.RegisterRs1}$ (b) $\texttt{EX/MEM.RegisterRd} = \texttt{ID/EX.RegisterRs2}$
+2. (a) $\texttt{MEM/WB.RegisterRd} = \texttt{ID/EX.RegisterRs1}$ (b) $\texttt{MEM/WB.RegisterRd} = \texttt{ID/EX.RegisterRs2}$
+
+落实到示例中，可以发现 `sub` 和 `and` 指令之间存在类型为 1a 的冒险，`sub` 和 `or` 指令之间存在类型为 2b 的冒险。
+
+但是，因为并不是所有的指令都会写回寄存器，所以在上述两对条件外，还要再加入额外的条件才能确定合适进行前递。首先，要检查 EX 和 MEM 阶段的 WB 控制字段以确定 RegWrite 信号，即 `EX/MEM.RegWrite` 和 `MEM/WB.RegWrite` 是否有效。其次，如果流水线中的指令以 `x0` 作为目标寄存器，我们希望避免前递非零的结果值。于是对应地，我们将 $\texttt{EX/MEM.RegisterRd} \neq 0$ 添加到第一类冒险条件，将 $\texttt{MEM/WB.RegisterRd} \neq 0$ 添加到第二类冒险条件，即可使得上述条件正常工作。
+
+现在我们可以检测冒险了，我们来看一看得到的正确前递后的指令序列在流水线中的运行：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_24.png" width="70%" style="margin: 0 auto;">
+</div>
+
+现在，我们给出通过前递解决冒险的数据通路：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_25.png" width="70%" style="margin: 0 auto;">
+</div>
+
+其中多选器的控制值如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_26.png" width="70%" style="margin: 0 auto;">
+</div>
+
+并且，我们可以给出检测冒险的条件以及解决相应冒险的控制信号：
+
+1. EX 冒险
+
+    ```asm
+    if (EX/MEM.RegWrite
+    and (EX/MEM.RegisterRd != 0)
+    and (EX/MEM.RegisterRd = ID/EX.RegisterRs1)) ForwardA = 10
+
+    if (EX/MEM.RegWrite
+    and (EX/MEM.RegisterRd != 0)
+    and (EX/MEM.RegisterRd = ID/EX.RegisterRs2)) ForwardB = 10
+    ```
+
+2. MEM 冒险
+
+    ```asm
+    if (MEM/WB.RegWrite
+    and (MEM/WB.RegisterRd != 0)
+    and not(EX/MEM.RegWrite and (EX/MEM.RegisterRd != 0)
+            and (EX/MEM.RegisterRd = ID/EX.RegisterRs1))
+    and (MEM/WB.RegisterRd = ID/EX.RegisterRs1)) ForwardA = 01
+
+    if (MEM/WB.RegWrite
+    and (MEM/WB.RegisterRd != 0)
+    and not(EX/MEM.RegWrite and (EX/MEM.RegisterRd != 0)
+            and (EX/MEM.RegisterRd = ID/EX.RegisterRs2))
+    and (MEM/WB.RegisterRd = ID/EX.RegisterRs2)) ForwardA = 01
+    ```
+
+可以注意到，MEM 冒险需要保证在不发生 EX 冒险时才发生。
+
+### 停顿
+
+当一条指令试图在加载指令写入一个寄存器之后读取这个寄存器时，前递不能解决此处的冒险。下面这样一个例子就表明了这一问题：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_27.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可见，当加载指令后跟着一条需要读取加载指令结果的指令时，流水线必须被阻塞以消除这种指令组合带来的冒险。因此，除了一个前递单元外，还需要一个冒险检测单元。该单元在 ID 流水线阶段操作，从而可以在加载指令和相关加载指令结果的指令之间加入一个流水线阻塞。这个单元检测加载指令，冒险控制单元的控制逻辑满足如下条件：
+
+```asm
+if (ID/EX.MemRead
+and ((ID/EX.RegisterRd = IF/ID.RegisterRs1)
+    or (ID/EX.RegisterRd = IF/ID.RegisterRs2)))
+    stall the pipeline
+```
+
+如果处于 ID 阶段的指令被停顿了，那么在 IF 阶段中的指令也一定要被停顿，否则已经渠道的指令就会丢失。这需要我们将某些指令替换为**空指令** (nops) 来实现。现在，我们可以来看一看开头那个需要插入停顿的例子应该如何运行：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_28.png" width="70%" style="margin: 0 auto;">
+</div>
+
+同时，我们给出完整的具有 2 个前递多选器、1 个冒险检测单元和 1 个前递单元的流水线控制图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_29.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 控制冒险的处理
+
+另一个常见的流水线冒险发生在条件分支，也就是控制冒险或分支冒险。下图展示了一个发生控制冒险的例子：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_30.png" width="70%" style="margin: 0 auto;">
+</div>
+
+接下来将介绍两种解决控制冒险的方案和一种提升解决方案性能的优化方法。
+
+### 假设分支不发生
+
+一种提升分支阻塞效率的方法是预测条件分支不发生并持续执行顺序指令流。一旦条件分支发生，已经被读取和译码的指令就将被丢弃，流水线继续从分支目标处开始执行。如果条件分支不发生的概率很大（例如循环的跳出），同时丢弃指令的代价又很小，那么这种优化方式带来的提升是显著的。
+
+想要丢弃指令，只需要将初始控制值变为 $0$ 即可。具体来说，这需要我们改变当分支指令到达 MEM 阶段时 IF、ID 和 EX 阶段的 3 条指令，也就是**清除** (flush) 这 3 条指令。
+
+### 缩短分支延迟
+
+一种提升条件分支性能的方式是减少发生分支时所需的代价。到目前为止，我们假定分支所需的下一 PC 值在 MEM 阶段才能被获取，但如果我们将流水线中的条件分支指令提早移动执行，就可以刷新更少的指令。
+
+要将分支决定向前移动，需要两个操作提早发生：计算分支目标地址和判断分支条件。前者是相对简单的，因为在 IF/ID 流水线寄存器中就已经有 PC 值和立即数字段，所以只需将分支地址从 EX 阶段移动到 ID 阶段即可。困难的部分是分支决定本身。对于相等时跳转指令，这需要在 ID 阶段比较两个寄存器中的值是否相等。
+
+具体来说，这里存在两个复杂的因素。一是需要在 ID 阶段将指令译码，决定是否需要将指令旁路至相等检测单元；二是在 ID 阶段分支比较所需的值可能在之后才会产生，因此可能会产生数据冒险，所以指令停顿也是必需的。
+
+尽管这很困难，但是将条件分支指令的执行移动到 ID 阶段的确是一个有效的优化。为了清楚 IF 阶段的指令，我们添加了一条称作 `IF.Flush` 的控制线，它将 IF/ID 流水线寄存器中的指令字段设置为 $0$。将寄存器清空的结果是将已经取到的指令转换成一条 `nop` 指令，该指令不进行任何操作，也不改变任何状态。
+
+### 动态分支预测
+
+假定条件分支不发生是一种简单的静态预测机制，在复杂的流水线中，这种机制容易产生较大的性能浪费。于是相对地，我们尝试在程序执行的过程中，使用运行信息进行分支预测，这就是**动态分支预测** (dynamic branch prediction)。
+
+动态分支预测一般基于**分支预测缓存** (branch prediction buffer) 和**分支历史表** (branch history)。
+
+最简单分支预测缓存只有 1 个比特位，即存储上一次该分支是否发生跳转，并据此预测下一次分支执行的情况。但是这个方案的缺点是明显的：即当一个条件分支发生状态变化时，会造成 2 次预测错误而不只 1 次。
+
+一个有效的改进称作 2 位预测机制，即记录过去两次分支是否跳转，并只在连续两次预测错误时再改变预测。理论上，这种预测的正确率可以达到 $75\%$。这个过程可以表示为下图的状态自动机：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_31.png" width="70%" style="margin: 0 auto;">
+</div>
+
+上述的两种预测器都称作**相关预测器** (correlating predictors)。还有一种高级的预测器称作**锦标赛分支预测器** (tournament branch predictor)，就是对于每个分支使用多种预测器，记录它们累计的预测正确率，并总是采用其中最准确的那个作为预测结果。
+
+到这里，我们已经基本讨论完了流水线处理器的基本架构，下图是综合的数据通路和控制图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_32.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 例外
+
+## 指令间的并行性
+
+流水线技术挖掘了指令间潜在的并行性，这被称作**指令级并行** (instruction-level parallelism, ILP)。提高指令级并行度主要有两种方法。第一种是增加流水线的级数，让更多的指令重叠执行。另一种提到指令并行度的方法是增加流水线内部的功能部件数量，这样可以每周期发出多条指令，这种技术称作**多发射** (multiple issue)。
+
+每周期发射多条指令，可以使得指令执行频率超过时钟频率。实现多发射处理器主要有两种方法，区别在于编译器和硬件的不同分工。如果指令发射与否的判断是在编译时完成的，就称作**静态多发射** (static multiple issue)。如果指令发射与否的判断是在动态执行过程中由硬件完成的，就称作**动态多发射** (dynamic multiple issue)。

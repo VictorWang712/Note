@@ -148,3 +148,86 @@ $16 \times 1$ 的 RAM 结构的重合选择如下图所示：
 上面介绍的两种存储容量扩展技术仅仅介绍了将若干个相同的芯片组成新的大容量存储系统。此新存储系统的字长（字的位数）是单个芯片的单个字长的若干倍，字数是单个芯片字数的以 $2$ 为因子的倍数。外部译码器需要根据此新存储系统的地址来选取特定的芯片。
 
 为了减少封装芯片的引脚数，许多 RAM 芯片通过**双向** (bidirectional) 端口来复用数据输入输出端，这就意味着，复用端口在读操作时为输出端，在写操作时为输入端。双向信号线由三态缓冲器构成，需要通过片选和 $\text{Read} / \overline{\text{Write}}$ 对三态缓冲器进行控制才能使用双向信号。
+
+## DRAM 芯片
+
+### DRAM 单元
+
+动态 RAM 单元电路结构由电容 C 和晶体管 T 组成。电容用来存储电荷，若电容存储足够电荷，则可认为其逻辑值为 $1$；若电容存储的电荷不够，则其逻辑值为 $0$。
+
+进一步地，存储器单元的读写操作可以类比为流体力学中的例子，如下图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_12.png" width="70%" style="margin: 0 auto;">
+</div>
+
+### DRAM 位片
+
+DRAM 位片模型的与 SRAM 位片模型类似，如下：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_11.png" width="70%" style="margin: 0 auto;">
+</div>
+
+由图可知，除了单元结构不同外，两种 RAM 位片在逻辑上是相同的。但不能忽视的是，每位 SRAM 单元比 DRAM 单元大约复杂三倍。因此 DRAM 更适用于大规模存储器。
+
+进一步地，我们来讨论 DRAM 中如何进行地址处理。大的 DRAM 系统可能需要 20 或更多的地址位，为了减少引脚数量，可以将 DRAM 地址分为行地址和列地址两部分，串行地先加载行地址，再加载列地址。基于这一点，我们可以得到包括刷新逻辑的 DRAM 框图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_13.png" width="70%" style="margin: 0 auto;">
+</div>
+
+DRAM 的读写定时也有针对性的设计。为了支持刷新，要附加一些逻辑电路以实现对刷新的控制。具体来说，激活刷新周期的标准方式和相应的刷新类型如下：
+
+1. 按行刷新。行地址加载到地址线上，RAS 由 $1$ 变为 $0$ 时刷新。在这种情况下，刷新地址必须由 DRAM 芯片外部提供，通常由被称为 DRAM 控制器的芯片来提供。
+2. 按列先行后方式刷新。CAS 先从 $1$ 变为 $0$，之后 RAS 由 $1$ 变为 $0$ 时刷新。CAS 保持不变，RAS 变化可以完成一个刷新周期。这种情况下的刷新地址由刷新计数器提供，完成一个刷新周期后，刷新计数器加 $1$。
+3. 隐式刷新。正常读写周期结束后刷新，CAS 保持为 $0$，RAS 循环变化，不断进行列先行后方式刷新。在每个隐式刷新期间，前一个读出的数据仍保持有效，所以称这种刷新方式为隐式刷新。隐式刷新所需的时间较长，因此会延迟下一个读写操作。
+
+基于此，我们可以得到 DRAM 读和写操作的定时图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_14.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## DRAM 分类
+
+### 同步 DRAM (SDRAM)
+
+采用钟控传输方式是 SDRAM 区别于传统 DRAM 的一大特点。下图是一个 SDRAM 集成芯片的框图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_15.png" width="70%" style="margin: 0 auto;">
+</div>
+
+由图可知，除了同步操作的时钟信号外，其输入输出信号与 DRAM 几乎没有区别，但其实两者的内部结构存在很多不同。从外部来看，因为 SDRAM 要实现同步，所以在其地址输入和数据输入输出端口都设有同步寄存器。另外，增加的列地址寄存器是 SDRAM 操作的关键。SDRAM 与普通 DRAM 的控制逻辑看起来类似，但因为 SDRAM 有一个可以从地址总线加载的模式控制字，所以其控制要复杂得多。
+
+下图给出了 SDRAM 的一个定时图：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_16.png" width="70%" style="margin: 0 auto;">
+</div>
+
+可见其极速读的字节速率较 DRAM 要高。
+
+### 双倍数据速率 SDRAM (DDR SDRAM)
+
+第二种类型 DRAM 是双倍数据速率 SDRAM (DDR SDRAM)，它能在不增加始终开销的前提下克服 DRAM 的速率限制。与 SDRAM 不同，DDR SDRAM 在时钟的上升沿和下降沿均能读取数据。
+
+### RAMBUS DRAM (RDRAM)
+
+最后讨论 RAMBUS DRAM (RDRAM)。RDRAM 芯片继承于基于包总线的存储系统中，为 RDRAM 芯片和处理器的存储总线提供互联。其时序图如下例：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/digital_logic_design/chapter_7_17.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 动态 RAM 芯片阵列
+
+DRAM 控制器应具有下述功能：
+
+1. 将地址分为行地址和列地址，并在适当的时间提供它们。
+2. 在适当的时间提供 $\overline{\text{RAS}}$ 和 $\overline{\text{CAS}}$ 信号控制读、写和刷新操作。
+3. 在规定时间间隔内执行刷新操作。
+4. 提供其它一些状态信号，如表示存储器是否忙于执行刷新操作等。
+
+DRAM 控制器是一个复杂的同步时序逻辑电路，由外部 CPU 时钟控制其同步操作。

@@ -25,3 +25,4 @@ comments: true
 - *Computer Organization and Design - The Hardware / Software Interface*, Risc-V Edition
 - 马德老师的课件
 - [计算机组成 - 咸鱼暄的代码空间](https://xuan-insr.github.io/computer_organization/)
+- [计算机组成 - NoughtQ的笔记本](https://note.noughtq.top/sys/co/)

@@ -207,7 +207,7 @@ jalr reg, imm(base_reg) // jump back to saved address and write return address t
 
 总的来说，调用程序，即**调用者** (caller) 将参数值放入 `x10`~`x17` 中，并使用 `jal x1, X` 跳转到过程 `X`，即**被调用者** (callee)。被调用者执行计算，将结果放在相同的参数寄存器中，并使用 `jalr x0, 0(x1)` 将控制返还给调用者。
 
-> 变量 `f` 到 `k` 对应于寄存器 `x20` 到 `x25`，寄存器 `x5` 的值为 4，，编译如下 C 语言代码：
+> 变量 `f` 到 `k` 对应于寄存器 `x20` 到 `x25`，寄存器 `x5` 的值为 4，编译如下 C 语言代码：
 >
 > ```c
 > switch (k) {
@@ -294,7 +294,7 @@ jalr reg, imm(base_reg) // jump back to saved address and write return address t
 >
 >     ld x20, 0(sp) // restore register x20 for caller
 >     ld x6, 8(sp) // restore register x6 for caller
->     ls x5, 16(sp) // restore register x5 for caller
+>     ld x5, 16(sp) // restore register x5 for caller
 >     addi sp, sp, 24 // adjust stack to delete 3 items
 >
 >     jalr x0, 0(x1)
@@ -314,7 +314,7 @@ jalr reg, imm(base_reg) // jump back to saved address and write return address t
 一种解决方法是将其它所有必须保存的寄存器压栈。具体来说：
 
 - 调用者将所有调用后还需要的参数寄存器或临时寄存器压栈
-- - 被调用者将返回地址寄存器和自身使用的保存寄存器压栈
+- 被调用者将返回地址寄存器和自身使用的保存寄存器压栈
 
 调整栈指针 `sp` 以计算压栈寄存器的数量，返回时从存储器中恢复寄存器并重新调整栈指针。
 

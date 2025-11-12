@@ -142,7 +142,7 @@ $$\lim_{n \to +\infty} P \left\{ \left| \frac{1}{n} \sum_{i = 1}^{n} h(X_{i}) - 
 设 $\{ X_{i}, i \geq 1 \}$ 为独立同分布的随机变量序列，且数学期望 $E(X_{i}) = \mu$ 和方差 $\text{Var}(X_{i}) = \sigma^{2}, \sigma > 0$ 均存在，则对任意的 $x \in \mathbb{R}$，有
 
 $$\begin{aligned}
-\lim_{n \to +\infty} P \left\{ \frac{\sum_{i = 1}^{n} - E \left( \sum_{i = 1}^{n} X_{i} \right)}{\sqrt{\text{Var} \left( \sum_{i = 1}^{n} X_{i} \right)}} \leq x \right\} & = \lim_{n \to +\infty} P \left\{ \frac{\sum_{i = 1}^{n} X_{i} - n \mu}{\sigma \sqrt{n}} \leq x \right\} \\
+\lim_{n \to +\infty} P \left\{ \frac{\sum_{i = 1}^{n} X_{i} - E \left( \sum_{i = 1}^{n} X_{i} \right)}{\sqrt{\text{Var} \left( \sum_{i = 1}^{n} X_{i} \right)}} \leq x \right\} & = \lim_{n \to +\infty} P \left\{ \frac{\sum_{i = 1}^{n} X_{i} - n \mu}{\sigma \sqrt{n}} \leq x \right\} \\
 & = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{x} e^{-\frac{t^{2}}{x}} \mathrm{d} t = \Phi(x)
 \end{aligned}$$
 

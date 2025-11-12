@@ -313,3 +313,88 @@ $$\rho_{XY} = \rho$$
 $$f(x, y) = f_{X} (x) f_{Y} (y)$$
 
 即 $X$ 和 $Y$ 相互独立。因此对于二维正态变量，两变量不想管等价于两变量相互独立。
+
+## 其他数字特征
+
+### 矩
+
+设 $X, Y$ 为随机变量，$k, l$ 为正整数，如果以下的数学期望都存在，就称
+
+$$\mu_{k} = E(X^{k})$$
+
+为 $X$ 的 $k$ 阶（原点）**矩** (moment)，称
+
+$$\nu_{k} = E[(X - E(X))^{k}]$$
+
+为 $X$ 的 $k$ 阶中心矩，称
+
+$$E(X^{k} Y^{l})$$
+
+为 $X$ 和 $Y$ 的 $k + l$ 阶混合（原点矩），称
+
+$$E[(X - E(X))^{k} (Y - E(Y))^{l}]$$
+
+为 $X + Y$ 的 $k + l$ 阶混合中心矩。
+
+由以上定义可知，随机变量的数学期望即为其一阶原点矩，堆积变量的一阶中心矩恒为 $0$，方差即为二阶中心矩，协方差 $\text{Cov}(X, Y)$ 就是 $X$ 与 $Y$ 的二阶混合中心矩。
+
+### 分位数
+
+设连续型随机变量 $X$ 的分布函数和密度函数分别为 $F(x)$ 与 $f(x)$，对任意的 $0 < \alpha < 1$，称满足条件
+
+$$P \{ X > x_{\alpha} \} = 1 - F(x_{\alpha}) = \int_{x_{\alpha}}^{+\infty} f(x) \mathrm{d} x = \alpha$$
+
+的实数 $x_{\alpha}$ 为随机变量 $X$ 的上 $\alpha$ **分位数** (quantile)。
+
+特别地，当 $\alpha = \frac{1}{2}$ 时，$x_{\frac{1}{2}}$ 称作 $X$ 的**中位数** (median)。
+
+## 多维随机变量的数字特征
+
+### 多维随机变量的数学期望与协方差矩阵
+
+记 $n$ 维随机变量 $\boldsymbol{X} = (X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$，若其每一分量的数学期望都存在，则称
+
+$$E(\boldsymbol{X}) = (E(X_{1}), E(X_{2}), \cdots, E(X_{n}))^{\mathrm{T}}$$
+
+为 $n$ 维随机变量 $\boldsymbol{X}$ 的数学期望。
+
+显然，$n$ 为随机变量的数学期望就是各分量数学期望组成的向量。
+
+记 $n$ 维随机变量 $\boldsymbol{X} = (X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$，若其每一分量的方差都存在，则称
+
+$$\begin{aligned}
+\text{Cov}(\boldsymbol{X}) & = E[(\boldsymbol{X} - E(\boldsymbol{X}))(\boldsymbol{X} - E(\boldsymbol{X}))^{\mathrm{T}}] \\
+& = (\text{Cov}(X_{i}, X_{j}))_{n \times n} \\
+& = \begin{pmatrix}
+\text{Var}(X_{1}) & \text{Cov}(X_{1}, X_{2}) & \cdots & \text{Cov}(X_{1}, X_{n}) \\
+\text{Cov}(X_{2}, X_{1}) & \text{Var}(X_{2}) & \cdots & \text{Cov}(X_{2}, X_{n}) \\
+\vdots & \vdots & \ddots & \vdots \\
+\text{Cov}(X_{n}, X_{1}) & \text{Cov}(X_{n}, X_{2}) & \cdots & \text{Var}(X_{n}) \\
+\end{pmatrix}
+\end{aligned}$$
+
+为 $n$ 维随机变量 $\boldsymbol{X}$ 的**协方差矩阵** (covariance matrix)，简称协方差阵。
+
+一个重要性质是，$n$ 维随机变量 $\boldsymbol{X}$ 的协方差矩阵 $\text{Cov}(\boldsymbol{X})$ 是一个对称的非负定矩阵。
+
+### 多维正态变量
+
+$n$ 维随机变量 $\boldsymbol{X} = (X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$，其每一分量的方差都存在。记 $\boldsymbol{X}$ 的协方差矩阵为 $\boldsymbol{B} = \text{Cov}(\boldsymbol{X})$，数学期望为 $\boldsymbol{a} = E(\boldsymbol{X}) = (E(X_{1}), E(X_{2}), \cdots, E(X_{n}))^{\mathrm{T}}$，则由密度函数
+
+$$f(x) = f(x_{1}, x_{2}, \cdots, x_{n}) = \frac{1}{(2 \pi)^{\frac{n}{2}} |\boldsymbol{B}|^{\frac{1}{2}}} \exp \left[ -\frac{1}{2} (\boldsymbol{x} - \boldsymbol{a})^{\mathrm{T}} \boldsymbol{B}^{-1} (\boldsymbol{x} - \boldsymbol{a}) \right]$$
+
+定义的分布为 $n$ 元正态分布，常记为 $\boldsymbol{X} \sim N(\boldsymbol{a}, \boldsymbol{B})$。
+
+特别地，当 $n = 2$，有 $(X, Y) \sim N (\mu_{1}, \mu_{2}; \sigma_{1}^{2}, \sigma_{2}^{2}; \rho)$ 时，其协方差矩阵为
+
+$$\boldsymbol{B} = \begin{pmatrix}
+\sigma_{1}^{2} & \sigma_{1} \sigma_{2} \rho \\
+\sigma_{1} \sigma_{2} \rho & \sigma_{2}^{2}
+\end{pmatrix}$$
+
+$n$ 元正态分布有如下一些性质：
+
+- $n$ 维正态变量 $(X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$ 中的任意 $k$ 维子向量 $(X_{i_{1}}, X_{i_{2}}, \cdots, X_{i_{k}})^{\mathrm{T}}, 1 \leq k \leq n$ 也服从 $k$ 元正态分布。特别地，$n$ 维正态变量中的每个分量都是服从一元正态分布的。反之，若 $X_{i}, i = 1, 2, \cdots, n$ 都是正态变量，且相互独立，则 $(X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$ 服从 $n$ 元正态分布。
+- $\boldsymbol{X} = (X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$ 服从 $n$ 元正态分布的充要条件是其各个分量的任意线性组合均服从一元正态分布。形式化的说，即对任意 $n$ 维实向量 $\boldsymbol{l} = (l_{1}, l_{2}, \cdots, l_{n})^{\mathrm{T}}$，有 $\boldsymbol{X} \sim N(\boldsymbol{a}, \boldsymbol{B}) \Leftrightarrow \boldsymbol{l}^{\mathrm{T}} \boldsymbol{X} = \sum_{i = 1}^{n} l_{i} X_{i} \sim N(\boldsymbol{l}^{\mathrm{T}} \boldsymbol{a}, \boldsymbol{l}^{\mathrm{T}} \boldsymbol{B} \boldsymbol{l})$，其中 $l_{1}, l_{2}, \cdots, l_{n}$ 不全为 $0$。
+- 若 $(X_{1}, X_{2}, \cdots, X_{n})^{\mathrm{T}}$ 服从 $n$ 元正态分布，设 $Y_{1}, Y_{2}, \cdots, Y_{k}$ 都是 $X_{1}, X_{2}, \cdots, X_{n}$ 的线性函数，则 $\boldsymbol{Y} = (Y_{1}, Y_{2}, \cdots, Y_{k})^{\mathrm{T}}$ 也服从 $k$ 元正态分布。形式化地说，即若 $\boldsymbol{X} \sim N(\boldsymbol{a}, \boldsymbol{B})$，$\boldsymbol{C} = (c_{ij})_{k \times n}$ 为 $k \times n$ 实数矩阵，则 $\boldsymbol{Y} = \boldsymbol{C} \boldsymbol{X} \sim N(\boldsymbol{C} \boldsymbol{a}, \boldsymbol{C} \boldsymbol{B} \boldsymbol{C}^{\mathrm{T}})$。这一性质常称作「正态变量的线性变换不变性」。
+- 服从 $n$ 元正态分布的随机变量 $X$ 中的分量 $X_{1}, X_{2}, \cdots, X_{n}$ 相互独立的充要条件是其两两不相关，也等价于 $\text{Cov}(\boldsymbol{X})$ 为对角矩阵。

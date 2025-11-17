@@ -142,6 +142,6 @@ The number of light nodes along the right path of a skew heap is $O(\log N)$.
 
 ??? abstract "答案解析"
 
-    正确答案：F
+    正确答案：T
 
-    解析：在搜索引擎中，「阈值过滤」与「取前 k 个文档」是两种不同的检索策略。阈值过滤是为每个文档分配一个评分，然后只返回分数超过某个固定阈值的所有文档。文档数量不固定，可多可少。
+    解析：

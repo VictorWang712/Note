@@ -10,9 +10,7 @@ theme:
   name: material
   custom_dir: overrides
   language: en
-  font: 
-    text: LXGW WenKai Screen
-    code: CodeNewRoman Nerd Font Mono
+  font: false
   icon:
     logo: material/book-outline
   favicon: assets/images/icons/favicon.png
@@ -52,8 +50,10 @@ extra:
 extra_css:
   - stylesheets/css/card.css
   - stylesheets/css/flink.css
+  - stylesheets/css/font.css
   - stylesheets/css/rounded_corner.css
   - https://unpkg.com/katex@0/dist/katex.min.css
+  - https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css
 
 extra_javascript:
   - javascripts/katex.js

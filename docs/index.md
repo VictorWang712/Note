@@ -21,20 +21,17 @@ statistics: true
 </center>
 
 <center>
-  <!-- 引入 Google Fonts 中的 "Long Cang" 字体 -->
   <link href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" rel="stylesheet">
 
-  <!-- 自定义样式 -->
   <style>
     #poem_sentence, #poem_info {
-      font-family: "Long Cang", sans-serif; /* 设置字体为 Long Cang */
-      font-size: 20px; /* 调整字体大小 */
-      line-height: 1.5; /* 设置行距，增强可读性 */
-      text-align: center; /* 居中对齐 */
+      font-family: "Long Cang", sans-serif;
+      font-size: 20px;
+      line-height: 1.5;
+      text-align: center;
     }
   </style>
 
-  <!-- 今日诗词的功能代码 -->
   <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
   <div id="poem_sentence"></div>
   <div id="poem_info"></div>

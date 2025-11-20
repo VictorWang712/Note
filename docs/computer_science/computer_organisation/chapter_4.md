@@ -595,7 +595,7 @@ and ((ID/EX.RegisterRd = IF/ID.RegisterRs1)
 
 我们继续沿用上文的例子。
 
-> 我们将循环体展开 4 便，完成重叠后再消除不必要的开销，就可以得到这样的调度结果：
+> 我们将循环体展开 4 遍，完成重叠后再消除不必要的开销，就可以得到这样的调度结果：
 > 
 > <div style="text-align: center; margin-top: 0px;">
 > <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/computer_organisation/chapter_4_35.png" width="70%" style="margin: 0 auto;">

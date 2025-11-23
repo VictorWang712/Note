@@ -174,7 +174,7 @@ $F$ 分布具有如下性质：
 设 $X_{1}, X_{2}, \cdots, X_{n}$ 为来自正态总体 $N(\mu, \sigma^{2})$ 的简单随机样本，$\bar{X}$ 是样本均值，$S^{2}$ 是样本方差，则有如下定理：
 
 - $\bar{X} \sim N \left( \mu, \frac{\sigma^{2}}{n} \right)$
-- $\frac{(n - 1) X^{2}}{\sigma^{2}} \sim \chi^{2} (n - 1)$
+- $\frac{(n - 1) S^{2}}{\sigma^{2}} \sim \chi^{2} (n - 1)$
 - $\bar{X}$ 与 $S^{2}$ 相互独立
 - $\frac{\bar{X} - \mu}{\frac{S}{\sqrt{n}}} \sim t(n - 1)$
 

@@ -86,7 +86,7 @@ $$E \left( c_{0} + \sum_{i = 1}^{n} c_{i} X_{i} \right) = c_{0} + \sum_{i = 1}^{
 
 #### 正态分布的数学期望
 
-设随机变量 $X$ 服从正态分布 $N(\mu, \sinma^{2}), -\infty < \mu < +\infty, \sigma > 0$。由于 $Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$，故 $X = \sigma Z + \mu$，则
+设随机变量 $X$ 服从正态分布 $N(\mu, \sigma^{2}), -\infty < \mu < +\infty, \sigma > 0$。由于 $Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$，故 $X = \sigma Z + \mu$，则
 
 $$E(X) = E(\sigma Z + \mu) = \sigma E(Z) + \mu = \mu$$
 

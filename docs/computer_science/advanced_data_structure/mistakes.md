@@ -255,3 +255,44 @@ Consider two disjoint sorted arrays $A[1 \cdots m]$ and $B[1 \cdots n]$, we woul
     - 如果 $A_{i + 1} < B_{k - i}$ 则说明我们从 $A$ 取的太少，向右区间内做二分搜索。
 
     二分的总次数为 $O(\log k)$，且每次搜索只做常数次比较，故总的时间复杂度为 $O(\log k)$。
+
+---
+
+期中考 判断题 1-2
+
+After merging two Leftist Heaps $H_{1}$ and $H_{2}$ of different NPLs, the NPL of the resulted Leftist Heap's root could not be $\max(\text{NPL}(H_{1}), \text{NPL}(H_{2})) + 1$.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：当 $\text{NPL}(H_{1}) = \text{NPL}(H_{2}) = k$ 时，合并后的 NPL 即为 $k + 1$。
+
+---
+
+期中考 判断题 1-8
+
+The recurrence $T(n) = 2 T(\frac{n}{2}) + \frac{n}{\log n}$ can't be solved by the Master Theorem.
+
+??? abstract "答案解析"
+
+    正确答案：T
+
+    解析：$\frac{n}{\log n}$ 既不属于 $n^{1 + \epsilon}$，也不属于 $n^{1 - \epsilon}$。
+
+---
+
+HW4 程序填空题 5-1
+
+```c
+for(int i = 1; i < numsSize; i++) {
+    for( ) {
+    }
+}
+```
+
+??? abstract "答案解析"
+
+    正确答案：`int j = 0; j < i; j++`
+
+    解析：记得看循环变量在外部有没有定义。

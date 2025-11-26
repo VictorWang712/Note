@@ -113,6 +113,35 @@ $$E(\hat{\theta}) = \theta, \forall \theta \in \Theta$$
 
 设 $\hat{\theta} = \hat{\theta}(X_{1}, X_{2}, \cdots, X_{n})$ 是总体参数 $\theta$ 的估计量，称 $E[(\hat{\theta} - \theta)^{2}]$ 是估计量 $\hat{\theta}$ 的均方误差，记作 $\text{Mse}(\hat{\theta})$。
 
+一个常用于计算 $\text{Mse}(\hat{\theta})$ 的公式为
+
+$$\text{Mse}(\hat{\theta}) = \text{Var}(\hat{\theta}) + [\text{Bias}(\hat{\theta})]^{2}$$
+
+???+ abstract "Proof"
+
+    已知
+
+    $$\text{Var}(\hat{\theta}) = E[(\hat{\theta} - E(\hat{\theta}))^{2}], \text{Bias}(\hat{\theta}) = E(\hat{\theta}) - \theta$$
+
+    则
+
+    $$\begin{aligned}
+    \text{Mse}(\hat{\theta}) & = E[(\hat{\theta} - \theta)^{2}] \\
+    & = E[(\hat{\theta} - E(\hat{\theta}) + E(\hat{\theta}) - \theta)^{2}] \\
+    & = E[(\hat{\theta} - E(\hat{\theta}))^{2}] + 2E[(\hat{\theta} - E(\hat{\theta}))(E(\hat{\theta}) - \theta)] + E[(E(\hat{\theta}) - \theta)^{2}]
+    \end{aligned}$$
+
+    其中
+    
+    $$E[(\hat{\theta} - E(\hat{\theta}))(E(\hat{\theta}) - \theta)] = (E(\hat{\theta}) - \theta) \cdot E[\hat{\theta} - E(\hat{\theta})] = (E(\hat{\theta}) - \theta) \cdot 0 = 0$$
+    
+    且 $E(\hat{\theta}) - \theta$ 为常数。故
+
+    $$\begin{aligned}
+    \text{Mse}(\hat{\theta}) & = E[(\hat{\theta} - E(\hat{\theta}))^{2}] + 2E[(\hat{\theta} - E(\hat{\theta}))(E(\hat{\theta}) - \theta)] + E[(E(\hat{\theta}) - \theta)^{2}] \\
+    & = \text{Var}(\hat{\theta}) + [\text{Bias}(\hat{\theta})]^{2}
+    \end{aligned}$$
+
 设 $\hat{\theta}_{1}$ 和 $\hat{\theta}_{2}$ 都是 $\theta$ 的估计量，若对于任意 $\theta \in \Theta, \text{Mse}(\hat{\theta}_{1}) \leq \text{Mse}(\hat{\theta}_{2})$，且至少存在某个 $\theta$ 使得不等号成立，则称在均方误差准则下，$\hat{\theta}_{1}$ 优于 $\hat{\theta}_{2}$。
 
 有定义可知，若 $\hat{\theta}$ 是参数 $\theta$ 的无偏估计量，则 $\text{Mse}(\hat{\theta}) = \text{Var}(\hat{\theta})$。均方误差准则常用于有偏估计之间，或有偏估计与无偏估计之间的比较。若仅限于无偏估计之间的比较，则等价于有效性准则。

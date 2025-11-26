@@ -186,7 +186,7 @@ P \{ \hat{\theta}_{U} > \theta \} = 1 - \alpha, \theta \in \Theta
 
     $$P_{\theta} \{ a < G(X_{1}, X_{2}, \cdots, X_{n}; \theta) < b \} = 1 - \alpha$$
 
-3. 假如参数 $\theta$ 可以从 G(X_{1}, X_{2}, \cdots, X_{n}; \theta)$ 中分离出来，不等式 $a < G(X_{1}, X_{2}, \cdots, X_{n}; \theta) < b$ 可以等价地转化为 $\hat{\theta}_{L} < \theta < \hat{\theta}_{U}$，则对于连续型总体，有
+3. 假如参数 $\theta$ 可以从 $G(X_{1}, X_{2}, \cdots, X_{n}; \theta)$ 中分离出来，不等式 $a < G(X_{1}, X_{2}, \cdots, X_{n}; \theta) < b$ 可以等价地转化为 $\hat{\theta}_{L} < \theta < \hat{\theta}_{U}$，则对于连续型总体，有
 
     $$P \{ \hat{\theta}_{L} < \theta < \hat{\theta}_{U} \} = 1 - \alpha$$
 

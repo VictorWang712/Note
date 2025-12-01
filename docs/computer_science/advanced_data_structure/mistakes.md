@@ -282,7 +282,7 @@ The recurrence $T(n) = 2 T(\frac{n}{2}) + \frac{n}{\log n}$ can't be solved by t
 
 ---
 
-HW4 程序填空题 5-1
+期中考 程序填空题 5-1
 
 ```c
 for(int i = 1; i < numsSize; i++) {
@@ -296,3 +296,15 @@ for(int i = 1; i < numsSize; i++) {
     正确答案：`int j = 0; j < i; j++`
 
     解析：记得看循环变量在外部有没有定义。
+
+---
+
+HW10 判断题 1-5
+
+If a problem can be solved by dynamic programming, it must be solved in polynomial time.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：一些动态规划问题，如背包问题的复杂度是伪多项式的，故不能保证。

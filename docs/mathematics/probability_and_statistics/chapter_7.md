@@ -395,7 +395,7 @@ $$\left( \frac{1}{2a} (- b - \sqrt{b^{2} - 4ac}), \frac{1}{2a} (- b + \sqrt{b^{2
 
 其中 $a = n + z_{\frac{\alpha}{2}}^{2}, b = -(2n \bar{X} + z_{\frac{\alpha}{2}}^{2}), c = n \bar{X}^{2}$。或取 $p(1 - p)$ 的估计量为 $\bar{X}(1 - \bar{X})$，得 $p$ 的置信水平为 $1 - \alpha$ 的近似置信区间为
 
-$$\left( \bar{X} \pm z_{\frac{\alpha}{2}} \sqrt{\frac{\bar{X}(1 - \bar{X})}{n}} \right)$$
+$$\left( \bar{X} \pm \sqrt{\frac{\bar{X}(1 - \bar{X})}{n}} z_{\frac{\alpha}{2}} \right)$$
 
 ### 其它分布均值 $\mu$ 的区间估计
 

@@ -45,7 +45,7 @@ $$A_{k} \stackrel{P}{\longrightarrow} \mu_{k}, B_{k} \stackrel{P}{\longrightarro
 
 极大似然法是在参数分布族的场合下使用的一种应用非常广泛的参数估计方法。其基本思想是：设某事件 $A$ 发生的概率依赖于待估参数 $\theta$，如果观察到 $A$ 已经发生，那么就取使得事件 $A$ 发生的概率达到最大的 $\theta$ 的值作为 $\theta$ 的估计。
 
-设 $X$ 为离散型总体，其概率分布律为 $P \{ X = x \} = p(x; \theta), \theta \in \Theta$ 是未知的待估参数，$\Theta$ 为参数可取值的范围，即参数空间。$X_{1}, X_{2}, \cdots, X_{n}$ 是来自总体 $X$ 的样本，并设 $x_{1}, x_{2}, \xdots, x_{n}$ 是已经得到的样本值，则样本 $x_{1}, X_{2}, \cdots, X_{n}$ 取到样本值 $x_{1}, x_{2}, \xdots, x_{n}$ 的概率为
+设 $X$ 为离散型总体，其概率分布律为 $P \{ X = x \} = p(x; \theta), \theta \in \Theta$ 是未知的待估参数，$\Theta$ 为参数可取值的范围，即参数空间。$X_{1}, X_{2}, \cdots, X_{n}$ 是来自总体 $X$ 的样本，并设 $x_{1}, x_{2}, \cdots, x_{n}$ 是已经得到的样本值，则样本 $X_{1}, X_{2}, \cdots, X_{n}$ 取到样本值 $x_{1}, x_{2}, \cdots, x_{n}$ 的概率为
 
 $$P \{ X_{1} = x_{1}, X_{2} = x_{2}, \cdots, X_{n} = x_{n} \} = \prod_{i = 1}^{n} P \{ X_{i} = x_{i} \} = \prod_{i = 1}^{n} p(x_{i}; \theta)$$
 

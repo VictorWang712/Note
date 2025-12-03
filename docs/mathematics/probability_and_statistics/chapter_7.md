@@ -226,3 +226,195 @@ P \{ \hat{\theta}_{U} > \theta \} = 1 - \alpha, \theta \in \Theta
 一般地，满足条件的 $a, b$ 不是唯一的，根据奈曼原则，我们应该选择使置信区间 $(\hat{\theta}_{L}, \hat{\theta}_{U})$ 的平均长度达到最短的 $a$ 和 $b$，但有时要做到这点并非易事。习惯上，我们取 $a$ 和 $b$ 满足
 
 $$P_{\theta} \{ G(X_{1}, X_{2}, \cdots, X_{n}; \theta) \leq a \} = P_{\theta} \{ G(X_{1}, X_{2}, \cdots, X_{n}; \theta) \geq b \} = \frac{\alpha}{2}$$
+
+## 正态总体参数的区间估计
+
+### 单个正态总体情形
+
+设总体 $X \sim N(\mu, \sigma^{2})$，$X_{1}, X_{2}, \cdots, X_{n}$ 是来自总体 $X$ 的样本。$\bar{X}$ 和 $s^{2}$ 分别是样本均值和样本方差，$1 - \alpha$ 是给定的置信水平。
+
+#### $\sigma^{2}$ 已知时均值 $\mu$ 的区间估计
+
+我们常取 $\mu$ 的点估计为样本均值 $\bar{X}$，则有 $\bar{X} \sim N(\mu, \frac{\sigma^{2}}{n})$，即 $\frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$。这个分布是已知的，因此可取枢轴量 $G(X_{1}, X_{2}, \cdots, X_{n}; \mu) = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$。
+
+设常数 $a < b$，且满足
+
+$$P \left\{ a < \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}} < b \right\} = P \left\{ \bar{X} - b \frac{\sigma}{\sqrt{n}} < \mu < \bar{X} - a \frac{\sigma}{\sqrt{n}} \right\} = 1 - \alpha$$
+
+此时，区间的平均长度为 $L = (b - a)\frac{\sigma}{\sqrt{n}}$。根据正态分布的对称性，知取 $a = -b = -z_{\frac{\alpha}{2}}$ 时，区间的长度 $L$ 最短。从而所对应的 $\mu$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} - \frac{\sigma}{\sqrt{n}} z_{\frac{\alpha}{2}}, \bar{X} + \frac{\sigma}{\sqrt{n}} z_{\frac{\alpha}{2}} \right)$$
+
+常记作
+
+$$\left( \bar{X} \pm \frac{\sigma}{\sqrt{n}} z_{\frac{\alpha}{2}} \right)$$
+
+#### $\sigma^{2}$ 未知时均值 $\mu$ 的区间估计
+
+此时，我们不能再取 $\frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$ 为枢轴量，因为其中除含有待估参数 $\mu$ 外，还含有未知参数 $\sigma^{2}$。考虑将 $\sigma^{2}$ 的无偏估计量 $S^{2}$ 代入，有
+
+$$\frac{\bar{X} - \mu}{\frac{S}{\sqrt{n}}} \sim t(n - 1)$$
+
+这个分布是已知的，因此可取枢轴量
+
+$$G(X_{1}, X_{2}, \cdots, X_{n}; \mu) = \frac{\bar{X} - \mu}{\frac{S}{\sqrt{n}}}$$
+
+根据 $t$ 分布，我们有
+
+$$P \left\{ \left| \frac{\bar{X} - \mu}{\frac{S}{\sqrt{n}}} \right| < t_{\frac{\alpha}{2}} (n - 1) \right\} = P \left\{ \bar{X} - \frac{S}{\sqrt{n}} t_{\frac{\alpha}{2}} (n - 1) < \mu < \bar{X} + \frac{S}{\sqrt{n}} t_{\frac{\alpha}{2}} (n - 1) \right\} = 1 - \alpha$$
+
+于是所对应的 $\mu$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} \pm \frac{S}{\sqrt{n}} t_{\frac{\alpha}{2}} (n - 1) \right)$$
+
+#### 成对数据情形
+
+对于成对数据样本 $(X_{1}, Y_{1}), (X_{2}, Y_{2}), \cdots, (X_{n}, Y_{n})$，$X_{i}$ 和 $Y_{i}$ 一般不独立，且 $X_{1}, X_{2}, \cdots, X_{n}$ 不能看作是来自同一个正态总体的样本，$Y_{1}, Y_{2}, \cdots, Y_{n}$ 也不能看作是来自同一个正态总体的样本。
+
+此时，我们一般考察差值 $D_{i} = X_{i} - Y_{i}, i = 1, 2, \cdots, n$。我们可以将 $D_{1}, D_{2}, \cdots, D_{n}$ 看作是来自同一个正态总体 $N(\mu_{D}, \sigma_{D}^{2})$ 的样本。所以，求有关成对数据的均值差 $\mu_{1} - \mu_{2}$ 的置信区间问题可以转化为求单个正态总体均值 $\mu_{D}$ 的置信区间问题。
+
+根据前文，可得 $\mu_{D}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{D} \pm \frac{S_{D}}{\sqrt{n}} t_{\frac{\alpha}{2}} (n - 1) \right)$$
+
+其中 $\bar{D} = \bar{X} - \bar{Y}, S_{D}^{2} = \frac{1}{n - 1} \sum_{i = 1}^{n} (D_{i} - \bar{D})^{2}$。
+
+#### $\mu$ 未知时方差 $\sigma^{2}$ 的区间估计
+
+$\sigma^{2}$ 的无偏估计量为样本方差 $S^{2}$，当 $\mu$ 已知时这是可以直接求得的，因此我们只关注 $\mu$ 未知时的情形。
+
+由前文可知，有
+
+$$\frac{(n - 1) S^{2}}{\sigma^{2}} \sim \chi^{2} (n - 1)$$
+
+这个分布是已知的，因此可取枢轴量
+
+$$G(X_{1}, X_{2}, \cdots, X_{n}; \mu) = \frac{(n - 1) S^{2}}{\sigma^{2}}$$
+
+根据 $\chi^{2}$ 分布，我们有
+
+$$P \left\{ \chi_{1 - \frac{\alpha}{2}}^{2} (n - 1) < \frac{(n - 1) S^{2}}{\sigma^{2}} < \chi_{\frac{\alpha}{2}}^{2} (n - 1) \right\} = P \left\{ \frac{(n - 1) S^{2}}{\chi_{\frac{\alpha}{2}}^{2} (n - 1)} < \sigma^{2} < \frac{(n - 1) S^{2}}{\chi_{1 - \frac{\alpha}{2}}^{2} (n - 1)} \right\} = 1 - \alpha$$
+
+于是所对应的 $\sigma^{2}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \frac{(n - 1) S^{2}}{\chi_{\frac{\alpha}{2}}^{2} (n - 1)}, \frac{(n - 1) S^{2}}{\chi_{1 - \frac{\alpha}{2}}^{2} (n - 1)} \right)$$
+
+这里需要说明的是，由于 $\chi^{2}$ 分布的密度函数是不对称的，故以上所求得的置信区间并不满足区间平均长度最短。但这一区间在实际应用中较为方便。
+
+### 两个正态总体情形
+
+设有两个正态总体 $X \sim N(\mu_{1}, \sigma_{1}^{2}), Y \sim N(\mu_{2}, \sigma_{2}^{2})$，$X_{1}, X_{2}, \cdots, X_{n_{1}}, n_{1} \geq 2$ 为来自总体 $X$ 的样本，$Y_{1}, Y_{2}, \cdots, Y_{n_{2}}, n_{2} \geq 2$ 为来自总体 $Y$ 的样本。两样本相互独立，$\bar{X}, \bar{Y}$ 分别为两样本均值，$S_{1}^{2}, S_{2}^{2}$ 分别为两样本方差。
+
+#### $\sigma_{1}$ 和 $\sigma_{2}$ 已知时均值差 $\mu_{1} - \mu_{2}$ 的区间估计
+
+取 $\mu_{1} - \mu_{2}$ 的无偏估计 $\bar{X} - \bar{Y}$，则由正态分布的性质有
+
+$$\bar{X} - \bar{Y} \sim N \left( \mu_{1} - \mu_{2}, \frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}} \right)$$
+
+利用单个总体均值区间估计的结论，可得 $\mu_{1} - \mu_{2}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} - \bar{Y} \pm \sqrt{\frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}}} z_{\frac{\alpha}{2}} \right)$$
+
+#### $\sigma_{1}$ 和 $\sigma_{2}$ 相等且未知时均值差 $\mu_{1} - \mu_{2}$ 的区间估计
+
+当俩总体的方差相同，即 $\sigma_{1}^{2} = \sigma_{2}^{2} = \sigma^{2}$，但未知时，我们可以取 $\sigma^{2}$ 的无偏估计量
+
+$$S_{w}^{2} = \frac{(n_{1} - 1) S_{1}^{2} + (n_{2} - 1) S_{2}^{2}}{n_{1} + n_{2} - 2}$$
+
+此时有
+
+$$\frac{(\bar{X} - \bar{Y}) - (\mu_{1} - \mu_{2})}{S_{w} \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}} \sim t(n_{1} + n_{2} - 2)$$
+
+利用单个总体均值区间估计的结论，可得 $\mu_{1} - \mu_{2}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} - \bar{Y} \pm S_{w} \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}} t_{\frac{\alpha}{2}} (n_{1} + n_{2} - 2) \right)$$
+
+#### $\sigma_{1}$ 和 $\sigma_{2}$ 未知时均值差 $\mu_{1} - \mu_{2}$ 的区间估计
+
+当样本容量 $n_{1}$ 和 $n_{2}$ 充分大时，可以证明
+
+$$\frac{(\bar{X} - \bar{Y}) - (\mu_{1} - \mu_{2})}{\sqrt{\frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}}}}$$
+
+渐进服从标准正态分布 $N(0, 1)$，于是可得 $\mu_{1} - \mu_{2}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} - \bar{Y} \pm \sqrt{\frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}}} z_{\frac{\alpha}{2}} \right)$$
+
+对于有限小样本，可以证明
+
+$$\frac{(\bar{X} - \bar{Y}) - (\mu_{1} - \mu_{2})}{\sqrt{\frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}}}}$$
+
+近似服从自由度为 $k$ 的 $t$ 分布，其中
+
+$$k = \left\lfloor \frac{\left( \frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}} \right)^{2}}{\frac{(S_{1}^{2})^{2}}{n_{1}^{2} (n_{1} - 1)} + \frac{(S_{2})^{2}}{n_{2}^{2} (n_{2} - 1)}} \right\rfloor$$
+
+在实际应用中，也常用 $\min \{ n_{1} - 1, n_{2} - 1 \}$ 近似代替上述自由度 $k$。此时 $\mu_{1} - \mu_{2}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} - \bar{Y} \pm S_{w} \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}} t_{\frac{\alpha}{2}} (k) \right)$$
+
+#### 方差比 $\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$ 的区间估计
+
+取 $\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$ 的点估计  $\frac{S_{1}^{2}}{S_{2}^{2}}$，有
+
+$$\frac{\frac{S_{1}^{2}}{\sigma_{1}^{2}}}{\frac{S_{2}^{2}}{\sigma_{2}^{2}}} \sim F(n_{1} - 1, n_{2} - 1)$$
+
+利用枢轴量法，可求得 $\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\frac{\frac{S_{1}^{2}}{S_{2}^{2}}}{F_{\frac{\alpha}{2}} (n_{1} - 1, n_{2} - 1)}, \frac{\frac{S_{1}^{2}}{S_{2}^{2}}}{F_{1 - \frac{\alpha}{2}} (n_{1} - 1, n_{2} - 1)}$$
+
+这里需要说明的是，由于 $F$ 分布的密度函数是不对称的，故以上所求得的置信区间并不满足区间平均长度最短。但这一区间在实际应用中较为方便。
+
+### 总结
+
+最后，我们将这一节的内容整理为下表：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/probability_and_statistics/chapter_7_1.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 非正态总体参数的区间估计
+
+当数据不服从正态分布时，求参数区间估计的一种有效方法就是所谓的大样本方法，即要求样本容量比较大，再利用中心极限定理进行分析。
+
+### 0-1 分布参数的区间估计
+
+设总体 $X$ 服从 0-1 分布 $B(1, p)$，$X_{1}, X_{2}, \cdots, X_{n}$ 是来自总体 $X$ 的样本，当 $n$ 充分大时，由中心极限定理知
+
+$$\frac{\sum_{i = 1}^{n} X_{i} - np}{\sqrt{np(1 - p)}} = \frac{n \bar{X} - np}{\sqrt{np(1 - p)}}$$
+
+近似服从标准正态分布 $N(0, 1)$。于是有
+
+$$P \left\{ -z_{\frac{\alpha}{2}} < \frac{n \bar{X} - np}{\sqrt{np(1 - p)}} < z_{\frac{\alpha}{2}} \right\} \approx 1 - \alpha$$
+
+等价于
+
+$$P\{(n + z_{\frac{\alpha}{2}}^{2}) p^{2} - (2n \bar{X} + z_{\frac{\alpha}{2}}^{2}) p + n \bar{X}^{2} < 0\} \approx 1 - \alpha$$
+
+求解方程可得参数 $p$ 的置信水平为 $1 - \alpha$ 的近似置信区间为
+
+$$\left( \frac{1}{2a} (- b - \sqrt{b^{2} - 4ac}), \frac{1}{2a} (- b + \sqrt{b^{2} - 4ac}) \right) = (\hat{p}_{L}, \hat{p}_{U})$$
+
+其中 $a = n + z_{\frac{\alpha}{2}}^{2}, b = -(2n \bar{X} + z_{\frac{\alpha}{2}}^{2}), c = n \bar{X}^{2}$。或取 $p(1 - p)$ 的估计量为 $\bar{X}(1 - \bar{X})$，得 $p$ 的置信水平为 $1 - \alpha$ 的近似置信区间为
+
+$$\left( \bar{X} \pm z_{\frac{\alpha}{2}} \sqrt{\frac{\bar{X}(1 - \bar{X})}{n}} \right)$$
+
+### 其它分布均值 $\mu$ 的区间估计
+
+设总体 $X$ 的均值为 $\mu$，方差为 $\sigma^{2}$，$X_{1}, X_{2}, \cdots, X_{n}$ 是来自总体 $X$ 的样本。根据中心极限定理，当样本容量 $n$ 充分大时，
+
+$$\frac{\sum_{i = 1}^{n} X_{i} - n \mu}{\sqrt{n} \sigma}$$
+
+近似服从标准正态分布 $N(0, 1)$。故 $\mu$ 的置信水平为 $1 - \alpha$ 的近似置信区间为
+
+$$\left( \bar{X} \pm \frac{\sigma}{\sqrt{n}} z_{\frac{\alpha}{2}} \right)$$
+
+如果方差 $\sigma^{2}$ 未知，可以用估计量 $S^{2}$ 代替 $\sigma^{2}$，由此得到相应的近似置信区间为
+
+$$\left( \bar{X} \pm \frac{S}{\sqrt{n}} z_{\frac{\alpha}{2}} \right)$$
+
+对于有限小样本，可以证明
+
+$$\frac{\bar{X} - \mu}{\frac{S}{\sqrt{n}}}$$
+
+近似服从自由度为 $n - 1$ 的 $t$ 分布，即 $t(n - 1)$。故均值 $\mu$ 的置信水平为 $1 - \alpha$ 的近似置信区间为
+
+$$\left( \bar{X} \pm \frac{S}{\sqrt{n}} t_{\frac{\alpha}{2}} (n - 1) \right)$$

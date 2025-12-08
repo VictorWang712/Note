@@ -308,3 +308,19 @@ If a problem can be solved by dynamic programming, it must be solved in polynomi
     正确答案：F
 
     解析：一些动态规划问题，如背包问题的复杂度是伪多项式的，故不能保证。
+
+---
+
+HW11 判断题 1-3
+
+Suppose ALG is an $\alpha$-approximation algorithm for an optimisation problem $\Pi$ whose approximation ratio is tight. Then for every $\epsilon > 0$ there is no $(\alpha - \epsilon)$-approximation algorithm for $\Pi$ unless $\text{P} = \text{NP}$.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：一个算法的近似比是「紧的」，仅仅意味着该算法在最坏情况下的性能比确实达到了 $\alpha$，即存在问题的实例使得算法得到的解与最优解的比值恰好为 $\alpha$（或收敛于 $\alpha$）。但这只说明了该算法本身的分析是紧的，并不代表问题 $\Pi$ 在计算复杂性意义上具有近似下界。
+    
+    问题的近似下界需要单独证明，通常需要基于复杂性假设（如 $\text{P} = \text{NP}$）来证明不存在比某个比率更好的近似算法。而仅从某个算法的近似比是紧的这一事实，并不能推出其他算法无法取得更好的近似比。
+    
+    所以，原陈述的结论并不成立，除非问题 $\Pi$ 本身已被证明在 $\text{P} = \text{NP}$ 的条件下不存在比 $\alpha$ 更好的近似算法，但这一点并不能从算法 ALG 的近似比是紧的推导出来。

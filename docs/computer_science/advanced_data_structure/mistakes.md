@@ -324,3 +324,19 @@ Suppose ALG is an $\alpha$-approximation algorithm for an optimisation problem $
     问题的近似下界需要单独证明，通常需要基于复杂性假设（如 $\text{P} = \text{NP}$）来证明不存在比某个比率更好的近似算法。而仅从某个算法的近似比是紧的这一事实，并不能推出其他算法无法取得更好的近似比。
     
     所以，原陈述的结论并不成立，除非问题 $\Pi$ 本身已被证明在 $\text{P} = \text{NP}$ 的条件下不存在比 $\alpha$ 更好的近似算法，但这一点并不能从算法 ALG 的近似比是紧的推导出来。
+
+---
+
+HW12 判断题 1-1
+
+For the graph given in the following figure, if we start from deleting the black vertex, then local search can always find the minimum vertex cover.
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/advanced_data_structure/mistakes_1.png" width="70%" style="margin: 0 auto;">
+</div>
+
+??? abstract "答案解析"
+
+    正确答案：T
+
+    解析：在此例中，最优解中的顶点无法被删去，否则无法得到任何可行解。在这种情况下，我们确实可以保证得到最优解。

@@ -248,3 +248,204 @@ $$p_{0} = P_{\sigma^{2} = \sigma_{0}^{2}} \left\{ \frac{(n - 1) S^{2}}{\sigma_{0
 - 右侧检验：$P\text{-值} = 1 - p_{0}$
 
 我们称上述检验为 $\chi^{2}$ 检验。
+
+## 两个正态总体参数的假设检验
+
+### 比较两个正态总体均值的假设检验
+
+设正态总体 $X \sim N(\mu_{1}, \sigma_{1}^{2}), Y \sim N(\mu_{2}, \sigma_{2}^{2})$，$X_{1}, X_{2}, \cdots, X_{n}$ 和 $Y_{1}, Y_{2}, \cdots, Y_{n}$ 分别是来自这两个总体的独立样本。记
+
+$$\begin{aligned}
+    & \bar{X} = \frac{1}{n_{1}} \sum_{i = 1}^{n_{1}} X_{i}, & S_{1}^{2} = \frac{1}{n_{1} - 1} \sum_{i = 1}^{n_{1}} (X_{i} - \bar{X})^{2} \\
+    & \bar{Y} = \frac{1}{n_{2}} \sum_{i = 1}^{n_{2}} Y_{i}, & S_{2}^{2} = \frac{1}{n_{2} - 1} \sum_{i = 1}^{n_{2}} (Y_{i} - \bar{Y})^{2}
+\end{aligned}$$
+
+考虑双侧假设问题：
+
+$$H_{0}: \mu_{1} = \mu_{2}, H_{1}: \mu_{1} \neq \mu_{2}$$
+
+显然，当原假设 $H_{0}$ 成立时，两样本均值取值应比较接近，即 $|\bar{X} - \bar{Y}|$ 取值较小，因此我们可取检验统计量为 $\bar{X} - \bar{Y}$。接下来，我们分几种情况讨论。
+
+#### $\sigma_{1}$ 和 $\sigma_{2}$ 已知
+
+由先前的定理可知，此时 $\bar{X} - \bar{Y} \sim N(\mu_{1} - \mu_{2}, \frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}})$。那么当 $H_{0}$ 成立时，$\frac{\bar{X} - \bar{Y}}{\sqrt{\frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}}}} \sim N(0, 1)$。此时采用 $Z$ 检验，可得拒绝域为
+
+$$W = \left\{ \frac{\bar{X} - \bar{Y}}{\sqrt{\frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}}}} \geq z_{\frac{\alpha}{2}} \right\}$$
+
+$P$-值为
+
+$$P\text{-值} = P_{H_{0}} \{ |Z| \geq |z_{0}| \} = 2(1 - \Phi(|z_{0}|))$$
+
+其中 $Z \sim N(0, 1)$，$z_{0}$ 为给定样本值时检验统计量的取值。
+
+#### $\sigma_{1}$ 和 $\sigma_{2}$ 相等且未知
+
+当两总体的方差相同，即 $\sigma_{1}^{2} = \sigma_{2}^{2} = \sigma^{2}$，但未知时，我们可以取 $\sigma^{2}$ 的无偏估计量
+
+$$S_{w}^{2} = \frac{(n_{1} - 1) S_{1}^{2} + (n_{2} - 1) S_{2}^{2}}{n_{1} + n_{2} - 2}$$
+
+可取检验统计量为
+
+$$T = \frac{\bar{X} - \bar{Y}}{S_{w} \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$
+
+当 $H_{0}$ 成立时，$T \sim t(n_{1} + n_{2} - 2)$，则检验的拒绝域为
+
+$$W = \{ |T| \geq t_{\frac{\alpha}{2}}(n_{1} + n_{2} - 2) \}$$
+
+$P$-值为
+
+$$P\text{-值} = P_{H_{0}} \{ |T| \geq |t_{0}| \} = 2 P \{ t(n_{1} + n_{2} - 2) \geq |t_{0}| \}$$
+
+其中 $t_{0}$ 为给定样本值时检验统计量 $T$ 的取值。
+
+我们称上述检验为两样本精确 $t$ 检验。
+
+#### $\sigma_{1}$ 和 $\sigma_{2}$ 未知
+
+我们分别以两样本方差 $S_{1}^{2}, S_{2}^{2}$ 作为 $\sigma_{1}^{2}, \sigma_{2}^{2}$ 的无偏估计。
+
+当样本容量 $n_{1}$ 和 $n_{2}$ 充分大时，可取检验统计量为
+
+$$T = \frac{\bar{X} - \bar{Y}}{\sqrt{\frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}}}}$$
+
+可以证明当原假设 $H_{0}$ 成立时，$T$ 渐进服从标准正态分布 $N(0, 1)$，则检验拒绝域为
+
+$$W = \{ |T| \geq z_{\frac{\alpha}{2}} \}$$
+
+$P$-值为
+
+$$P\text{-值} = P_{H_{0}} \{ |T| \geq |t_{0}| \} = 2 P \{ Z \geq |t_{0}| \}$$
+
+其中 $Z \sim N(0, 1)$，$t_{0}$ 为给定样本值时检验统计量的取值。
+
+对于有限小样本，仍然取检验统计量为
+
+$$T = \frac{\bar{X} - \bar{Y}}{\sqrt{\frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}}}}$$
+
+可以证明当原假设 $H_{0}$ 成立时，$T$ 近似服从自由度为 $k$ 的 $t$ 分布，其中
+
+$$k = \left\lfloor \frac{\left( \frac{S_{1}^{2}}{n_{1}} + \frac{S_{2}^{2}}{n_{2}} \right)^{2}}{\frac{(S_{1}^{2})^{2}}{n_{1}^{2} (n_{1} - 1)} + \frac{(S_{2})^{2}}{n_{2}^{2} (n_{2} - 1)}} \right\rfloor$$
+
+在实际应用中，也常用 $\min \{ n_{1} - 1, n_{2} - 1 \}$ 近似代替上述自由度 $k$。此时检验的拒绝域为
+
+$$W = \{ |T| \geq t_{\frac{\alpha}{2}} (k) \}$$
+
+$P$-值为
+
+$$P\text{-值} = P_{H_{0}} \{ |T| \geq |t_{0}| \} = 2 P \{ t(k) \geq |t_{0}| \}$$
+
+其中 $t_{0}$ 为给定样本值时检验统计量的取值。
+
+我们称上述小样本情形下的检验为两样本近似 $t$ 检验。
+
+### 比较两个正态总体方差的假设检验
+
+在前面有关两正态总体均值的比较问题中，当梁总体的方差未知时，我们首先需对两总体方差是否相等进行检验，即考虑下列假设问题：
+
+$$H_{0}: \sigma_{1}^{2} = \sigma_{2}^{2}, H_{1}: \sigma_{1}^{2} \neq \sigma_{2}^{2}$$
+
+取检验统计量为
+
+$$F = \frac{S_{1}^{2}}{S_{2}^{2}}$$
+
+当 $H_{0}$ 成立时，$F \sim F(n_{1} - 1, n_{2} - 1)$，且此时 $F$ 的取值既不能偏大也不能偏小，因此检验的拒绝域为
+
+$$W = \{ F \geq F_{\frac{\alpha}{2}}(n_{1} - 1, n_{2} - 1) \} = \{ F \leq F_{1 - \frac{\alpha}{2}}(n_{1} - 1, n_{2} - 1) \}$$
+
+记 $f_{0} = \frac{s_{1}^{2}}{s_{2}^{2}}$ 为给定样本值时检验统计量的取值，设
+
+$$p_{0} = P_{\sigma_{1}^{2} = \sigma_{2}^{2}} \left\{ \frac{S_{1}^{2}}{S_{2}^{2}} \leq \frac{s_{1}^{2}}{s_{2}^{2}} \right\} = P \{ F(n_{1} - 1, n_{2} - 1) \leq f_{0} \}$$
+
+$P$-值为
+
+$$P\text{-值} = 2 \min \{ p_{0}, 1 - p_{0} \}$$
+
+类似地，对于左侧检验
+
+$$H_{0}: \sigma_{1}^{2} \geq \sigma_{2}^{2}, H_{1}: \sigma_{1}^{2} < \sigma_{2}^{2}$$
+
+$P$-值为
+
+$$P\text{-值} = p_{0}$$
+
+对于右侧检验
+
+$$H_{0}: \sigma_{1}^{2} \leq \sigma_{2}^{2}, H_{1}: \sigma_{1}^{2} > \sigma_{2}^{2}$$
+
+$P$-值为
+
+$$P\text{-值} = 1 - p_{0}$$
+
+## 正态总体参数的假设检验总结
+
+我们将正态总体参数的假设检验整理为下表：
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/probability_and_statistics/chapter_8_1.png" width="70%" style="margin: 0 auto;">
+</div>
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/mathematics/probability_and_statistics/chapter_8_2.png" width="70%" style="margin: 0 auto;">
+</div>
+
+## 假设检验与区间估计
+
+假设检验和区间估计间有密切的联系。
+
+先来看方差已知时单个正态总体均值的假设检验与区间估计的关系。设 $X_{1}, X_{2}, \cdots, X_{n}$ 时来自正态总体 $N(\mu, \sigma^{2})$ 的样本，其中方差 $\sigma^{2}$ 已知。根据前述讨论，可知 $\mu$ 的置信水平为 $1 - \alpha$ 的置信区间为
+
+$$\left( \bar{X} - \frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}}, \bar{X} + \frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} \right)$$
+
+对于均值 $\mu$ 的双侧假设问题
+
+$$H_{0}: \mu = \mu_{0}, H_{1}: \mu \neq \mu_{0}$$
+
+在给定的显著性水平下，检验的拒绝域为
+
+$$W = \left\{ \left| \frac{\bar{X} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \right| \geq z_{\frac{\alpha}{2}} \right\}$$
+
+从而检验的接受域为
+
+$$ \overline{W} = \left\{ \left| \frac{\bar{X} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \right| < z_{\frac{\alpha}{2}} \right\} = \left\{ \bar{X} - \frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} < \mu_{0} < \bar{X} + \frac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} \right\}$$
+
+可见，$\mu$ 的置信水平为 $1 - \alpha$ 的置信区间和 $\mu$ 的显著性水平为 $\alpha$ 的检验接受域可以互相推知。
+
+一般来说，设 $X_{1}, X_{2}, \cdots, X_{n}$ 为来自总体 $X \sim F(x; \theta)$ 的样本。如果双侧假设问题
+
+$$H_{0}: \theta = \theta_{0}, H_{1}: \theta \neq \theta_{0}$$
+
+的显著性水平为 $\alpha$ 的检验的接受域 $\overline{W}$ 能等价地写成 $\hat{\theta}_{L} < \theta < \hat{\theta}_{U}$ 的形式，那么 $(\hat{\theta}_{L}, \hat{\theta}_{U})$ 是 $\theta$ 的置信水平为 $1 - \alpha$ 的置信区间。反之，若 $(\hat{\theta}_{L}, \hat{\theta}_{U})$ 是 $\theta$ 的置信水平为 $1 - \alpha$ 的置信区间，则当 $\theta_{0} \in (\hat{\theta}_{L}, \hat{\theta}_{U})$ 是，我们没有充分的把握认为 $\theta \neq \theta_{0}$，因此接受原假设 $H_{0}: \theta = \theta_{0}$。显然这个假设的拒绝域为
+
+$$W = \{ \theta_{0} \leq \hat{\theta}_{L} \text{ 或 } \theta_{0} \geq \hat{\theta}_{U} \}$$
+
+## 拟合优度检验
+
+前面的讨论都是在总体服从正态分布的前提下，对分布的参数进行的假设检验。但在实际情况中，有时不能预知总体服从什么类型的分布，这时就需要现根据样本检验关于总体分布的假设。
+
+设 $F(x)$ 是总体的未知的分布函数，又设 $F_{0}(x)$ 是具有某种已知类型的分布函数，但可能含有若干个位置参数，需检验假设
+
+$$H_{0}: F(x) = F_{0}(x)$$
+
+统计中有关这类分布的假设检验称作拟合优度检验。本节主要介绍皮尔逊拟合优度 $\chi^{2}$ 检验。
+
+皮尔逊 $\chi^{2}$ 检验的基本思想：对总体 $X$ 的取值分成互不相容的 $k$ 类，记作 $A_{1}, A_{2}, \cdots, A_{k}$。设 $X_{1}, X_{2}, \cdots, X_{n}$ 是来自该总体的样本，并记 $n_{i}$ 为样本值落在 $A_{i}$ 的个数。当 $H_{0}$ 中的 $F_{0}(x)$ 完全已知时，我们可以计算 $p_{i} = P_{H_{0}}(A_{i}), i = 1, 2, \cdots, k$。而当假设 $H_{0}$ 中的 $F_{0}(x)$ 含有 $r$ 个位置参数时，要先在 $F_{0}(x)$ 的形式下利用极大似然法估计 $r$ 个未知的参数，然后求得 $p_{i}$ 的估计 $\hat{p}_{i}$。当 $H_{0}$ 为真时，$n$ 个个体中属于 $A_{i}$ 类的期望个数应为 $np_{i}$（或 $n \hat{p}_{i}$）。在统计中，$n_{i}$ 称作实际频数，$np_{i}$（或 $n \hat{p}_{i}$）称作理论频数。皮尔逊提出用统计量
+
+$$\chi^{2} = \sum_{i = 1}^{k} \frac{(n_{i} - np_{i})^{2}}{np_{i}}$$
+
+或
+
+$$\chi^{2} = \sum_{i = 1}^{k} \frac{(n_{i} - n \hat{p}_{i})^{2}}{n \hat{p}_{i}}$$
+
+作为衡量实际频数与理论频数偏差的综合指标。皮尔逊证明了以下极限定理：
+
+当 $n$ 充分大时，若 $H_{0}$ 为真，统计量 $\chi^{2}$ 近似服从 $chi^{2}(k - r - 1)$ 分布，其中 $k$ 为分类数，$r$ 为 $F_{0}(x)$ 中含有的未知参数个数。
+
+由当 $H_{0}$ 为真时，$\chi^{2}$ 的值偏小。故检验的拒绝域为
+
+$$W = \{ \chi^{2} \geq \chi_{\alpha}^{2} (k - r - 1) \}$$
+
+$P$-值为
+
+$$P\text{-值} = P \{ \chi^{2}(k - r - 1) \geq \chi_{0}^{2} \}$$
+
+其中 $\chi_{0}^{2}$ 为检验统计量 $\chi^{2}$ 的观测值。我们称 $P$-值为所得数据原假设的拟合优度。$P$-值越大，则越没有充分的理由拒绝原假设。给定显著性水平 $\alpha$，当 $P\text{-值} \leq \alpha$ 时，就拒绝原假设。

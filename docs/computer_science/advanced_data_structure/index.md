@@ -29,3 +29,4 @@ comments: true
 - 陈昊老师的课件
 - [OI Wiki](https://oi-wiki.org/)
 - [💎 高级数据结构 | Advanced Data Structure - Isshiki修's Notebook](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/)
+- [高级数据结构与算法分析 - NoughtQ的笔记本](https://note.noughtq.top/algo/ads/)

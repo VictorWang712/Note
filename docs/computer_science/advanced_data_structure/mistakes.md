@@ -340,3 +340,17 @@ For the graph given in the following figure, if we start from deleting the black
     正确答案：T
 
     解析：在此例中，最优解中的顶点无法被删去，否则无法得到任何可行解。在这种情况下，我们确实可以保证得到最优解。
+
+---
+
+HW13 判断题 1-1
+
+Let $a = (a_{1}, a_{2}, \cdots, a_{i}, \cdots, a_{j}, \cdots, a_{n})$ denote the list of elements we want to sort. In the quicksort algorithm, if the pivot is selected uniformly at random. Then any two elements get compared at most once and the probability of $a_{i}$ and $a_{j}$ being compared is $\frac{2}{j - i + 1}$ for $j > i$, given that $a_{i}$ or $a_{j}$ is selected as the pivot.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：对于**已经排序好的最终序列**，其中的 $a_{i}$ 和 $a_{j}$ 被比较的概率确实是 $\frac{2}{j - i + 1}$。因为其只会在完成对 $a_{i}$ 到 $a_{j}$ 这 $j - i + 1$ 个数的排序中被比较，而恰好选到 $a_{i}$ 或 $a_{j}$ 作 pivot 的可能情况只有两种。
+
+    而题目中的 $a_{i}$ 和 $a_{j}$ 是原始**未排序序列**中的数，不具有任何有序性，所以上述讨论是无意义的，自然也不能导出对应的概率结论。

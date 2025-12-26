@@ -110,7 +110,7 @@ $$P(B_{k} | A) = \frac{P(B_{k} A)}{P(A)} = \frac{P(B_{k} P(A | B_{k}))}{\sum_{j 
 
 ## 事件的独立性与独立试验
 
-设 $A, B$ 为两随机事件，当 $P(AB) = P(A) \cdot P(B)$ 时，称事件 $A, B$ **相互独立** (independent)。、
+设 $A, B$ 为两随机事件，当 $P(AB) = P(A) \cdot P(B)$ 时，称事件 $A, B$ **相互独立** (independent)。
 
 当 $P(A) \cdot P(B) \neq 0$ 时，事件 $A, B$ 相互独立等价于 $P(B | A) = P(B)$ 或 $P(A | B) = P(A)$。
 

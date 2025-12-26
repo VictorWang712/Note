@@ -35,7 +35,7 @@ $$P \{ Y = y_{j} \} = \sum_{i = 1}^{+\infty} p_{ij} = p_{\cdot j}, j = 1, 2, \cd
 
 显然有 $p_{i \cdot} \geq 0, p_{\cdot j} \geq 0, \sum_{i} p_{i \cdot} = 1, \sum_{j} p_{\cdot j} = 1$，即 $p_{i \cdot}, i = 1, 2, \cdots$ 与 $p_{\cdot j}, j = 1, 2, \cdots$ 满足概率分布律的性质，它们分别是随机变量 $X$ 与 $Y$ 的概率分布律，称作 $X$ 和 $Y$ 的**边际分布律** (marginal distribution law) 或边缘分布律。
 
-### 二位离散型随机变量的条件分布
+### 二维离散型随机变量的条件分布
 
 设二维离散型随机变量 $(X, Y)$ 的联合分布律为 $P \{ X = x_{i}, Y = y_{j} \} = p_{ij}, i, j = 1, 2, \cdots$，则当 $P \{ Y = y_{j} \} \neq 0$ 时，
 
@@ -75,7 +75,7 @@ F_{X} (x) = P \{ X \leq x \} = P \{ X \leq x, Y < +\infty \} = F(x, +\infty) \\
 F_{Y} (y) = P \{ Y \leq y \} = P \{ Y \leq y, X < +\infty \} = F(+\infty, y)
 \end{aligned}$$
 
-为 $X, Y$ 的边际概率分布函数，简称**边际分布函数** (marginal distribution function)。即二位随机变量的边际分布函数是联合分布函数当另一个变量趋于 $+\infty$ 时的极限函数。
+为 $X, Y$ 的边际概率分布函数，简称**边际分布函数** (marginal distribution function)。即二维随机变量的边际分布函数是联合分布函数当另一个变量趋于 $+\infty$ 时的极限函数。
 
 ### 条件分布函数
 
@@ -107,7 +107,7 @@ $$F_{Y | X} (y | x) = \lim_{\delta \to 0^{+}} P \{ Y \leq y | x - \delta < X \le
 
 设二维随机变量 $(X, Y)$ 的联合分布函数为 $F(x, y)$，若存在二元非负函数 $f(x, y)$，使对任意的实数 $x, y$ 有
 
-$$F(x, y) = \int_{-\infty}^{x} \int_{-\infty}^{x} f(u, v) \mathrm{d} u \mathrm{d} v$$
+$$F(x, y) = \int_{-\infty}^{x} \int_{-\infty}^{y} f(u, v) \mathrm{d} u \mathrm{d} v$$
 
 则称 $(X, Y)$ 为**二维连续型随机变量** (bivariate continuous random variable)，称 $f(x, y)$ 为 $(X, Y)$ 的**联合概率密度函数** (joint probability density function)，简称联合密度函数。
 

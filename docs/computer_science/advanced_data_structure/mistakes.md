@@ -354,3 +354,15 @@ Let $a = (a_{1}, a_{2}, \cdots, a_{i}, \cdots, a_{j}, \cdots, a_{n})$ denote the
     解析：对于**已经排序好的最终序列**，其中的 $a_{i}$ 和 $a_{j}$ 被比较的概率确实是 $\frac{2}{j - i + 1}$。因为其只会在完成对 $a_{i}$ 到 $a_{j}$ 这 $j - i + 1$ 个数的排序中被比较，而恰好选到 $a_{i}$ 或 $a_{j}$ 作 pivot 的可能情况只有两种。
 
     而题目中的 $a_{i}$ 和 $a_{j}$ 是原始**未排序序列**中的数，不具有任何有序性，所以上述讨论是无意义的，自然也不能导出对应的概率结论。
+
+---
+
+HW14 判断题 1-4
+
+In order to solve the maximum finding problem by a parallel algorithm with $T(n) = O(1)$, we need work load $W(n) = \Omega(n^{2})$ in return.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：在 CRCW PRAM 模型中，存在 $T(n) = O(1), W(n) = O(n)$ 的算法。

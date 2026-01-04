@@ -577,7 +577,7 @@ and ((ID/EX.RegisterRd = IF/ID.RegisterRs1)
 >     ld x31, 0(x20) // x31 = array element
 >     add x31, x31, x21 // add scalar in x21
 >     sd x31, 0(x20) // store result
->     addi x20, x20, -8 //decrement pointer
+>     addi x20, x20, -8 // decrement pointer
 >     blt x22, x20, Loop // branch if x20 > x22
 > ```
 >

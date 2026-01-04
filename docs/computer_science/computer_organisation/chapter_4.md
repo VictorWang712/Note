@@ -430,7 +430,7 @@ sd x15, 100(x2) // Base(x2) depends on sub
     and (MEM/WB.RegisterRd != 0)
     and not(EX/MEM.RegWrite and (EX/MEM.RegisterRd != 0)
             and (EX/MEM.RegisterRd = ID/EX.RegisterRs2))
-    and (MEM/WB.RegisterRd = ID/EX.RegisterRs2)) ForwardA = 01
+    and (MEM/WB.RegisterRd = ID/EX.RegisterRs2)) ForwardB = 01
     ```
 
 可以注意到，MEM 冒险需要保证在不发生 EX 冒险时才发生。

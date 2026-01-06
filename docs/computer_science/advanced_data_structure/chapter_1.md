@@ -37,7 +37,7 @@ comments: true
 
 ### 双旋
 
-介绍单旋，我们将以情形 2 进行介绍，即如下图：
+介绍双旋，我们将以情形 2 进行介绍，即如下图：
 
 <div style="text-align: center; margin-top: 0px;">
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/advanced_data_structure/chapter_1_2.png" width="70%" style="margin: 0 auto;">

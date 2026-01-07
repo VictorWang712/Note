@@ -317,7 +317,7 @@ The Huffman code is one kind of optimal prefix codes. For a given alphabet and i
 
 ??? abstract "答案解析"
 
-    正确答案：T
+    正确答案：F
 
     解析：在 Huffman 树中，同样权重的节点可能在不同层。
 
@@ -425,7 +425,7 @@ Which one of the following statements is FALSE?
 
     正确答案：D
 
-    解析：B 选项：如果存在一个趋近于 $1$ 的近四比，那么就可以在多项式时间内恢复最优解。从而得到 $\text{P} = \text{NP}$；C 选项：这是一个结论，K 聚类问题的近似算法无法做到小于 $2$-近似，除非 $\text{P} = \text{NP}$；D 选项：在一般有向图中最长路径是 NP-hard 问题，但是 DAG 中最长路径是多项式可解的问题。
+    解析：B 选项：如果存在一个趋近于 $1$ 的近似比，那么就可以在多项式时间内恢复最优解。从而得到 $\text{P} = \text{NP}$；C 选项：这是一个结论，K 聚类问题的近似算法无法做到小于 $2$-近似，除非 $\text{P} = \text{NP}$；D 选项：在一般有向图中最长路径是 NP-hard 问题，但是 DAG 中最长路径是多项式可解的问题。
 
 ---
 
@@ -848,7 +848,7 @@ If $|S| = n$, then the best upper bound of the expected time complexity of this 
 
     正确答案：A
 
-    解析：做分治分析。划分操作，即额外操作的复杂度为 $O(n)$，根据题目条件，划分完一边的规模至少有 $\frac{n}{4}$，也就是说较大的一遍的规模不超过 $\frac{3n}{4}$，于是可得递推式 $T(n) \leq T(\frac{3n}{4}) + O(n)$。应用主定理求解即可。
+    解析：做分治分析。划分操作，即额外操作的复杂度为 $O(n)$，根据题目条件，划分完一边的规模至少有 $\frac{n}{4}$，也就是说较大一边的规模不超过 $\frac{3n}{4}$，于是可得递推式 $T(n) \leq T(\frac{3n}{4}) + O(n)$。应用主定理求解即可。
 
 ---
 
@@ -984,4 +984,437 @@ Given 1000 runs and 8 tapes. If simple k-way merge is used, the minimum number o
 
     正确答案：T
 
-    解析：趟数的公式为 $1 + \lceil \log_{k} \frac{N}{M} \rceil$，在本题中，$N = 1000$，$k = 8 - 1 = 7$，因为要分 1 条磁带作为输出磁带，因为是「simple」的 k 路合并，所以 $M = 1$。
+    解析：趟数的公式为 $\lceil \log_{k} \frac{N}{M} \rceil$，在本题中，$N = 1000$，因为是「simple」的 k 路合并，所以 $M = 1, k = \frac{8}{2} = 4$（如果是 Polyphase Merge，则 $k$ 应为磁带数减 $1$）。
+
+---
+
+F1 判断题 1-1
+
+The $n$-th Fibonacci number can be computed by divide and conquer method of computing $x^n$, where $x$ is the matrix $\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$. Then the $n^2$-th Fibonacci number $F_{n^2}$ can be computed in $O(\log n)$ time.
+
+??? abstract "答案解析"
+
+    正确答案：T
+
+    解析：复杂度的递推式是 $T(n) = T(\frac{n}{2}) + O(1)$ 而不是 T(n) = 2T(\frac{n}{2}) + O(1)$，因为子结果可以复用。代入主定理即可求得复杂度为 $O(\log n)$。
+
+---
+
+F1 选择题 2-15
+
+Two red–black trees are said to be different if they have different tree structures or different node colors. How many different red–black trees are there with 3 internal nodes?
+
+=== "A"
+
+    1
+
+=== "B"
+
+    2
+
+=== "C"
+
+    3
+
+=== "D"
+
+    more than 3
+
+??? abstract "答案解析"
+
+    正确答案：B
+
+    解析：「internal node」指的就是红黑树中的正常节点（即排除了额外的黑空指针），也包括叶子节点。
+
+---
+
+F2 判断题 1-3
+
+To solve the vertex cover problem, there is a greedy algorithm that collects the vertex with the highest degree (i.e., the one covering the largest number of edges) and remove it from the graph at each stage. This greedy algorithm achieves an approximation ratio of 2.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：在 $\text{P} \neq \text{NP}$ 的前提下，顶点覆盖问题的最优近似比确实是 $2$，但这是通过极大匹配算法达到的，即每次选择两个顶点都不在匹配中的边加入匹配直到不能再找到这样的边，此时选择匹配内所有顶点即可得到近似比为 $2$ 的结果。像题目中这样的贪心算法是无法保证任何近似比的（即近似比可以任意大）。
+
+---
+
+F2 判断题 1-9
+
+If a leftist heap can be implemented recursively, so can its counterpart skew heap.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：斜堆不维护严格的结构性质，只是在合并时无条件交换左右子树，在最坏情况下，斜堆的右路径长度可能达到 $O(N)$，当数据量很大且树结构退化时会导致栈溢出。因此斜堆不能用递归实现。
+
+---
+
+F2 判断题 1-11
+
+The following binary search tree is a valid red-black tree.
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/advanced_data_structure/mistakes_2.png" width="70%" style="margin: 0 auto;">
+</div>
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：注意节点 16，其左路径的黑高是 $2$，右路径的黑高则为 $1$。
+
+---
+
+F2 选择题 2-3
+
+Sorting-by-merging is a classic serial algorithm. It can be translated directly into a reasonably efficient parallel algorithm. A recursive description follows.
+
+MERGE-SORT( A(1), A(2), ..., A(n); B(1), B(2), ..., B(n) )
+
+Assume that $n = 2^l$ for some integer $l \ge 0$
+
+if n = 1 then return B(1) := A(1)
+
+else call, in parallel, MERGE-SORT( A(1), ..., A(n/2); C(1), ..., C(n/2) ) and
+
+- MERGE-SORT(A(n/2+1), ..., A(n); C(n/2+1), ..., C(n) )
+- Merge (C(1),...C(n/2)) and (C(n/2 + 1),...,C(n)) into (B(1), B(2), ..., B(n))
+
+Then the MERGE-SORT runs in __ .
+
+=== "A"
+
+    $O(n \log n)$ work and $O(\log^2 n)$ time
+
+=== "B"
+
+    $O(n \log n)$ work and $O(\log n)$ time
+
+=== "C"
+
+    $O(n \log^2 n)$ work and $O(\log^2 n)$ time
+
+=== "D"
+
+    $O(n \log^2 n)$ work and $O(\log n)$ time
+
+??? abstract "答案解析"
+
+    正确答案：A
+
+    解析：$W(n) = 2W(\frac{n}{2}) + O(n)$，代入主定理解得 $W(n) = O(n \log n)$；在[并行算法](https://note.noughtq.top/algo/ads/14#merging)一节中，我们指出合并操作的并行复杂度为 $O(\log n)$，因此有 $T(n) = T(\frac{n}{2}) + O(\log n)$，代入主定理解得 $W(n) = O(\log^{2} n)$。
+
+---
+
+F2 选择题 2-10
+
+Start from $N$ single-node splay trees, let's merge them into one splay tree in the following way: each time we select two splay trees, delete nodes one by one from the smaller tree and insert them into the larger tree. Then which of the following statements is NOT true?
+
+=== "A"
+
+    In any sequence of $N - 1$ merges, there are at most $O(N \log N)$ inserts.
+
+=== "B"
+
+    Any node can be inserted at most $\log N$ times.
+
+=== "C"
+
+    The amortized time bound for each insertion is $O(\log^2 N)$.
+
+=== "D"
+
+    The amortized time bound for each merge is $O(\log N)$.
+
+??? abstract "答案解析"
+
+    正确答案：D
+
+    解析：A、B 选项：每个节点每次被重新插入时，其所在树的规模至少翻倍。因此一个节点最多被插入 $O(\log N)$ 次，总的插入次数最多为 $O(N \log N)$ 次；C 选项：单次插入的时间复杂度应为 $O(\log N)$，但是 $O(\log N) \subset O(\log^{2} N)$，因此题目陈述没有问题；D 选项：合并时，假设小树的大小为 $|T|$，单次插入或删除的复杂度为 $O(\log N)$，故单次合并的复杂度为 $O(|T| \log N)$。由于 $|T|$ 的大小最终会达到 $O(N)$ 级别，因此摊还复杂度一定为形如 $O(S \log N)$ 的形式，且 $S \in O(N)$ 而非 $O(1)$。
+
+---
+
+F2 选择题 2-12
+
+Merge the two skew heaps in the following figure. How many of the following statements is/are FALSE?
+
+- the null path length of 8 is the same as that of 12
+- 40 is the left child of 18
+- the depths of 18 and 33 are the same
+
+<div style="text-align: center; margin-top: 0px;">
+<img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/advanced_data_structure/mistakes_3.png" width="70%" style="margin: 0 auto;">
+</div>
+
+=== "A"
+
+    0
+
+=== "B"
+
+    1
+
+=== "C"
+
+    2
+
+=== "D"
+
+    3
+
+??? abstract "答案解析"
+
+    正确答案：A
+
+    解析：重点讲一下第 2 条陈述，就是在递归合并斜堆时，到最后以 18 为根的子树时，仍然要将其右子树与 NULL 合并一次，后在插入回 18 的子节点再交换，从结果上看就是 18 的左右儿子是要发生交换的。
+
+---
+
+F2 选择题 2-14
+
+To build a leftist heap, we can start from placing all the keys as single-node heaps on a queue, and perform the following until only one heap is on the queue: dequeue two heaps, merge them, and enqueue the result.
+
+Then the best description of the time complexity of this procedure is:
+
+=== "A"
+
+    $O(N)$
+
+=== "B"
+
+    $O(\log N)$
+
+=== "C"
+
+    $O(N \log N)$
+
+=== "D"
+
+    $O(\sqrt{N})$
+
+??? abstract "答案解析"
+
+    正确答案：A
+
+    解析：首先，对于 $N$ 个大小为 $1$ 的堆，要合并 $\frac{N}{2}$ 次，每次合并复杂度为 $O(1)$；然后，对于 $\frac{N}{2}$ 个大小为 $2$ 的堆，要合并 $\frac{N}{4}$ 次，每次合并复杂度为 $O(2)$；以此类推，对于 $\frac{N}{2^{k}}$ 个大小为 $2^{k}$，要合并 $\frac{N}{2^{k + 1}}$ 次，每次合并复杂度为 $O(2^{k})$。故总复杂度 $O(N) = \sum_{k = 1}^{\log N} \frac{N}{2^{k}} \cdot k = O(N)$。
+
+---
+
+F3 选择题 2-18
+
+Which one of the following statements is FALSE?
+
+=== "A"
+
+    For red-black trees, the total cost of rebalancing for $m$ consecutive insertions in a tree of $n$ nodes is $O(n + m)$.
+
+=== "B"
+
+    To obtain $O(1)$ amortized time for the function `decrease-key`, the potential function used for Fibonacci heaps is $\Phi(H) = t(H) + m(H)$, where $t(H)$ is the number of trees in the root list of heap $H$, and $m(H)$ is the number of marked nodes in $H$.
+
+=== "C"
+
+    Let $S(x)$ be the number of descendants of $x$ ($x$ included). If the potential function used for splay tree is $\Phi(T) = \sum_{x \in T} \log S(x)$, then the amortized cost of one splay operation is $O(\log n)$.
+
+=== "D"
+
+    In the potential method, the amortized cost of an operation is equal to the actual cost plus the increase in potential due to this operation.
+
+??? abstract "答案解析"
+
+    正确答案：B
+
+    解析：A、C、D 选项：结论。B 选项：正确的势能函数应为 $\Phi(H) = t(H) + 2m(H)$。
+
+---
+
+F3 程序填空题 5-1
+
+The function `DeleteRt` is to delete the root of a subtree with index `Pos` from a binomial queue `H`. The rest of the subtree is then stored as a new binomial queue and returned.
+
+```c
+BinQ DeleteRt( BinQ H, int Pos )
+{
+    BinTree OldRoot, SubTree;
+    BinQ NewBinQ;
+    int p;
+    
+    OldRoot = H->TheTrees[Pos];
+    SubTree = OldRoot->LeftChild;
+    free(OldRoot);
+    NewBinQ = Initialize();
+    NewBinQ->CurrentSize = ;
+    for (  ) {
+        NewBinQ->TheTrees[p] = SubTree;
+        SubTree = SubTree->NextSibling;
+        NewBinQ->TheTrees[p]->NextSibling = NULL;
+    }
+    return NewBinQ;
+}
+```
+
+??? abstract "答案解析"
+
+    正确答案：`(1 << Pos) - 1`；`p = Pos - 1; p >= 0; p--`
+
+    解析：`CurrentSize` 表示二项队列的总节点数，这和 `Pos` 有数量关系。在 LeftChild-NextSibling 表示法中：`LeftChild` 指向最大的子树，即 $\texttt{Pos} - 1$ 阶的子树；`NextSibling` 指向下一棵更小阶的子树，即比当前子树阶小 $1$ 阶的子树。
+
+---
+
+F4 选择题 2-4
+
+A sum list L is a data structure that can support the following operations:
+
+- Insert (x, L): insert the item x into the list L. The cost is 1 dollar.
+- Sum(L): sum all items in the list L, and replace the list with a list containing one item that is the sum. The cost is the length of the list |L| dollars.
+
+Now we would like to show that any sequence of Insert and Sum operations can be performed in $O(1)$ amortized cost per insert and $O(1)$ amortized cost per Sum. Which of the following statement is TRUE?
+
+=== "A"
+
+    We use the accounting method that charges an amortized cost of 2 dollars to Insert and 0 dollar for Sum.
+
+=== "B"
+
+    We use the potential function to be the number of elements in the list.
+
+=== "C"
+
+    We use the potential function to be the opposite number of elements in the list.
+
+=== "D"
+
+    Neither method can show the amortized cost for Insert and Sum is $O(1)$.
+
+??? abstract "答案解析"
+
+    正确答案：B
+
+    解析：A 选项：若对一个 list 一直进行 Sum 操作，则按选项成本为 0，与是极不相符。B、C 选项：结合具体操作推导。
+
+---
+
+F4 选择题 2-20
+
+Consider the following function, where the time complexity for function `calc()` is $O(1)$.
+
+```c
+void fun(int l, int r) {
+    if(r-l+1<=1234) return;
+    int m=(l+r)/2;
+    int m1=(l+m)/2, m2=(m+1+r)/2;
+    fun(l, m);
+    fun(m1+1, m2);
+    for(int k=1;k<=r-l+1;k++)
+        for(int i=1;i<=r-l+1;i++)
+            for(int j=l;j<=r;j+=i)
+                calc(j, i);
+    fun(m+1, r);
+    fun(m1+1, m2);
+}
+```
+
+=== "A"
+
+    $O(N \log^{2} N)$
+
+=== "B"
+
+    $O(N^{\frac{5}{2}})$
+
+=== "C"
+
+    $O(N^{2} \log N)$
+
+=== "D"
+
+    $O(N^{2} \log^{2} N)$
+
+??? abstract "答案解析"
+
+    正确答案：D
+
+    解析：这题核心在于正确计算三重循环的复杂度。最外层与内层无关，为 $O(N)$，内两层的总复杂度为 $\sum_{i = 1}^{N} \frac{N}{i} = N \sum_{i = 1}^{N} \frac{1}{i} = O(N \log N)$。后代入主定理求解即可。
+
+---
+
+F4 程序填空题 5-1
+
+```c
+if ( || node->num_keys > order - 1) return false;
+else if (node->num_children < (order + 1) / 2 || node->num_children > order) return false;
+```
+
+??? abstract "答案解析"
+
+    正确答案：`node->num_keys < (order - 1) / 2`
+
+    解析：在 B+ 树中，非叶子节点的 key 数目应当不小于 $\frac{\text{order} - 1}{2}$，不大于 $\text{order} - 1$；子节点数目应当不小于 $\frac{\text{order} + 1}{2}$，不大于 $\text{order}$。
+
+---
+
+F5 判断题 1-2
+
+Let $T(n)$ be the running time of quicksort on an input of size $n$. We already know that $T(n)$ is a random variable whose value depends on the random choices of quicksort, and that the expectation of $T(n)$ is $O(n \log n)$. Is the following statement true or false? The minimum possible value of $T(n)$ can be as small as $\Theta(n)$, and the maximum possible value can be as large as $\Theta(n^2)$.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：在最优情况下（即每次 pivot 的选取都选取到当前区间的中位数），快速排序仍然需要进行分治操作，复杂度仍然满足 $T(N) = 2T(\frac{N}{2}) + O(N)$。故最小复杂度仍然为 $O(N \log N)$。
+
+---
+
+F5 判断题 1-7
+
+In the dynamic indexing situation, the main index is usually updated when a new document comes to the document collection.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：在动态索引中，新文档通常先加入辅助索引 (auxiliary index)，而不是直接更新主索引。
+
+---
+
+F5 判断题 1-8
+
+There are two statements about Local Search:
+
+- For any local search algorithm, searching a better solution in the neighborhood can always be done in polynomial time.
+- For any local search algorithm, it takes polynomial time to find the local minimum.
+
+Both of the statements above are correct.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：局部搜索要求邻域结构是可在多项式时间内枚举或检查的，但是在某些问题中，获得局部最优所需的局部搜索的改进步数可能是指数级的，因此仍然不能保证能在多项时间内获得局部最优。
+
+---
+
+F5 判断题 1-10
+
+The number of partial solutions that do satisfy the restrictions is relatively hard (that is, no definite polynomial-time method works) to estimate during backtracking.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：回溯法中解空间的大小是容易确定的，往往是剪枝效果的不明确导致其时间复杂度难以估计，或者说难以估计「满足约束条件」的解空间大小难以估计。
+
+---
+
+F5 判断题 2-18
+
+In comparison to dynamic programming, divide-and-conquer algorithms are usually more suitable for problems with highly overlapping sub-problems.
+
+??? abstract "答案解析"
+
+    正确答案：F
+
+    解析：动态规划更适用于子空间重叠的方法，相反分治才是用于处理子问题各不相同的情况，否则没有必要作多个对独立子问题的运算。

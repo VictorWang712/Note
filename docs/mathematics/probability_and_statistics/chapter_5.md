@@ -127,7 +127,7 @@ $$\lim_{n \to +\infty} P \left\{ \left| \frac{1}{n} \sum_{i = 1}^{n} X_{i} - \mu
 
 注意到当 $\{ X_{i}, i \geq 1 \}$ 为独立同分布的随机变量序列时，若 $h(x)$ 为一连续函数，则 $\{ h(X_{i}), i \geq 1 \}$ 也是独立同分布的。因此辛钦大数定律可以得到以下推论：
 
-设 $\{ X_{i}, i \geq 1 \}$ 为独立同分布的随机变量序列，若 $h(x)$ 为一连续函数，且记 $a = E(|h(X_{1}|) < +\infty$，则对任意的 $\epsilon > 0$，有
+设 $\{ X_{i}, i \geq 1 \}$ 为独立同分布的随机变量序列，若 $h(x)$ 为一连续函数，且记 $a = E(|h(X_{1})|) < +\infty$，则对任意的 $\epsilon > 0$，有
 
 $$\lim_{n \to +\infty} P \left\{ \left| \frac{1}{n} \sum_{i = 1}^{n} h(X_{i}) - a \right| \geq \epsilon \right\} = 0$$
 

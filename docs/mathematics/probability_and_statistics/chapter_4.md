@@ -193,7 +193,7 @@ E(X^{2}) & = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} x^{2} e^{-\frac{x^{
 
 - $\text{Var}(c X) = c^{2} \text{Var}(X)$
 - $\text{Var}(X + c) = \text{Var}(X)$
-- $\text{Var} \leq E[(X - c)^{2}]$，当且仅当 $E(X) = c$ 时取等
+- $\text{Var}(X) \leq E[(X - c)^{2}]$，当且仅当 $E(X) = c$ 时取等
 - $\text{Var}(X) = 0$ 当且仅当 $P \{ X = c \} = 1$，其中 $c = E(X)$
 
 设 $X_{1}, X_{2}, \cdots, X_{n}, n \geq 2$ 为两两不相关的随机变量，方差都存在，则 $X_{1} + X_{2} + \cdots + X_{n}$ 的方差也存在，且

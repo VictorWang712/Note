@@ -102,7 +102,7 @@ $$P(A) = \sum_{j = 1}^{n} P(B_{j}) P(A | B_{j})$$
 
 而反之有
 
-$$P(B_{k} | A) = \frac{P(B_{k} A)}{P(A)} = \frac{P(B_{k} P(A | B_{k}))}{\sum_{j = 1}^{n} P(B_{j}) P(A | B_{j})}, k = 1, 2, \cdots, n$$
+$$P(B_{k} | A) = \frac{P(B_{k} A)}{P(A)} = \frac{P(B_{k}) P(A | B_{k})}{\sum_{j = 1}^{n} P(B_{j}) P(A | B_{j})}, k = 1, 2, \cdots, n$$
 
 这称作概率的**贝叶斯公式** (Bayes formula)，或**逆概公式**。
 

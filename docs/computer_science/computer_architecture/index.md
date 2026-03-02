@@ -14,11 +14,11 @@ comments: true
 
 ## 分数构成
 
-- Class participation & performance: 4%
-- Assignment: 16%
-- Lab OR Research: 32%
-- Quiz: 8%
-- Final exam: 40%
+- 课堂参与与表现：4%
+- 任务：16%
+- 实验或研究：32%
+- 小测：8%
+- 期末考：40%
 
 ## 致谢
 

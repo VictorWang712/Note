@@ -66,4 +66,4 @@ $\beta$ 剪枝就是 $\alpha$ 剪枝的对称情况，如下例：
 <img src="https://raw.githubusercontent.com/VictorWang712/Note/refs/heads/main/docs/assets/images/computer_science/advanced_data_structure/chapter_4_2.png" width="70%" style="margin: 0 auto;">
 </div>
 
-读者可以自行分析理解，为什么 $D$ 节点分支的搜索时不必要的。
+读者可以自行分析理解，为什么 $D$ 节点分支的搜索是不必要的。

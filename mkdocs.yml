@@ -167,6 +167,7 @@ nav:
     - 数据库系统:
       - computer_science/database_system/index.md
       - computer_science/database_system/chapter_1.md
+      - computer_science/database_system/chapter_2.md
     - 静态程序分析*:
       - computer_science/static_program_analysis/index.md
       - computer_science/static_program_analysis/chapter_1.md

@@ -21,7 +21,7 @@ comments: true
 - 由于摩尔定律的放缓和登纳德缩放比例定律的终结，晶体管不再大幅改进。
 - 微处理器的功耗预算不变。
 - 用多个高能效处理器代替了单个大功耗的处理器。
-- 多重处理已达到 [Amdahl 定律](https://victorwang712.github.io/Note/computer_science/computer_organisation/chapter_1/#_8)的上限。
+- 多重处理已达到 [Amdahl 定律](https://victorwang712.github.io/Note/computer_science/computer_architecture/chapter_1/#amdahl)的上限。
 
 ## 计算机的分类
 
